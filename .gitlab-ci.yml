@@ -11,7 +11,7 @@
             - mvn verify sonar:sonar
         only:
             - merge_requests
-            - master
+            - main
             - develop
          before_script:
         - apt-get update -qy
