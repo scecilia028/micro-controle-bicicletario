@@ -13,7 +13,7 @@
             - merge_requests
             - master
             - develop
-         before_script:
+        before_script:
         - apt-get update -qy
         - apt-get install -y ruby-dev
         - gem install dpl
