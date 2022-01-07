@@ -5,9 +5,9 @@ sonarcloud-check:
   image: maven:3.6.3-jdk-11
   
     before_script:
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - gem install dpl
+        - apt-get update -qy
+        - apt-get install -y ruby-dev
+        - gem install dpl
     
     cache:
         key: "${CI_JOB_NAME}"
