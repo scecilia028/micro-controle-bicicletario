@@ -16,6 +16,7 @@ sonarcloud-check:
   script:
     - mvn verify sonar:sonar
     - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
+    - sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
   only:
     - merge_requests
     - main
