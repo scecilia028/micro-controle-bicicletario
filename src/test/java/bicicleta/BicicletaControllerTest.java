@@ -16,7 +16,7 @@ import kong.unirest.Unirest;
 
 class BicicletaControllerTest {
 
-    private static JavalinApp app = new JavalinApp(); // inject any dependencies you might have
+    private static JavalinApp app = new JavalinApp();
     private String bikeJson = JavalinJson.toJson(ControllerBicicleta.mock.banco);
 
     @BeforeAll
