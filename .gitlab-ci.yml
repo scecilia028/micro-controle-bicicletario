@@ -20,7 +20,3 @@ sonarcloud-check:
     - merge_requests
     - main
     - develop
-  
-  job:
-    tags:
-        - ruby
