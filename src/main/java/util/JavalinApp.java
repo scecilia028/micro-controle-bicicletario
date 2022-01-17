@@ -9,7 +9,7 @@ public class JavalinApp {
 	  private Javalin app = 
 	            Javalin.create(config -> config.defaultContentType = "application/json")
 	                .routes(() -> {
-                	   path("bicicleta", () -> {
+                	   path("/bicicleta", () -> {
 	                           get(ControllerBicicleta::getBicicletaByCtx);
 	                           delete(ControllerBicicleta::deleteBicicleta);
 	                           post(ControllerBicicleta::postBicicleta);

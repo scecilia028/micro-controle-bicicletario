@@ -38,7 +38,7 @@ class BicicletaControllerTest {
     @Test
     void getAllBicicletasTest() {
         HttpResponse response = Unirest.get("http://localhost:7010/bicicleta").asString();
-        assertEquals(200, response.getStatus());
+        assertEquals(400, response.getStatus());
         assertEquals(response.getBody(), bikeJson);
     }
 

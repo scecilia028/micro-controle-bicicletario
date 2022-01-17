@@ -1,0 +1,5 @@
+bicicleta\ErrorResponseTest.class
+bicicleta\BicicletaControllerTest.class
+bicicleta\BicicletaTest.class
+bicicleta\JDBCMockTest.class
+bicicleta\ValidatorTest.class

@@ -20,7 +20,7 @@ public class ControllerBicicleta {
 	            ctx.status(200);
 	            ctx.json(bike);
 	        }else{
-	            ctx.status(200);
+	            ctx.status(400);
 	            ctx.json(mock.banco);
 	        }
 	    }

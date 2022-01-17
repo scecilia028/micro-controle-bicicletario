@@ -1,0 +1,58 @@
+
+Sbicicleta.JDBCMock#getDataByContext(Lio/javalin/http/Context;)Lbicicleta/Bicicleta;e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/JDBCMock.java (&"3*®
+2e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/JDBCMock.java (–“
+e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/JDBCMock.java% (9
+%2java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+id2queryParam(Ljava/lang/String;)¡ž
+e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/JDBCMock.java (:
+%3bicicleta.Bicicleta"Gbicicleta.JDBCMock#getDataById(Ljava/lang/String;)Lbicicleta/Bicicleta;*
+bicicleta.JDBCMock*
+
+%2java.lang.String2getDataById(Ljava/lang/String;)"„
+e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/JDBCMock.java (;
+
+%3bicicleta.Bicicleta*è
+3e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/JDBCMock.java (–“
+e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/JDBCMock.java& (:
+%0java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+id2queryParam(Ljava/lang/String;)Ú
+×
+e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/JDBCMock.java (;
+%1boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%0java.lang.String*
+2
+1*°
+1e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/JDBCMock.java (˜•
+e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/JDBCMock.java% (;
+%4java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+code2queryParam(Ljava/lang/String;)¡ž
+e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/JDBCMock.java (<
+%5bicicleta.Bicicleta"Gbicicleta.JDBCMock#getDataById(Ljava/lang/String;)Lbicicleta/Bicicleta;*
+bicicleta.JDBCMock*
+
+%4java.lang.String2getDataById(Ljava/lang/String;)"„
+e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/JDBCMock.java (=
+
+%5bicicleta.Bicicleta:
+ctxio.javalin.http.ContextB
+bicicleta.JDBCMock
