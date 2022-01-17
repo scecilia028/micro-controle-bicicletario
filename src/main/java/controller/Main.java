@@ -1,6 +1,5 @@
 package controller;
 
-import io.javalin.Javalin;
 import util.JavalinApp;
 
 public class Main {
