@@ -1,7 +1,7 @@
 organization=chaveapi-pm-pessoal
 projectKey=com.pm.sistemaBicicletario:projeto
 serverUrl=https://sonarcloud.io
-serverVersion=8.0.0.25862
+serverVersion=8.0.0.26091
 dashboardUrl=https://sonarcloud.io/dashboard?id=com.pm.sistemaBicicletario%3Aprojeto
-ceTaskId=AX47oJ3B4lQVUIE5s38W
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AX47oJ3B4lQVUIE5s38W
+ceTaskId=AX5ofUVzgQ5TClZXbEHN
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AX5ofUVzgQ5TClZXbEHN
