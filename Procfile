@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* br.com.pm.controleBicicletario.Main
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* controller.Main
