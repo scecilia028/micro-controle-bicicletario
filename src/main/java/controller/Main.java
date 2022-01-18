@@ -4,7 +4,7 @@ import util.JavalinApp;
 
 public class Main {
 
-	private final static String PATH = "/bicicleta";
+	private final static String PATH = "bicicleta";
 	private final static String NOT_FOUND_MESSAGE = "Não encontrado";
 	private final static String INVALID_DATA_MESSAGE = "Dados Inválidos";
 	
