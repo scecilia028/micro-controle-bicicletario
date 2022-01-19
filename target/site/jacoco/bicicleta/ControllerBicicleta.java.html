@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ControllerBicicleta.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">sistemaBicicletario</a> &gt; <a href="index.source.html" class="el_package">bicicleta</a> &gt; <span class="el_source">ControllerBicicleta.java</span></div><h1>ControllerBicicleta.java</h1><pre class="source lang-java linenums">package bicicleta;
+
+import io.javalin.http.Context;
+import util.ErrorResponse;
+import util.Validator;
+
+public class ControllerBicicleta {
+
+<span class="fc" id="L9">	 static JDBCMock mock = new JDBCMock();</span>
+
+	    private ControllerBicicleta(){
+	    	
+	    	
+	    }
+
+	    public static void getBicicletaByCtx(Context ctx) {
+<span class="fc" id="L17">	        Bicicleta bike = retrieveBikeByCtx(ctx);</span>
+	        
+<span class="fc bfc" id="L19" title="All 2 branches covered.">	        if (bike != null) {</span>
+<span class="fc" id="L20">	            ctx.status(200);</span>
+<span class="fc" id="L21">	            ctx.json(bike);</span>
+<span class="fc" id="L22">	        }else{</span>
+<span class="fc" id="L23">	            ctx.status(400);</span>
+<span class="fc" id="L24">	            ctx.json(mock.banco);</span>
+	        }
+<span class="fc" id="L26">	    }</span>
+	    private static Bicicleta retrieveBikeByCtx(Context ctx) {
+<span class="fc bfc" id="L28" title="All 2 branches covered.">	        if (ctx.queryParam(&quot;id&quot;) != null) {</span>
+<span class="fc" id="L29">	            return mock.getDataById(ctx.queryParam(&quot;id&quot;));</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">	        } else if (ctx.queryParam(&quot;code&quot;) != null) {</span>
+<span class="fc" id="L31">	            return mock.getDataByCode(Integer.parseInt(ctx.queryParam(&quot;code&quot;)));</span>
+	        }else{
+<span class="fc" id="L33">	            return null;</span>
+	        }
+	    }
+
+	    public static void postBicicleta(Context ctx) {
+<span class="fc" id="L38">	        String status = ctx.queryParam(&quot;status&quot;);</span>
+	        if (
+<span class="fc bfc" id="L40" title="All 2 branches covered.">	            Validator.isNullOrEmpty(ctx.queryParam(&quot;id&quot;))     ||</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">	            Validator.isNullOrEmpty(ctx.queryParam(&quot;code&quot;))   ||</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">	            Validator.isNullOrEmpty(status) ||</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">	            ! Validator.isInRangeEnum(status)</span>
+	        ) {
+<span class="fc" id="L45">	            ctx.status(400);</span>
+<span class="fc" id="L46">	            ctx.result(ErrorResponse.BAD_REQUEST);</span>
+<span class="fc" id="L47">	        }else{</span>
+<span class="fc" id="L48">	            Bicicleta bicicleta = new Bicicleta(</span>
+<span class="fc" id="L49">	                ctx.queryParam(&quot;id&quot;), </span>
+<span class="fc" id="L50">	                Integer.decode(ctx.queryParam(&quot;code&quot;)), </span>
+<span class="fc" id="L51">	                BicicletaStatus.valueOf(status.toUpperCase())</span>
+	                );
+<span class="fc" id="L53">	            mock.updateData(bicicleta);</span>
+<span class="fc" id="L54">	            ctx.status(200);</span>
+	        }
+<span class="fc" id="L56">	    }</span>
+
+	    public static void deleteBicicleta(Context ctx) {
+<span class="fc" id="L59">	        Bicicleta bike = retrieveBikeByCtx(ctx);</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">	        if (bike != null) {</span>
+<span class="fc" id="L61">	            mock.deleteData(bike.getId());</span>
+<span class="fc" id="L62">	            ctx.status(200);</span>
+<span class="fc" id="L63">	            ctx.result(&quot;Delete Executado&quot;);</span>
+<span class="fc" id="L64">	        }else{</span>
+<span class="fc" id="L65">	            ctx.status(400);</span>
+<span class="fc" id="L66">	            ctx.result(&quot;Delete Não Executado&quot;);</span>
+	        }
+<span class="fc" id="L68">	    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
