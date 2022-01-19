@@ -71,8 +71,7 @@
 					<appName>pm-echo</appName>
 					<processTypes>
 						<!-- Tell Heroku how to launch your application -->
-						<web>web: java $JAVA_OPTS -cp target/classes:target/dependency/*
-							controller.Main</web>
+						<web>web: java -Dserver.port=$PORT $JAVA_OPTS -cp target/projeto-0.0.1-SNAPSHOT-jar-with-dependencies	controller.Main</web>
 					</processTypes>
 				</configuration>
 			</plugin>
