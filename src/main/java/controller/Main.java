@@ -9,10 +9,20 @@ public class Main {
 //	private final static String NOT_FOUND_MESSAGE = "Não encontrado";
 //	private final static String INVALID_DATA_MESSAGE = "Dados Inválidos";
 	
-	public static void main(String[] args) {
-        Javalin app = Javalin.create().start(7070);
-        app.get("/", ctx -> ctx.result("Hello World"));
-    }
+	 public static void main(String[] args) {
+		    Javalin app = Javalin.create()
+		        .start(getHerokuAssignedPort())
+		        .get("/", ctx -> ctx.result("Hello Heroku"));
+		  }
+
+		  private static int getHerokuAssignedPort() {
+		    String herokuPort = System.getenv("PORT");
+		    if (herokuPort != null) {
+		      return Integer.parseInt(herokuPort);
+		    }
+		    return 7000;
+		  }
+
 	
 //	 public static void main(String[] args) {
 //	        JavalinApp app = new JavalinApp();
