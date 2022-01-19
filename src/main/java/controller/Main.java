@@ -1,24 +1,30 @@
 package controller;
 
+import io.javalin.Javalin;
 import util.JavalinApp;
 
 public class Main {
 
 	private final static String PATH = "bicicleta";
-	private final static String NOT_FOUND_MESSAGE = "Não encontrado";
-	private final static String INVALID_DATA_MESSAGE = "Dados Inválidos";
+//	private final static String NOT_FOUND_MESSAGE = "Não encontrado";
+//	private final static String INVALID_DATA_MESSAGE = "Dados Inválidos";
 	
-	 public static void main(String[] args) {
-	        JavalinApp app = new JavalinApp();
-	        app.start(getHerokuAssignedPort());
-	    }
-	 
-	    private static int getHerokuAssignedPort() {
-	        String herokuPort = System.getenv("PORT");
-	        if (herokuPort != null) {
-	          return Integer.parseInt(herokuPort);
-	        }
-	        return 7000;
+	public static void main(String[] args) {
+        Javalin app = Javalin.create().start(7070);
+        app.get("/", ctx -> ctx.result("Hello World"));
+    }
+	
+//	 public static void main(String[] args) {
+//	        JavalinApp app = new JavalinApp();
+//	        app.start(getHerokuAssignedPort());
+//	    }
+//	 
+//	    private static int getHerokuAssignedPort() {
+//	        String herokuPort = System.getenv("PORT");
+//	        if (herokuPort != null) {
+//	          return Integer.parseInt(herokuPort);
+//	        }
+//	        return 7000;
 //	    	Javalin app = Javalin.create().start(getHerokuAssignedPort());
 //	        app.get(PATH, ctx -> {
 //	        	String queryParam = ctx.queryParam("id");
@@ -44,7 +50,7 @@ public class Main {
 //					ctx.status(405).json(Error.builder().codigo("405").mensagem(INVALID_DATA_MESSAGE));
 //	        	}
 //	        });
-
-	      }
-
+//
+//	      }
+//
 }
