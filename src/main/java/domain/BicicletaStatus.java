@@ -1,4 +1,4 @@
-package bicicleta;
+package domain;
 
 public enum BicicletaStatus {
 	  	NOVA,

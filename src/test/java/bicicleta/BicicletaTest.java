@@ -1,6 +1,10 @@
 package bicicleta;
 
 import org.junit.jupiter.api.Test;
+
+import domain.Bicicleta;
+import domain.BicicletaStatus;
+
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,7 +20,7 @@ class BicicletaTest {
                                  123, 
                                  "Caloi",
                                  "Monark",
-                                 1990,
+                                 "1990",
                                  123,
                                  BicicletaStatus.DISPONIVEL);
     }
@@ -49,14 +53,14 @@ class BicicletaTest {
 
     @Test
     void testGetAno() {
-        Integer ano = bicicleta.getAno();
+    	String ano = bicicleta.getAno();
         assertEquals(1990, ano);
     }
 
     @Test
     void testSetAno(){
-        bicicleta.setAno(1991);
-        Integer ano = bicicleta.getAno();
+        bicicleta.setAno("1991");
+        String ano = bicicleta.getAno();
         assertEquals(1991, ano);
     }
 

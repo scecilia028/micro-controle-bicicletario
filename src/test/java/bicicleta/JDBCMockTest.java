@@ -1,6 +1,11 @@
 package bicicleta;
 
 import org.junit.jupiter.api.Test;
+
+import domain.Bicicleta;
+import domain.BicicletaStatus;
+import services.JDBCMockBicicleta;
+
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,10 +17,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 class JDBCMockTest {
 
-    JDBCMock mock;
+    JDBCMockBicicleta mock;
     @BeforeEach
     void init() {
-       mock = new JDBCMock();
+       mock = new JDBCMockBicicleta();
     }
     @Test
     void testGetDataByIdSuccess() {

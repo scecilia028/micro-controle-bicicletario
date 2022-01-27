@@ -19,7 +19,7 @@ class ValidatorTest {
 
     @Test
     void testIsInRangeEnum(){
-        assertTrue(Validator.isInRangeEnum("Disponivel"));
-        assertFalse(Validator.isInRangeEnum("Nao disponivel"));
+        assertTrue(Validator.isInRangeEnumBicicleta("Disponivel"));
+        assertFalse(Validator.isInRangeEnumBicicleta("Nao disponivel"));
     }
 }

@@ -1,16 +1,18 @@
-package bicicleta;
+package services;
 
 import java.util.ArrayList;
 
+import domain.Bicicleta;
+import domain.BicicletaStatus;
 import io.javalin.http.Context;
 import util.Validator;
 
-public class JDBCMock {
+public class JDBCMockBicicleta {
 	
 	/** lista de bicicletas */
-	ArrayList<Bicicleta> banco = new ArrayList<>();
+	public ArrayList<Bicicleta> banco = new ArrayList<>();
 
-	    public JDBCMock() {
+	    public JDBCMockBicicleta() {
 	        for (int i = 0; i < 10; i++) {
 	            banco.add(new Bicicleta(String.valueOf(i), i, BicicletaStatus.DISPONIVEL));
 	        }
@@ -63,4 +65,15 @@ public class JDBCMock {
 	        }
 	        return false;
 	    }
+
+		public void updateBicicleta(Bicicleta bicicletaUpdate) {
+			
+			for (Bicicleta bicicleta : banco) {
+		            if (bicicleta.getId().equalsIgnoreCase(bicicletaUpdate.getId())) {
+		            	banco.set(banco.indexOf(bicicleta), bicicletaUpdate);
+		                return;
+		            }
+		        }
+		}
+		
 }

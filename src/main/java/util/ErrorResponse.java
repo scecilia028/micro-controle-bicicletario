@@ -8,6 +8,10 @@ public class ErrorResponse {
 	    private static int status;
 	    private static String type;
 	    private static Map<String, String> details;
+	    public static final String NOT_FOUND = "Não encontrado.";
+	    public static  final  String INVALID_DATA_MESSAGE = "Dados Inválidos.";
+	    public static  final  String VALID_DATA_MESSAGE = "Dados atualizados.";
+	    public static  final  String INVALID_TRANCA_STATUS_MESSAGE = "Tranca indisponível.";
 	    
 	    private ErrorResponse() {
 	    throw new IllegalStateException("ErrorResponse");
@@ -25,7 +29,5 @@ public class ErrorResponse {
 	    public static String getType() {
 	        return type;
 	    }
-
-	    public static final String BAD_REQUEST = "Preenchimento Errado!";
 
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import controller.ControllerBicicleta;
 import io.javalin.plugin.json.JavalinJson;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
@@ -15,7 +16,7 @@ import util.JavalinApp;
 
 class BicicletaControllerTest {
 
-    private static JavalinApp app = new JavalinApp(); //testando 
+    private static JavalinApp app = new JavalinApp();
     private String bikeJson = JavalinJson.toJson(ControllerBicicleta.mock.banco);
 
     @BeforeAll
