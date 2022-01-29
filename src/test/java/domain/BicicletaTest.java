@@ -1,23 +1,16 @@
-package bicicleta;
+package domain;
 
-import org.junit.jupiter.api.Test;
-
-import domain.Bicicleta;
-import domain.BicicletaStatus;
-
-import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Unit test for simple App.
- */
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 class BicicletaTest {
     Bicicleta bicicleta;
 
     @BeforeEach
     void init() {
        bicicleta = new Bicicleta("123",
-                                 123, 
                                  "Caloi",
                                  "Monark",
                                  "1990",
@@ -31,11 +24,6 @@ class BicicletaTest {
     void testGetId() {
         String id = bicicleta.getId();
         assertEquals("123", id);
-    }
-    @Test
-    void testGetCode() {
-        Integer code = bicicleta.getCode();
-        assertEquals(123, code);
     }
     @Test
     void testGetStatus() {

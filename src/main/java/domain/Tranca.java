@@ -10,8 +10,19 @@ public class Tranca {
 	private String numero;
 	private TrancaStatus status;
 	private String idTotem;
+	private TrancaAcao acao;
 	
 	public Tranca() {
+	}
+	
+	public Tranca(String idTranca, String numero, String localizacao, String anoDeFabricacao, String modelo,
+			TrancaStatus status) {
+		this.idTranca = idTranca;
+		this.numero = numero;
+		this.localizacao = localizacao;
+		this.anoDeFabricacao = anoDeFabricacao;
+		this.modelo = modelo;
+		this.status = status;
 	}
 
 	public Tranca(String idTranca, String numero, String idBicicleta, String localizacao, String anoDeFabricacao, String modelo,
@@ -87,6 +98,14 @@ public class Tranca {
 
 	public void setIdTotem(String idTotem) {
 		this.idTotem = idTotem;
+	}
+
+	public TrancaAcao getAcao() {
+		return acao;
+	}
+
+	public void setAcao(TrancaAcao acao) {
+		this.acao = acao;
 	}
 	
 }

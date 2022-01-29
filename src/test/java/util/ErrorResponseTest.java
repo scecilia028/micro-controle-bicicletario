@@ -1,4 +1,4 @@
-package bicicleta;
+package util;
 
 import org.junit.jupiter.api.Test;
 

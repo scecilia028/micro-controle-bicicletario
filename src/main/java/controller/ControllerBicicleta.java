@@ -4,6 +4,7 @@ import domain.Bicicleta;
 import domain.BicicletaStatus;
 import io.javalin.http.Context;
 import services.JDBCMockBicicleta;
+import util.ChavesJson;
 import util.ErrorResponse;
 import util.Validator;
 
@@ -11,7 +12,6 @@ public class ControllerBicicleta {
 
 	public static JDBCMockBicicleta mock = new JDBCMockBicicleta();
 
-		//TODO testar isso aqui
 	    public static void getBicicletaByParamId(Context ctx) { 
 	        Bicicleta bike = retrieveBikeParam(ctx);
 	        
@@ -45,52 +45,57 @@ public class ControllerBicicleta {
 	    }
 	    
 	    private static Bicicleta retrieveBikeParam(Context ctx) {
-	        if (ctx.pathParam("idBicicleta") != null) {
-	            return mock.getDataById(ctx.pathParam("idBicicleta"));
+	        if (ctx.pathParam(ChavesJson.IDBICICLETA.getValor()) != null) {
+	            return mock.getDataById(ctx.pathParam(ChavesJson.IDBICICLETA.getValor()));
 	        }  else{
 	            return null;
 	        }
 	    }
 	  
 	    protected static Bicicleta retrieveBikeByCtx(Context ctx) {
-	        if (ctx.queryParam("idBicicleta") != null) {
-	            return mock.getDataById(ctx.queryParam("idBicicleta"));
+	        if (ctx.queryParam(ChavesJson.IDBICICLETA.getValor()) != null) {
+	            return mock.getDataById(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()));
 	        }  else{
 	            return null;
 	        }
 	    }
 
-	    public static void postBicicleta(Context ctx) {
-	        String status = ctx.queryParam("status");
-	        Bicicleta bicicleta = new Bicicleta();
-	        if (
-	            Validator.isNullOrEmpty(ctx.queryParam("idBicicleta"))     ||
-	            Validator.isNullOrEmpty(status) ||
-	            !Validator.isInRangeEnumBicicleta(status)
-	        ) {
-	        	bicicleta = checkCreateBicicleta(ctx);
+    public static void postBicicleta(Context ctx) {
+	        String status = ctx.queryParam(ChavesJson.STATUS.getValor());
+	         
+	        if(Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()))     ||
+		     Validator.isNullOrEmpty(status) || 
+		     !Validator.isInRangeEnumBicicleta(status) ) {
+	        	ctx.status(404).result(ErrorResponse.NOT_FOUND);
+				return;
+	       
+	        }else if (!Validator.checkKeysValidByCtx(ctx)) {
+	        	ctx.status(422);
+				ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
+				return;
+	        }	
+	        Bicicleta bicicleta = checkCreateBicicleta(ctx);
 	        	
-				if (bicicleta == null) {
-					ctx.status(422);
-					ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
-				} else {
-					mock.updateData(bicicleta);
-					ctx.status(200);
-				}
-	        }
-	    }
+			if (bicicleta != null) {
+				mock.updateData(bicicleta);
+				ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
+				return;
+			}
+        }
+	    
 	    
 	    public static void putBicicleta(Context ctx) {
 	    	 Bicicleta bicicleta = retrieveBikeParam(ctx);
-	    	 
 	    	 if (bicicleta != null) {
+	    		 if(!Validator.checkKeysValidByCtx(ctx)) {
+	    			 ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);
+	    			 return;
+	    		 }
 	    		 bicicleta = checkUpdateBicicleta(ctx, bicicleta);
 	    		 if(bicicleta != null) {
 		    		  mock.updateBicicleta(bicicleta);	
-		       		  ctx.status(200);
-	    		 }else {
-	    			 ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);
-	    		 }
+		       		  ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
+	    		 } 
 	    	 } else {
 	    		 ctx.status(404).result(ErrorResponse.NOT_FOUND);
 	    	 }
@@ -98,54 +103,47 @@ public class ControllerBicicleta {
 
 		private static Bicicleta checkCreateBicicleta(Context ctx) {
 			Bicicleta bicicleta = new Bicicleta();
-			  if(!Validator.isNullOrEmpty(ctx.queryParam("idBicicleta")) &&
-				 !Validator.isNullOrEmpty(ctx.queryParam("status")) &&
-				 Validator.isInRangeEnumBicicleta(ctx.queryParam("status")) &&
-				 !Validator.isNullOrEmpty(ctx.queryParam("marca")) &&
-				 !Validator.isNullOrEmpty(ctx.queryParam("modelo"))	&&
-				 !Validator.isNullOrEmpty(ctx.queryParam("ano")) &&	  
-				 !Validator.isNullOrEmpty(ctx.queryParam("numero")) &&
-				 !Validator.isNullOrEmpty(ctx.queryParam("localizacao"))
+			  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDBICICLETA.getValor())) &&
+				 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor())) &&
+				 Validator.isInRangeEnumBicicleta(ctx.queryParam(ChavesJson.STATUS.getValor())) &&
+				 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MARCA.getValor())) &&
+				 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MODELO.getValor()))	&&
+				 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.ANO.getValor())) &&	  
+				 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.NUMERO.getValor()))
 				) {
-				  bicicleta.setId(ctx.queryParam("idBicicleta"));
-				  bicicleta.setStatus(BicicletaStatus.valueOf(ctx.queryParam("status").toUpperCase()));
-				  bicicleta.setMarca(ctx.queryParam("marca"));
-				  bicicleta.setModelo(ctx.queryParam("modelo"));
-				  bicicleta.setAno(ctx.queryParam("ano"));
-				  bicicleta.setNumero(Integer.parseInt(ctx.queryParam("numero")));
-				  bicicleta.setLocalizacao(ctx.queryParam("localizacao"));
+				  bicicleta.setId(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()));
+				  bicicleta.setStatus(BicicletaStatus.valueOf(ctx.queryParam(ChavesJson.STATUS.getValor()).toUpperCase()));
+				  bicicleta.setMarca(ctx.queryParam(ChavesJson.MARCA.getValor()));
+				  bicicleta.setModelo(ctx.queryParam(ChavesJson.MODELO.getValor()));
+				  bicicleta.setAno(ctx.queryParam(ChavesJson.ANO.getValor()));
+				  bicicleta.setNumero(Integer.parseInt(ctx.queryParam(ChavesJson.NUMERO.getValor())));
 				  return bicicleta;
 			  }
 			return null;
 		}
 		
 		private static Bicicleta checkUpdateBicicleta(Context ctx, Bicicleta bicicleta) {
-			 
-			  if(!Validator.isNullOrEmpty(ctx.queryParam("status")) &&  Validator.isInRangeEnumBicicleta(ctx.queryParam("status"))) {
-				  bicicleta.setStatus(BicicletaStatus.valueOf(ctx.queryParam("status").toUpperCase()));
+			  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor())) &&  Validator.isInRangeEnumBicicleta(ctx.queryParam(ChavesJson.STATUS.getValor()))) {
+				  bicicleta.setStatus(BicicletaStatus.valueOf(ctx.queryParam(ChavesJson.STATUS.getValor()).toUpperCase()));
 			  }
-			  if(!Validator.isNullOrEmpty(ctx.queryParam("marca"))) {
-				  bicicleta.setMarca(ctx.queryParam("marca"));
+			  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MARCA.getValor()))) {
+				  bicicleta.setMarca(ctx.queryParam(ChavesJson.MARCA.getValor()));
 			  }
-			  if(!Validator.isNullOrEmpty(ctx.queryParam("modelo"))) {
-				  bicicleta.setModelo(ctx.queryParam("modelo"));
+			  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MODELO.getValor()))) {
+				  bicicleta.setModelo(ctx.queryParam(ChavesJson.MODELO.getValor()));
 			  }
-			  if(!Validator.isNullOrEmpty(ctx.queryParam("ano"))) {
-				  bicicleta.setAno(ctx.queryParam("ano"));
+			  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.ANO.getValor()))) {
+				  bicicleta.setAno(ctx.queryParam(ChavesJson.ANO.getValor()));
 			  }
-			  if(!Validator.isNullOrEmpty(ctx.queryParam("numero"))) {
-				  bicicleta.setNumero(Integer.parseInt(ctx.queryParam("numero")));
+			  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.NUMERO.getValor()))) {
+				  bicicleta.setNumero(Integer.parseInt(ctx.queryParam(ChavesJson.NUMERO.getValor())));
 			  }
-			  if(!Validator.isNullOrEmpty(ctx.queryParam("localizacao"))) {
-				  bicicleta.setLocalizacao(ctx.queryParam("localizacao"));
-			  }
-			  if(Validator.isNullOrEmpty(ctx.queryParam("status")) &&
-				 !Validator.isInRangeEnumBicicleta(ctx.queryParam("status")) &&
-				 Validator.isNullOrEmpty(ctx.queryParam("marca")) &&
-				 Validator.isNullOrEmpty(ctx.queryParam("modelo"))	&&
-				 Validator.isNullOrEmpty(ctx.queryParam("ano")) &&	  
-				 Validator.isNullOrEmpty(ctx.queryParam("numero")) &&
-				 Validator.isNullOrEmpty(ctx.queryParam("localizacao"))
+			  if(Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor())) &&
+				 !Validator.isInRangeEnumBicicleta(ctx.queryParam(ChavesJson.STATUS.getValor())) &&
+				 Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MARCA.getValor())) &&
+				 Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MODELO.getValor()))	&&
+				 Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.ANO.getValor())) &&	  
+				 Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.NUMERO.getValor()))
 				) {
 				  return null;
 			  }
@@ -166,12 +164,12 @@ public class ControllerBicicleta {
 	    	 Bicicleta bicicleta = retrieveBikeParam(ctx);
 	    	 
 	    	 if (bicicleta != null) {
-	    		 if(!Validator.isNullOrEmpty(ctx.pathParam("status"))) {
-					  if(BicicletaStatus.valueOf(ctx.pathParam("status").toUpperCase()) == null) {
+	    		 if(!Validator.isNullOrEmpty(ctx.pathParam(ChavesJson.STATUS.getValor()))) {
+					  if(BicicletaStatus.valueOf(ctx.pathParam(ChavesJson.STATUS.getValor()).toUpperCase()) == null) {
 						  ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);
 						  return;
 					  }
-					  bicicleta.setStatus(BicicletaStatus.valueOf(ctx.pathParam("status").toUpperCase()));
+					  bicicleta.setStatus(BicicletaStatus.valueOf(ctx.pathParam(ChavesJson.STATUS.getValor()).toUpperCase()));
 				  }
 	    		  mock.updateBicicleta(bicicleta);	
 	    		  ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);

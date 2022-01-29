@@ -7,6 +7,7 @@ import domain.Bicicleta;
 import domain.Tranca;
 import domain.TrancaStatus;
 import io.javalin.http.Context;
+import util.ChavesJson;
 import util.Validator;
 
 public class JDBCMockTranca {
@@ -22,8 +23,8 @@ public class JDBCMockTranca {
     }
 
     public Tranca getDataByContext(Context ctx) {
-        if (!Validator.isNullOrEmpty(ctx.queryParam("id"))) {
-            return this.getDataById(ctx.queryParam("id"));
+        if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor()))) {
+            return this.getDataById(ctx.queryParam(ChavesJson.IDTRANCA.getValor()));
         }  
         return null;
     }

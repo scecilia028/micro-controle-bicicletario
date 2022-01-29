@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import domain.Totem;
 import io.javalin.http.Context;
+import util.ChavesJson;
 import util.Validator;
 
 public class JDBCMockTotem {
@@ -17,8 +18,8 @@ public class JDBCMockTotem {
     }
 
     public Totem getDataByContext(Context ctx) {
-        if (!Validator.isNullOrEmpty(ctx.queryParam("id"))) {
-            return this.getDataById(ctx.queryParam("id"));
+        if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor()))) {
+            return this.getDataById(ctx.queryParam(ChavesJson.IDTOTEM.getValor()));
         }  
         return null;
     }

@@ -1,7 +1,9 @@
 package util;
 
 import domain.BicicletaStatus;
+import domain.TrancaAcao;
 import domain.TrancaStatus;
+import io.javalin.http.Context;
 
 public final class Validator {
 	private Validator() {
@@ -33,7 +35,7 @@ public final class Validator {
 	
 	public static boolean isTrancaAvailable(String value) {
 		TrancaStatus bikeStatus = TrancaStatus.valueOf(value.toUpperCase());
-		if(bikeStatus != TrancaStatus.NOVA || bikeStatus != TrancaStatus.LIVRE) {
+		if(bikeStatus == TrancaStatus.NOVA || bikeStatus == TrancaStatus.LIVRE) {
 			return true;
 		}
 	 return false;
@@ -46,6 +48,42 @@ public final class Validator {
 			return false;
 		}
 		return true;
+	}
+	
+	public static boolean isInRangeIdValid(String value) {
+		try {
+			TrancaStatus.valueOf(value.toUpperCase());
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean isInRangeEnumTrancaAcao(String value) {
+		try {
+			TrancaAcao.valueOf(value.toUpperCase());
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean isInRangeValidChavesJson(String value) {
+		try {
+			ChavesJson.valueOf(value.toUpperCase());
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean checkKeysValidByCtx(Context ctx) {
+		for (String key : ctx.queryParamMap().keySet()) {
+			if (!isInRangeValidChavesJson(key)) {
+				return false;
+			}
+		}
+			return true;
 	}
 
 }

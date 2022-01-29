@@ -19,12 +19,12 @@ public class JavalinApp {
              put("/bicicleta/:idBicicleta", ControllerBicicleta::putBicicleta);
              get("/bicicleta/:idBicicleta", ControllerBicicleta::getBicicletaByParamId);
         	 delete("/bicicleta/:idBicicleta", ControllerBicicleta::deleteBicicleta);
-             post("/bicicleta/:id/status/:status", ControllerBicicleta::postStatusBicicleta);
+             post("/bicicleta/:idBicicleta/status/:status", ControllerBicicleta::postStatusBicicleta);
              
 	         post("/bicicleta/integrarNaRede", ControllerTranca::postIntegrarNaRede);  
 	         post("/bicicleta/retirarDaRede", ControllerTranca::postRetirarDaRede); 
              
-             get("/totem", ControllerTotem::getTotemByCtx);
+             get("/totem", ControllerTotem::getTotem);
         	 post("/totem", ControllerTotem::postTotem);
              put("/totem/:idTotem", ControllerTotem::putTotem);
              delete("/totem/:idTotem", ControllerTotem::deleteTotem);
@@ -37,8 +37,7 @@ public class JavalinApp {
              get("/tranca/:idTranca", ControllerTranca::getTrancaByIdOrNumber);
              delete("/tranca/:idTranca", ControllerTranca::deleteTranca);
              put("/tranca/:idTranca", ControllerTranca::putTranca);
-             post("/tranca/:idTranca/status/:status", ControllerTranca::postStatusTranca);
-             
+             post("/tranca/:idTranca/status/:acao", ControllerTranca::postStatusTranca);
              
              post("/tranca/integrarNaRede", ControllerTranca::postIntegrarNaRedeTrancaTotem);
              post("/tranca/retirarDaRede", ControllerTranca::postRetirarDaRedeTrancaTotem);

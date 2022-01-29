@@ -1,4 +1,4 @@
-package bicicleta;
+package service;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,10 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * JDBCMockTest
- */
-class JDBCMockTest {
+class JDBCMockBicicletaTest {
 
     JDBCMockBicicleta mock;
     @BeforeEach
@@ -33,13 +30,9 @@ class JDBCMockTest {
     }
 
     @Test
-    void testGetDataByCodeSuccess() {
-        assertTrue(mock.getDataByCode(1) instanceof Bicicleta);
-    }
-    @Test
     void testUpdateDataSuccess() {
         int size = mock.banco.size();
-        Bicicleta bikObject = new Bicicleta("1", 1, BicicletaStatus.DISPONIVEL);
+        Bicicleta bikObject = new Bicicleta("1", BicicletaStatus.DISPONIVEL);
         mock.updateData(bikObject);
         assertEquals(size, mock.banco.size());
     }
@@ -47,7 +40,7 @@ class JDBCMockTest {
     @Test
     void testUpdateDataNewInstance() {
         int size = mock.banco.size();
-        Bicicleta bikObject = new Bicicleta("a", 152, BicicletaStatus.DISPONIVEL);
+        Bicicleta bikObject = new Bicicleta("a", BicicletaStatus.DISPONIVEL);
         mock.updateData(bikObject);
         assertEquals(size+1, mock.banco.size());
     }
@@ -59,8 +52,6 @@ class JDBCMockTest {
     void testGetDataFailure() {
         assertFalse(mock.getDataById("a") instanceof Bicicleta);
     }
-
-
 
     @Test
     void testDeleteDataFailure() {
