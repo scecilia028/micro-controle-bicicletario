@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Validator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">sistemaBicicletario</a> &gt; <a href="index.source.html" class="el_package">util</a> &gt; <span class="el_source">Validator.java</span></div><h1>Validator.java</h1><pre class="source lang-java linenums">package util;
+
+import domain.BicicletaStatus;
+import domain.TrancaAcao;
+import domain.TrancaStatus;
+import io.javalin.http.Context;
+
+public final class Validator {
+<span class="nc" id="L9">	private Validator() {</span>
+<span class="nc" id="L10">		throw new IllegalStateException(&quot;ErrorResponse&quot;);</span>
+	}
+
+	public static boolean isNullOrEmpty(String value) {
+<span class="fc bfc" id="L14" title="All 4 branches covered.">		return (value == null || value.equalsIgnoreCase(&quot;null&quot;));</span>
+	}
+
+	public static boolean isInRangeEnumBicicleta(String value) {
+		try {
+<span class="fc" id="L19">			BicicletaStatus.valueOf(value.toUpperCase());</span>
+<span class="fc" id="L20">		} catch (Exception e) {</span>
+<span class="fc" id="L21">			return false;</span>
+<span class="fc" id="L22">		}</span>
+<span class="fc" id="L23">		return true;</span>
+	}
+	
+	public static boolean isBicicletaAvailable(String value) {
+<span class="fc" id="L27">			BicicletaStatus bikeStatus = BicicletaStatus.valueOf(value.toUpperCase());</span>
+<span class="pc bpc" id="L28" title="2 of 6 branches missed.">			if(bikeStatus == BicicletaStatus.DISPONIVEL ||</span>
+			   bikeStatus == BicicletaStatus.EM_USO || 
+			   bikeStatus == BicicletaStatus.NOVA) {
+<span class="fc" id="L31">				return true;</span>
+			}
+<span class="fc" id="L33">		 return false;</span>
+	}
+	
+	public static boolean isTrancaAvailable(String value) {
+<span class="fc" id="L37">		TrancaStatus tranca = TrancaStatus.valueOf(value.toUpperCase());</span>
+<span class="pc bpc" id="L38" title="1 of 4 branches missed.">		if(tranca == TrancaStatus.NOVA || tranca == TrancaStatus.LIVRE) {</span>
+<span class="fc" id="L39">			return true;</span>
+		}
+<span class="fc" id="L41">	 return false;</span>
+}
+	
+	public static boolean isInRangeEnumTranca(String value) {
+		try {
+<span class="fc" id="L46">			TrancaStatus.valueOf(value.toUpperCase());</span>
+<span class="fc" id="L47">		} catch (Exception e) {</span>
+<span class="fc" id="L48">			return false;</span>
+<span class="fc" id="L49">		}</span>
+<span class="fc" id="L50">		return true;</span>
+	}
+	
+	public static boolean isInRangeEnumTrancaAcao(String value) {
+		try {
+<span class="fc" id="L55">			TrancaAcao.valueOf(value.toUpperCase());</span>
+<span class="fc" id="L56">		} catch (Exception e) {</span>
+<span class="fc" id="L57">			return false;</span>
+<span class="fc" id="L58">		}</span>
+<span class="fc" id="L59">		return true;</span>
+	}
+	
+	public static boolean isInRangeValidChavesJson(String value) {
+		try {
+<span class="fc" id="L64">			ChavesJson.valueOf(value.toUpperCase());</span>
+<span class="fc" id="L65">		} catch (Exception e) {</span>
+<span class="fc" id="L66">			return false;</span>
+<span class="fc" id="L67">		}</span>
+<span class="fc" id="L68">		return true;</span>
+	}
+
+	public static boolean checkKeysValidByCtx(Context ctx) {
+<span class="nc bnc" id="L72" title="All 2 branches missed.">		for (String key : ctx.queryParamMap().keySet()) {</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">			if (!isInRangeValidChavesJson(key)) {</span>
+<span class="nc" id="L74">				return false;</span>
+			}
+<span class="nc" id="L76">		}</span>
+<span class="nc" id="L77">			return true;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

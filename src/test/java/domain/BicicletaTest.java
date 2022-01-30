@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class BicicletaTest {
     Bicicleta bicicleta;
-/*
+
     @BeforeEach
     void init() {
        bicicleta = new Bicicleta("123",
@@ -76,5 +76,4 @@ class BicicletaTest {
         assertEquals("evo", modelo);
     }
     
-    */
 }

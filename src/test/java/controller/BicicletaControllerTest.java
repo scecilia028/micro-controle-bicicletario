@@ -20,7 +20,7 @@ class BicicletaControllerTest {
 
     private static JavalinApp app = new JavalinApp();
     private String bikeJson = JavalinJson.toJson(ControllerBicicleta.mock.banco);
-/*
+
     @BeforeAll
     static void init() {
         app.start(7010);
@@ -169,5 +169,4 @@ class BicicletaControllerTest {
         HttpResponse response = Unirest.get("http://localhost:7010/bicicleta?idBicicleta=ndjskfnks&modelo=asdjak").asString();
         assertEquals(404, response.getStatus());
     }
-    */
 }

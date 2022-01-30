@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JavalinApp.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">sistemaBicicletario</a> &gt; <a href="index.source.html" class="el_package">util</a> &gt; <span class="el_source">JavalinApp.java</span></div><h1>JavalinApp.java</h1><pre class="source lang-java linenums">package util;
+
+import static io.javalin.apibuilder.ApiBuilder.delete;
+import static io.javalin.apibuilder.ApiBuilder.get;
+import static io.javalin.apibuilder.ApiBuilder.post;
+import static io.javalin.apibuilder.ApiBuilder.put;
+
+import controller.ControllerBicicleta;
+import controller.ControllerTotem;
+import controller.ControllerTranca;
+import io.javalin.Javalin;
+ 
+<span class="nc" id="L13">public class JavalinApp {</span>
+	private static final String pathParamIdBicicleta = &quot;/bicicleta/:idBicicleta&quot;;
+	private static final String pathParamIdTranca = &quot;/tranca/:idTranca&quot;;
+	private static final String pathParamIdTotem = &quot;/totem/:idTotem&quot;;
+	
+<span class="nc" id="L18">	  private Javalin app = </span>
+<span class="nc" id="L19">        Javalin.create(config -&gt; config.defaultContentType = &quot;application/json&quot;)</span>
+<span class="nc" id="L20">        .routes(() -&gt; {</span>
+<span class="nc" id="L21">        	 get(&quot;/bicicleta&quot;, ControllerBicicleta::getBicicletaByCtx);</span>
+<span class="nc" id="L22">        	 post(&quot;/bicicleta&quot;, ControllerBicicleta::postBicicleta);</span>
+<span class="nc" id="L23">             put(pathParamIdBicicleta, ControllerBicicleta::putBicicleta);</span>
+<span class="nc" id="L24">             get(pathParamIdBicicleta, ControllerBicicleta::getBicicletaByParamId);</span>
+<span class="nc" id="L25">        	 delete(pathParamIdBicicleta, ControllerBicicleta::deleteBicicleta);</span>
+<span class="nc" id="L26">             post(&quot;/bicicleta/:idBicicleta/status/:status&quot;, ControllerBicicleta::postStatusBicicleta);</span>
+             
+<span class="nc" id="L28">	         post(&quot;/bicicleta/integrarNaRede&quot;, ControllerTranca::postIntegrarNaRede);  </span>
+<span class="nc" id="L29">	         post(&quot;/bicicleta/retirarDaRede&quot;, ControllerTranca::postRetirarDaRede); </span>
+             
+<span class="nc" id="L31">             get(&quot;/totem&quot;, ControllerTotem::getTotem);</span>
+<span class="nc" id="L32">        	 post(&quot;/totem&quot;, ControllerTotem::postTotem);</span>
+<span class="nc" id="L33">             put(pathParamIdTotem, ControllerTotem::putTotem);</span>
+<span class="nc" id="L34">             delete(pathParamIdTotem, ControllerTotem::deleteTotem);</span>
+             
+<span class="nc" id="L36">             get(&quot;/totem/:idTotem/trancas&quot;, ControllerTranca::getTrancasByTotem);</span>
+<span class="nc" id="L37">             get(&quot;/totem/:idTotem/bicicletas&quot;, ControllerTranca::getBicicletasByTotem);</span>
+             
+<span class="nc" id="L39">             post(&quot;/tranca&quot;, ControllerTranca::postTranca);</span>
+<span class="nc" id="L40">             get(&quot;/tranca&quot;, ControllerTranca::getTrancaByCtx);</span>
+<span class="nc" id="L41">             get(pathParamIdTranca, ControllerTranca::getTrancaByIdOrNumber);</span>
+<span class="nc" id="L42">             delete(pathParamIdTranca, ControllerTranca::deleteTranca);</span>
+<span class="nc" id="L43">             put(pathParamIdTranca, ControllerTranca::putTranca);</span>
+<span class="nc" id="L44">             post(&quot;/tranca/:idTranca/status/:acao&quot;, ControllerTranca::postStatusTranca);</span>
+             
+<span class="nc" id="L46">             post(&quot;/tranca/integrarNaRede&quot;, ControllerTranca::postIntegrarNaRedeTrancaTotem);</span>
+<span class="nc" id="L47">             post(&quot;/tranca/retirarDaRede&quot;, ControllerTranca::postRetirarDaRedeTrancaTotem);</span>
+<span class="nc" id="L48">             get(&quot;/tranca/:idTranca/bicicleta&quot;, ControllerTranca::getBikeByTranca);</span>
+<span class="nc" id="L49">           });     </span>
+	  	
+	    public void start(int port) {
+<span class="nc" id="L52">	        this.app.start(port);</span>
+<span class="nc" id="L53">	    }</span>
+
+	    public void stop() {
+<span class="nc" id="L56">	        this.app.stop();</span>
+<span class="nc" id="L57">	    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

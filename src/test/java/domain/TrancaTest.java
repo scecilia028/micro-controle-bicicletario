@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class TrancaTest {
     Tranca tranca;
-/*
+
     @BeforeEach
     void init() {
        tranca = new Tranca("1",
@@ -103,5 +103,4 @@ class TrancaTest {
         assertEquals("RJ algum bairro", local);
     }
     
-    */
 }
