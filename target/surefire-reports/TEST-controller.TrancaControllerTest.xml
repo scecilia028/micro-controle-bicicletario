@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="service.JDBCMockTrancaTest" time="0.008" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="controller.TrancaControllerTest" time="0.144" tests="21" errors="0" skipped="0" failures="2">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -61,12 +61,141 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="testUpdateDataSameInstance" classname="service.JDBCMockTrancaTest" time="0.001"/>
-  <testcase name="testDeleteDataSuccess" classname="service.JDBCMockTrancaTest" time="0.001"/>
-  <testcase name="testGetDataById" classname="service.JDBCMockTrancaTest" time="0.001"/>
-  <testcase name="testGetDataFailById" classname="service.JDBCMockTrancaTest" time="0.001"/>
-  <testcase name="testGetDataByIdSuccess" classname="service.JDBCMockTrancaTest" time="0.001"/>
-  <testcase name="testDeleteDataFailure" classname="service.JDBCMockTrancaTest" time="0.001"/>
-  <testcase name="testGetDataByIdFailure" classname="service.JDBCMockTrancaTest" time="0"/>
-  <testcase name="testUpdateDataSuccess" classname="service.JDBCMockTrancaTest" time="0"/>
+  <testcase name="getTrancaFail404Test" classname="controller.TrancaControllerTest" time="0.008">
+    <system-err><![CDATA[[main] INFO io.javalin.Javalin - 
+           __                      __ _
+          / /____ _ _   __ ____ _ / /(_)____
+     __  / // __ `/| | / // __ `// // // __ \
+    / /_/ // /_/ / | |/ // /_/ // // // / / /
+    \____/ \__,_/  |___/ \__,_//_//_//_/ /_/
+
+        https://javalin.io/documentation
+
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO io.javalin.Javalin - Listening on http://localhost:7010/
+[main] INFO io.javalin.Javalin - Javalin started in 15ms \o/
+jan 30, 2022 10:37:24 AM org.apache.http.impl.execchain.RetryExec execute
+INFO: I/O exception (java.net.SocketException) caught when processing request to {}->http://localhost:7010: Software caused connection abort: recv failed
+jan 30, 2022 10:37:24 AM org.apache.http.impl.execchain.RetryExec execute
+INFO: Retrying request to {}->http://localhost:7010
+]]></system-err>
+  </testcase>
+  <testcase name="getBikeInTrancaFailTest" classname="controller.TrancaControllerTest" time="0.004"/>
+  <testcase name="postTrancaFailWithoutParamTest" classname="controller.TrancaControllerTest" time="0.011">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <404> but was: <500>
+	at controller.TrancaControllerTest.postTrancaFailWithoutParamTest(TrancaControllerTest.java:159)
+]]></failure>
+    <system-err><![CDATA[[qtp1752236450-45] WARN io.javalin.Javalin - Uncaught exception
+java.lang.NullPointerException
+	at services.JDBCMockTranca.createData(JDBCMockTranca.java:42)
+	at controller.ControllerTranca.postTranca(ControllerTranca.java:75)
+	at io.javalin.core.security.SecurityUtil.noopAccessManager(SecurityUtil.kt:23)
+	at io.javalin.http.JavalinServlet$addHandler$protectedHandler$1.handle(JavalinServlet.kt:119)
+	at io.javalin.http.JavalinServlet$service$2$1.invoke(JavalinServlet.kt:45)
+	at io.javalin.http.JavalinServlet$service$2$1.invoke(JavalinServlet.kt:24)
+	at io.javalin.http.JavalinServlet$service$1.invoke(JavalinServlet.kt:126)
+	at io.javalin.http.JavalinServlet$service$2.invoke(JavalinServlet.kt:40)
+	at io.javalin.http.JavalinServlet.service(JavalinServlet.kt:78)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:755)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:547)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1607)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at io.javalin.core.JavalinServer$start$httpHandler$1.doHandle(JavalinServer.kt:54)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:485)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1577)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1212)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerList.handle(HandlerList.java:59)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:500)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:383)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:547)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:375)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:270)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:117)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:336)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:313)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:171)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:129)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:388)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:806)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:938)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+]]></system-err>
+  </testcase>
+  <testcase name="postTrancaSuccessTest" classname="controller.TrancaControllerTest" time="0.006"/>
+  <testcase name="putTrancaSuccessTest" classname="controller.TrancaControllerTest" time="0.005"/>
+  <testcase name="postTrancaFailNullParamTest" classname="controller.TrancaControllerTest" time="0.005"/>
+  <testcase name="postTrancaStatusFailTest" classname="controller.TrancaControllerTest" time="0.003"/>
+  <testcase name="postTrancaOutTrancaFailTest" classname="controller.TrancaControllerTest" time="0.003"/>
+  <testcase name="deleteTrancaSuccessTest" classname="controller.TrancaControllerTest" time="0.003"/>
+  <testcase name="getAllTrancasTest" classname="controller.TrancaControllerTest" time="0.008"/>
+  <testcase name="deleteTrancaFailTest" classname="controller.TrancaControllerTest" time="0.003"/>
+  <testcase name="putTrancaFailTest" classname="controller.TrancaControllerTest" time="0.003"/>
+  <testcase name="postTrancaInTotemFailTest" classname="controller.TrancaControllerTest" time="0.002"/>
+  <testcase name="getTrancaFailTest" classname="controller.TrancaControllerTest" time="0.004">
+    <system-err><![CDATA[[qtp1752236450-50] WARN io.javalin.Javalin - Uncaught exception
+java.lang.NullPointerException
+	at services.JDBCMockTranca.getDataByIdOrNumero(JDBCMockTranca.java:96)
+	at controller.ControllerTranca.retrieveTrancaByParamIdOrNumber(ControllerTranca.java:234)
+	at controller.ControllerTranca.getTrancaByIdOrNumber(ControllerTranca.java:223)
+	at io.javalin.core.security.SecurityUtil.noopAccessManager(SecurityUtil.kt:23)
+	at io.javalin.http.JavalinServlet$addHandler$protectedHandler$1.handle(JavalinServlet.kt:119)
+	at io.javalin.http.JavalinServlet$service$2$1.invoke(JavalinServlet.kt:45)
+	at io.javalin.http.JavalinServlet$service$2$1.invoke(JavalinServlet.kt:24)
+	at io.javalin.http.JavalinServlet$service$1.invoke(JavalinServlet.kt:126)
+	at io.javalin.http.JavalinServlet$service$2.invoke(JavalinServlet.kt:40)
+	at io.javalin.http.JavalinServlet.service(JavalinServlet.kt:78)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:755)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:547)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1607)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at io.javalin.core.JavalinServer$start$httpHandler$1.doHandle(JavalinServer.kt:54)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:485)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1577)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1212)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerList.handle(HandlerList.java:59)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:500)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:383)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:547)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:375)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:270)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:117)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:336)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:313)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:171)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:129)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:388)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:806)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:938)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+]]></system-err>
+  </testcase>
+  <testcase name="postTrancaFailParamsTest" classname="controller.TrancaControllerTest" time="0.004"/>
+  <testcase name="postTrancaOutTotemTest" classname="controller.TrancaControllerTest" time="0.004"/>
+  <testcase name="getTrancaByIdTest" classname="controller.TrancaControllerTest" time="0.003"/>
+  <testcase name="postTrancaInTotemTest" classname="controller.TrancaControllerTest" time="0.004"/>
+  <testcase name="postTrancaStatusTest" classname="controller.TrancaControllerTest" time="0.003"/>
+  <testcase name="postTrancaFailParamTest" classname="controller.TrancaControllerTest" time="0.004">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <404> but was: <422>
+	at controller.TrancaControllerTest.postTrancaFailParamTest(TrancaControllerTest.java:68)
+]]></failure>
+  </testcase>
+  <testcase name="getBikeInTrancaTest" classname="controller.TrancaControllerTest" time="0.003"/>
 </testsuite>
