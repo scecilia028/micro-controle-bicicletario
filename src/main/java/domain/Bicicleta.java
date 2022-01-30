@@ -65,4 +65,32 @@ public class Bicicleta {
 		public void setStatus(BicicletaStatus status) {
 			this.status = status;
 		}
+		
+		@Override
+		public boolean equals(Object obj) {
+				
+			 if (obj == null) {
+		            return false;
+		        }
+			
+			if (obj.getClass() != this.getClass()) {
+	            return false;
+	        }
+		
+	        final Bicicleta other = (Bicicleta) obj;
+	        if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
+	            return false;
+	        }
+	        
+	        if (this.numero != other.numero) {
+	            return false;
+	        }
+
+	        return true;
+		}
+		
+		@Override
+		public int hashCode() {
+			return super.hashCode();
+		}
 }

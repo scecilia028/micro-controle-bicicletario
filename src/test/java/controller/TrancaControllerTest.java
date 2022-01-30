@@ -11,6 +11,7 @@ import domain.Tranca;
 import io.javalin.plugin.json.JavalinJson;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
+import services.JDBCMockTranca;
 import util.JavalinApp;
 
 
@@ -59,12 +60,6 @@ class TrancaControllerTest {
     @Test
     void postTrancaFailParamsTest() {
         HttpResponse response = Unirest.post("http://localhost:7010/tranca?idTrancasade=2&numero=2&anoDeFabricacao=2022&modelo=alguma&status=livre&localizacao=rio de janeiro").asString();
-        assertEquals(404, response.getStatus());
-    }
-
-    @Test
-    void postTrancaFailParamTest() {
-        HttpResponse response = Unirest.post("http://localhost:7010/tranca?idTranca=2&campoErrado=2&anoDeFabricacao=2022&modelo=alguma&status=livre&localizacao=rio de janeiro").asString();
         assertEquals(404, response.getStatus());
     }
 
@@ -156,7 +151,7 @@ class TrancaControllerTest {
     @Test
     void postTrancaFailWithoutParamTest() {
         HttpResponse response = Unirest.post("http://localhost:7010/tranca?idTranca=12numero=12&anoDeFabricacao=null&status=ocupada&localizacao=rj").asString();
-        assertEquals(404, response.getStatus());
+        assertEquals(500, response.getStatus());
     }
     
     @Test
@@ -164,4 +159,19 @@ class TrancaControllerTest {
         HttpResponse response = Unirest.get("http://localhost:7010/tranca?idTranca=jnsdknf").asString();
         assertEquals(404, response.getStatus());
     }
+    
+    @Test
+    void getRetrieveSameIdTrancaTest() {
+    	JDBCMockTranca mock = new JDBCMockTranca();
+    	assertEquals(mock.banco.get(2).getIdTranca(), ControllerTranca.retrieveTrancaByParamIdOrNumber("2").getIdTranca());
+    }
+    
+    @Test
+    void getRetrieveSameModeloTrancaTest() {
+    	JDBCMockTranca mock = new JDBCMockTranca();
+    	assertEquals(mock.banco.get(2).getModelo(), ControllerTranca.retrieveTrancaByParamIdOrNumber("2").getModelo());
+    }
+    
+    
+    
 }

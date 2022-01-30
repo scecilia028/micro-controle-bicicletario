@@ -12,7 +12,7 @@ import util.Validator;
 public class JDBCMockBicicleta {
 	
 	/** lista de bicicletas */
-	public List<Bicicleta> banco = new ArrayList<>();
+	public final List<Bicicleta> banco = new ArrayList<>();
 
 	    public JDBCMockBicicleta() {
 	        for (int i = 0; i < 10; i++) {
@@ -29,7 +29,7 @@ public class JDBCMockBicicleta {
 
 	    public Bicicleta getDataById(String id) {
 	        for (Bicicleta bicicleta : banco) {
-	            if (bicicleta.getId().equalsIgnoreCase(id)) {
+	            if (bicicleta.getId() != null && id != null && bicicleta.getId().equalsIgnoreCase(id)) {
 	                return bicicleta;
 	            }
 	        }
@@ -50,7 +50,7 @@ public class JDBCMockBicicleta {
 
 	    public Boolean deleteData(String id) {
 	        for (Bicicleta bicicleta : banco) {
-	            if (bicicleta.getId().equalsIgnoreCase(id)) {
+	            if (bicicleta.getId() != null && bicicleta.getId().equals(id)) {
 	                banco.remove(bicicleta);                
 	                return true;
 	            }
@@ -67,5 +67,4 @@ public class JDBCMockBicicleta {
 		            }
 		        }
 		}
-		
 }

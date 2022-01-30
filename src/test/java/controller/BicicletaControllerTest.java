@@ -12,6 +12,7 @@ import domain.Tranca;
 import io.javalin.plugin.json.JavalinJson;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
+import services.JDBCMockBicicleta;
 import util.JavalinApp;
 
 
@@ -62,6 +63,12 @@ class BicicletaControllerTest {
         assertEquals(response.getBody(), bike);
     }
 
+	  @Test
+	    void postBicicletaFailParam422Test() {
+	        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta?idBicicleta=232&marca=caloi&modelo=algum&ano=2010&sadadad=2&status=disponivel&ccc=aaaa").asString();
+	        assertEquals(422, response.getStatus());
+	    }
+	
     @Test
     void postBicicletaFailParamsTest() {
         HttpResponse response = Unirest.post("http://localhost:7010/bicicleta?idsdf=2&status=disponivel").asString();
@@ -103,6 +110,12 @@ class BicicletaControllerTest {
         HttpResponse response = Unirest.post("http://localhost:7010/bicicleta?idBicicleta=2&marca=caloi&modelo=algum&ano=2010&numero=2&status=TIMBR").asString();
         assertEquals(404, response.getStatus());
     }
+    
+    @Test
+    void postBicicletaFailCampoInexistenteParamTest() {
+        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta?idBicicleta=2&campoerrado=caloi&modelo=algum&ano=2010&numero=2&status=TIMBR").asString();
+        assertEquals(404, response.getStatus());
+    }
 
     @Test
     void deleteBicicletaSuccessTest() {
@@ -118,8 +131,14 @@ class BicicletaControllerTest {
 
     @Test
     void postStatusBicicletaSuccessTest() {
-        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/2/status/em_reparo").asString();
+        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/1/status/em_reparo").asString();
         assertEquals(200, response.getStatus());
+    }
+    
+    @Test
+    void postStatusBicicletaFailTest() {
+        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/2/status/null").asString();
+        assertEquals(422, response.getStatus());
     }
 
 	@Test
@@ -165,8 +184,26 @@ class BicicletaControllerTest {
     }
     
     @Test
+    void getGetBicicletaByIdTest() {
+    	JDBCMockBicicleta mock = new JDBCMockBicicleta();
+        assertEquals(mock.banco.get(0), ControllerBicicleta.retrieveBikeById("0"));
+    }
+    
+    @Test
+    void getGetBicicletaFailByIdTest() {
+        assertEquals(null, ControllerBicicleta.retrieveBikeById("null"));
+    }
+    
+    @Test
+    void getBicicletaByIdSuccessTest() {
+        HttpResponse response = Unirest.get("http://localhost:7010/bicicleta/5").asString();
+        assertEquals(200, response.getStatus());
+    }
+    
+    @Test
     void getBicicletaFail2ByCtxTest() {
         HttpResponse response = Unirest.get("http://localhost:7010/bicicleta?idBicicleta=ndjskfnks&modelo=asdjak").asString();
         assertEquals(404, response.getStatus());
     }
+    
 }

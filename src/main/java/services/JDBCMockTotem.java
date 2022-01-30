@@ -10,7 +10,7 @@ import util.Validator;
 
 public class JDBCMockTotem {
 	
-	public List<Totem> banco = new ArrayList<>();
+	public final List<Totem> banco = new ArrayList<>();
 
     public JDBCMockTotem() {
         for (int i = 0; i < 10; i++) {

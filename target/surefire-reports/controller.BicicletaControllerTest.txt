@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: controller.BicicletaControllerTest
+-------------------------------------------------------------------------------
+Tests run: 27, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 3 s <<< FAILURE! - in controller.BicicletaControllerTest
+controller.BicicletaControllerTest.getGetBicicletaByIdTest  Time elapsed: 0.01 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <domain.Bicicleta@5db7419c> but was: <null>
+	at controller.BicicletaControllerTest.getGetBicicletaByIdTest(BicicletaControllerTest.java:189)
+

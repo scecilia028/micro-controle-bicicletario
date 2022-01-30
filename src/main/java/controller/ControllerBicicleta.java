@@ -96,7 +96,7 @@ public class ControllerBicicleta {
     }
 
 	private static Bicicleta checkCreateBicicleta(Context ctx) {
-		Bicicleta bicicleta = new Bicicleta();
+	
 		  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDBICICLETA.getValor())) &&
 			 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor())) &&
 			 Validator.isInRangeEnumBicicleta(ctx.queryParam(ChavesJson.STATUS.getValor())) &&
@@ -105,6 +105,7 @@ public class ControllerBicicleta {
 			 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.ANO.getValor())) &&	  
 			 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.NUMERO.getValor()))
 			) {
+			  Bicicleta bicicleta = new Bicicleta();
 			  bicicleta.setId(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()));
 			  bicicleta.setStatus(BicicletaStatus.valueOf(ctx.queryParam(ChavesJson.STATUS.getValor()).toUpperCase()));
 			  bicicleta.setMarca(ctx.queryParam(ChavesJson.MARCA.getValor()));
@@ -158,26 +159,21 @@ public class ControllerBicicleta {
     	 Bicicleta bicicleta = retrieveBikeParam(ctx);
     	 
     	 if (bicicleta != null) {
-    		 if(!Validator.isNullOrEmpty(ctx.pathParam(ChavesJson.STATUS.getValor()))) {
-				  if(BicicletaStatus.valueOf(ctx.pathParam(ChavesJson.STATUS.getValor()).toUpperCase()) == null) {
+    		 if(Validator.isNullOrEmpty(ctx.pathParam(ChavesJson.STATUS.getValor())) ||
+    		 !Validator.isInRangeEnumBicicleta(ctx.pathParam(ChavesJson.STATUS.getValor())) ) {
 					  ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);
-					  return;
-				  }
-				  bicicleta.setStatus(BicicletaStatus.valueOf(ctx.pathParam(ChavesJson.STATUS.getValor()).toUpperCase()));
-			  }
-    		  mock.updateBicicleta(bicicleta);	
-    		  ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
+    		 }else {
+    			 bicicleta.setStatus(BicicletaStatus.valueOf(ctx.pathParam(ChavesJson.STATUS.getValor()).toUpperCase()));
+    			 mock.updateBicicleta(bicicleta);	
+       		    ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
+    		 }
     	 } else {
     		 ctx.status(404).result(ErrorResponse.NOT_FOUND);
     	 }
     }
 
-	protected Bicicleta retrieveBikeById(String idBicicleta) {
-		if (idBicicleta != null) {
+	protected static Bicicleta retrieveBikeById(String idBicicleta) {
 			return mock.getDataById(idBicicleta);
-		} else {
-			return null;
-		}
 	}
 	
 	protected static Bicicleta retrieveTrancaBikeById(String idBicicleta) {

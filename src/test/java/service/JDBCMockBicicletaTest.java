@@ -67,4 +67,13 @@ class JDBCMockBicicletaTest {
     void testGetDataFailById() {
         assertEquals(null, mock.getDataById("asda"));
     }
+    
+    @Test
+    void testUpdateDataById() {
+        Bicicleta bikObject = new Bicicleta("1", BicicletaStatus.EM_REPARO);
+         Bicicleta bik= new Bicicleta("1", BicicletaStatus.DISPONIVEL);
+         bik.setStatus(BicicletaStatus.EM_REPARO);
+         mock.updateData(bik);
+         assertEquals(bikObject.getStatus(),  bik.getStatus());
+    }
 }

@@ -157,16 +157,16 @@ public class ControllerTranca {
 					return;
 				}
 				tranca.setAcao(TrancaAcao.valueOf(ctx.pathParam(ChavesJson.ACAO.getValor()).toUpperCase()));
+				mock.updateTranca(tranca);
+				ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
 			}
-			mock.updateTranca(tranca);
-			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
 		} else {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
 		}
 	}
 
 	public static void getBikeByTranca(Context ctx) {
-		Tranca tranca = retrieveTrancaByParamIdOrNumber(ctx);
+		Tranca tranca = retrieveTrancaByParamIdOrNumber(ctx.pathParam(ChavesJson.IDTRANCA.getValor()));
 
 		if (tranca != null && tranca.getIdBicicleta() != null) {
 			Bicicleta bike = ControllerBicicleta.retrieveTrancaBikeById(tranca.getIdBicicleta());
@@ -220,18 +220,17 @@ public class ControllerTranca {
 			ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);
 			return;
 		}
-		Tranca tranca = retrieveTrancaByParamIdOrNumber(ctx);
+		Tranca tranca = retrieveTrancaByParamIdOrNumber(ctx.pathParam(ChavesJson.IDTRANCA.getValor()));
 		if (tranca != null) {
 			ctx.status(200);
 			ctx.json(tranca);
-			return;
 		} else {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
 		}
 	}
 
-	private static Tranca retrieveTrancaByParamIdOrNumber(Context ctx) {
-		return mock.getDataByIdOrNumero(ctx.pathParam(ChavesJson.IDTRANCA.getValor()));
+	protected static Tranca retrieveTrancaByParamIdOrNumber(String id) {
+		return mock.getDataByIdOrNumero(id);
 	}
 
 	public static void postIntegrarNaRedeTrancaTotem(Context ctx) {

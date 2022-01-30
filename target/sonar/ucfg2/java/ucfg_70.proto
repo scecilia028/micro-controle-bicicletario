@@ -1,41 +1,23 @@
 
-econtroller.ControllerTranca#retrieveTrancaByParamIdOrNumber(Lio/javalin/http/Context;)Ldomain/Tranca;p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaé é(6"1*›
+^controller.ControllerTranca#retrieveTrancaByParamIdOrNumber(Ljava/lang/String;)Ldomain/Tranca;p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaè è(8"1*ç
 1p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaê	 ê(¢
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaé	 é(¢
 Ÿ
 p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaê	 ê(
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaé	 é(
 %0services.JDBCMockTranca"__id*
-""š
-—
+""¾»
 p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaê0 ê(C
-%1util.ChavesJson"__id*
-""àÝ
-p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaê0 ê(N
-%2java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
-
-%1util.ChavesJson2
-getValor()±®
-p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaê" ê(O
-%3java.lang.String"Gio.javalin.http.Context#pathParam(Ljava/lang/String;)Ljava/lang/String;* 
-
-ctxio.javalin.http.Context*
-
-%2java.lang.String2pathParam(Ljava/lang/String;)¾»
-p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaê	 ê(P
-%4domain.Tranca"Nservices.JDBCMockTranca#getDataByIdOrNumero(Ljava/lang/String;)Ldomain/Tranca;*
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaé	 é(%
+%1domain.Tranca"Nservices.JDBCMockTranca#getDataByIdOrNumero(Ljava/lang/String;)Ldomain/Tranca;*
 
 %0services.JDBCMockTranca*
 
-%3java.lang.String2'getDataByIdOrNumero(Ljava/lang/String;)"‰
+idjava.lang.String2'getDataByIdOrNumero(Ljava/lang/String;)"‰
 p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaê ê(Q
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaé é(&
 
-%4domain.Tranca:
-ctxio.javalin.http.ContextB"
+%1domain.Tranca:
+idjava.lang.StringB"
 controller.ControllerTranca

@@ -573,9 +573,9 @@ Coptions(Ljava/lang/String;Lio/javalin/http/Handler;Ljava/util/Set;)jio.javalin
 +getDataByContext(Lio/javalin/http/Context;)Xservices.JDBCMockBicicleta#getDataByContext(Lio/javalin/http/Context;)Ldomain/Bicicleta;o
 getDataById(Ljava/lang/String;)Lservices.JDBCMockBicicleta#getDataById(Ljava/lang/String;)Ldomain/Bicicleta;\
 updateData(Ldomain/Bicicleta;):services.JDBCMockBicicleta#updateData(Ldomain/Bicicleta;)Vf
-#updateBicicleta(Ldomain/Bicicleta;)?services.JDBCMockBicicleta#updateBicicleta(Ldomain/Bicicleta;)V≥
-
-domain.Bicicletajava.lang.Objectç
+#updateBicicleta(Ldomain/Bicicleta;)?services.JDBCMockBicicleta#updateBicicleta(Ldomain/Bicicleta;)V´
+domain.Bicicletajava.lang.ObjectJ
+equals(Ljava/lang/Object;),domain.Bicicleta#equals(Ljava/lang/Object;)Zç
 {<init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ldomain/BicicletaStatus;)çdomain.Bicicleta#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ldomain/BicicletaStatus;)VH
 setId(Ljava/lang/String;)+domain.Bicicleta#setId(Ljava/lang/String;)VP
 setModelo(Ljava/lang/String;)/domain.Bicicleta#setModelo(Ljava/lang/String;)V7
@@ -583,7 +583,9 @@ Coptions(Ljava/lang/String;Lio/javalin/http/Handler;Ljava/util/Set;)jio.javalin
 
 getMarca()-domain.Bicicleta#getMarca()Ljava/lang/String;=
 getModelo().domain.Bicicleta#getModelo()Ljava/lang/String;>
-getNumero()/domain.Bicicleta#getNumero()Ljava/lang/Integer;5
+getNumero()/domain.Bicicleta#getNumero()Ljava/lang/Integer;*
+
+hashCode()domain.Bicicleta#hashCode()I5
 getId()*domain.Bicicleta#getId()Ljava/lang/String;\
 #setStatus(Ldomain/BicicletaStatus;)5domain.Bicicleta#setStatus(Ldomain/BicicletaStatus;)V&
 <init>()domain.Bicicleta#<init>()VN
@@ -591,11 +593,12 @@ getMarca()-domain.Bicicleta#getMarca()Ljava/lang/String;=
 2<init>(Ljava/lang/String;Ldomain/BicicletaStatus;)Ddomain.Bicicleta#<init>(Ljava/lang/String;Ldomain/BicicletaStatus;)VJ
 setAno(Ljava/lang/String;),domain.Bicicleta#setAno(Ljava/lang/String;)VC
 getStatus()4domain.Bicicleta#getStatus()Ldomain/BicicletaStatus;R
-setNumero(Ljava/lang/Integer;)0domain.Bicicleta#setNumero(Ljava/lang/Integer;)V—
+setNumero(Ljava/lang/Integer;)0domain.Bicicleta#setNumero(Ljava/lang/Integer;)V√
 controller.ControllerTrancajava.lang.Objectw
 +postStatusTranca(Lio/javalin/http/Context;)Hcontroller.ControllerTranca#postStatusTranca(Lio/javalin/http/Context;)VÅ
 0getTrancaByIdOrNumber(Lio/javalin/http/Context;)Mcontroller.ControllerTranca#getTrancaByIdOrNumber(Lio/javalin/http/Context;)V{
--postIntegrarNaRede(Lio/javalin/http/Context;)Jcontroller.ControllerTranca#postIntegrarNaRede(Lio/javalin/http/Context;)Vi
+-postIntegrarNaRede(Lio/javalin/http/Context;)Jcontroller.ControllerTranca#postIntegrarNaRede(Lio/javalin/http/Context;)Vï
+3retrieveTrancaByParamIdOrNumber(Ljava/lang/String;)^controller.ControllerTranca#retrieveTrancaByParamIdOrNumber(Ljava/lang/String;)Ldomain/Tranca;i
 $putTranca(Lio/javalin/http/Context;)Acontroller.ControllerTranca#putTranca(Lio/javalin/http/Context;)Vu
 *getBikeByTranca(Lio/javalin/http/Context;)Gcontroller.ControllerTranca#getBikeByTranca(Lio/javalin/http/Context;)Vã
 .retrieveTrancaParam(Lio/javalin/http/Context;)Ycontroller.ControllerTranca#retrieveTrancaParam(Lio/javalin/http/Context;)Ldomain/Tranca;s
@@ -604,8 +607,7 @@ $putTranca(Lio/javalin/http/Context;)Acontroller.ControllerTranca#putTranca(Lio
 ;checkUpdateTranca(Lio/javalin/http/Context;Ldomain/Tranca;)fcontroller.ControllerTranca#checkUpdateTranca(Lio/javalin/http/Context;Ldomain/Tranca;)Ldomain/Tranca;ã
 .retrieveTrancaByCtx(Lio/javalin/http/Context;)Ycontroller.ControllerTranca#retrieveTrancaByCtx(Lio/javalin/http/Context;)Ldomain/Tranca;k
 %postTranca(Lio/javalin/http/Context;)Bcontroller.ControllerTranca#postTranca(Lio/javalin/http/Context;)Vë
-8postIntegrarNaRedeTrancaTotem(Lio/javalin/http/Context;)Ucontroller.ControllerTranca#postIntegrarNaRedeTrancaTotem(Lio/javalin/http/Context;)V£
-:retrieveTrancaByParamIdOrNumber(Lio/javalin/http/Context;)econtroller.ControllerTranca#retrieveTrancaByParamIdOrNumber(Lio/javalin/http/Context;)Ldomain/Tranca;
+8postIntegrarNaRedeTrancaTotem(Lio/javalin/http/Context;)Ucontroller.ControllerTranca#postIntegrarNaRedeTrancaTotem(Lio/javalin/http/Context;)V
 /getBicicletasByTotem(Lio/javalin/http/Context;)Lcontroller.ControllerTranca#getBicicletasByTotem(Lio/javalin/http/Context;)V¢
 9retrieveBicicletasByTotemParam(Lio/javalin/http/Context;)econtroller.ControllerTranca#retrieveBicicletasByTotemParam(Lio/javalin/http/Context;)Ljava/util/List;1
 <init>()%controller.ControllerTranca#<init>()Vè

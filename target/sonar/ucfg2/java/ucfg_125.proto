@@ -1,57 +1,28 @@
 
->util.Validator#checkKeysValidByCtx(Lio/javalin/http/Context;)Za
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaG G(*"5*´
-2a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaH H(ç
-ä
-a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaH H(
-keyjava.lang.String"__id*
-""™
-ß
-a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaH H(
-keyjava.lang.String"
-__arrayGet*
-
-%1java.util.Set*
-""*
-4
-1*”
+;util.Validator#isInRangeEnumTrancaAcao(Ljava/lang/String;)Za
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java5 5(."4*‡
 3a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaJ J("k
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java7 7(*Ú
+Ô
 a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaJ J(
-""*”
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java7 7(*
+%1domain.TrancaAcao"@domain.TrancaAcao#valueOf(Ljava/lang/String;)Ldomain/TrancaAcao;*"
+domain.TrancaAcao*
+
+%0java.lang.String*
+1* 
 4a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaI I( ‚
-ﬂ
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java7 7(‹Ÿ
 a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaI I(%
-%2boolean"<util.Validator#isInRangeValidChavesJson(Ljava/lang/String;)Z*"
-util.Validator*
-
-keyjava.lang.String*
-2
-3*ö
-5a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaH H(Ê„
-a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaH H('
-%0java.util.Map"6io.javalin.http.Context#queryParamMap()Ljava/util/Map;* 
-
-ctxio.javalin.http.Context2queryParamMap()√¿
-a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaH H(0
-%1java.util.Set"%java.util.Map#keySet()Ljava/util/Set;*
-
-%0java.util.Map2keySet()*
-2*”
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java7 7()
+%0java.lang.String"0java.lang.String#toUpperCase()Ljava/lang/String;*
+
+valuejava.lang.String2toUpperCase()*
+3*”
 1a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaM
- M("k
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java;	 ;("k
 a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaM M(
-"":
-ctxio.javalin.http.ContextB"
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java; ;(
+"":
+valuejava.lang.StringB"
 util.Validator

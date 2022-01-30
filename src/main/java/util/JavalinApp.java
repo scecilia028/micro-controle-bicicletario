@@ -11,7 +11,7 @@ import controller.ControllerTranca;
 import io.javalin.Javalin;
  
 public class JavalinApp {
-	private static final String pathParamIdBicicleta = "/bicicleta/:idBicicleta";
+	private static final String PATHPARAMIDBICICLETA = "/bicicleta/:idBicicleta";
 	private static final String pathParamIdTranca = "/tranca/:idTranca";
 	private static final String pathParamIdTotem = "/totem/:idTotem";
 	
@@ -20,15 +20,15 @@ public class JavalinApp {
         .routes(() -> {
         	 get("/bicicleta", ControllerBicicleta::getBicicletaByCtx);
         	 post("/bicicleta", ControllerBicicleta::postBicicleta);
-             put(pathParamIdBicicleta, ControllerBicicleta::putBicicleta);
-             get(pathParamIdBicicleta, ControllerBicicleta::getBicicletaByParamId);
-        	 delete(pathParamIdBicicleta, ControllerBicicleta::deleteBicicleta);
+             put(PATHPARAMIDBICICLETA, ControllerBicicleta::putBicicleta);
+             get(PATHPARAMIDBICICLETA, ControllerBicicleta::getBicicletaByParamId);
+        	 delete(PATHPARAMIDBICICLETA, ControllerBicicleta::deleteBicicleta);
              post("/bicicleta/:idBicicleta/status/:status", ControllerBicicleta::postStatusBicicleta);
              
 	         post("/bicicleta/integrarNaRede", ControllerTranca::postIntegrarNaRede);  
 	         post("/bicicleta/retirarDaRede", ControllerTranca::postRetirarDaRede); 
              
-             get("/totem", ControllerTotem::getTotem);
+             get("/totem", ControllerTotem::getTotemByCtx);
         	 post("/totem", ControllerTotem::postTotem);
              put(pathParamIdTotem, ControllerTotem::putTotem);
              delete(pathParamIdTotem, ControllerTotem::deleteTotem);

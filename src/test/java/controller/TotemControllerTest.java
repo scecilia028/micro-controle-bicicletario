@@ -61,6 +61,12 @@ class TotemControllerTest {
         HttpResponse response = Unirest.post("http://localhost:7010/totem?idTotem=null").asString();
         assertEquals(404, response.getStatus());
     }
+    
+    @Test
+    void postTotemFailInexistenteParamTest() {
+        HttpResponse response = Unirest.post("http://localhost:7010/totem?idTotem=78&acmporerrado=dsakd").asString();
+        assertEquals(422, response.getStatus());
+    }
 
     @Test
     void deleteTotemSuccessTest() {
@@ -123,4 +129,11 @@ class TotemControllerTest {
         HttpResponse response = Unirest.get("http://localhost:7010/totem/97/trancas").asString();
         assertEquals(404, response.getStatus());
     }
+    
+    @Test
+    void getTotemTest() {
+        HttpResponse response = Unirest.get("http://localhost:7010/totem?idTotem=2").asString();
+        assertEquals(200, response.getStatus());
+    }
+    
 }
