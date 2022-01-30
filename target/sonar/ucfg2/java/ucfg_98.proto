@@ -1,92 +1,0 @@
-
-Nservices.JDBCMockTranca#getDataByIdOrNumero(Ljava/lang/String;)Ldomain/Tranca;j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java^ ^(""8*«
-2j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java_ _(ñ
-ì
-j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java_ _(
-trancadomain.Tranca"__id*
-""¥
-±
-j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java_ _(
-trancadomain.Tranca"
-__arrayGet*
-
-%0java.util.List*
-""*
-7
-1*˘
-3j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.javaa a("á
-j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.javaa a(
-
-trancadomain.Tranca*
-4k
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java`| `(Ç·ﬁ
-k
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java`| `(ê
-%5java.lang.String"-domain.Tranca#getIdTranca()Ljava/lang/String;*
-
-trancadomain.Tranca2getIdTranca()ëé
-k
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java`| `(•
-%6boolean"6java.lang.String#equalsIgnoreCase(Ljava/lang/String;)Z*
-
-%5java.lang.String*
-
-idjava.lang.String2$equalsIgnoreCase(Ljava/lang/String;)*
-2
-3*È
-5j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java`Q `(W‹Ÿ
-j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java`Q `(c
-%3java.lang.String"+domain.Tranca#getNumero()Ljava/lang/String;*
-
-trancadomain.Tranca2getNumero()êç
-j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java`Q `(x
-%4boolean"6java.lang.String#equalsIgnoreCase(Ljava/lang/String;)Z*
-
-%3java.lang.String*
-
-idjava.lang.String2$equalsIgnoreCase(Ljava/lang/String;)*
-3
-4*÷
-6j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java`1 `(7‹Ÿ
-j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java`1 `(C
-%2java.lang.String"+domain.Tranca#getNumero()Ljava/lang/String;*
-
-trancadomain.Tranca2getNumero()*
-2
-5*⁄
-7j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java` `(‡›
-j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java` `(%
-%1java.lang.String"-domain.Tranca#getIdTranca()Ljava/lang/String;*
-
-trancadomain.Tranca2getIdTranca()*
-5
-6*™
-8j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java_ _(≥
-∞
-j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.java_ _(
-%0java.util.List"__id*&*$
-services.JDBCMockTranca"
-banco*
-2*Â
-1j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.javad d("t
-j
-`E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTranca.javad d(
-"":
-idjava.lang.StringB
-services.JDBCMockTranca

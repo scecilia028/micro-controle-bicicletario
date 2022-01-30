@@ -29,16 +29,18 @@ public final class Validator {
 			   bikeStatus == BicicletaStatus.EM_USO || 
 			   bikeStatus == BicicletaStatus.NOVA) {
 				return true;
+			}else {
+				return false;
 			}
-		 return false;
 	}
 	
 	public static boolean isTrancaAvailable(String value) {
 		TrancaStatus tranca = TrancaStatus.valueOf(value.toUpperCase());
 		if(tranca == TrancaStatus.NOVA || tranca == TrancaStatus.LIVRE) {
 			return true;
+		}else {
+			return false;
 		}
-	 return false;
 }
 	
 	public static boolean isInRangeEnumTranca(String value) {

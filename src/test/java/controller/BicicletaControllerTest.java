@@ -230,5 +230,13 @@ class BicicletaControllerTest {
         HttpResponse response = Unirest.get("http://localhost:7010/bicicleta?idBicicleta=ndjskfnks&modelo=asdjak").asString();
         assertEquals(404, response.getStatus());
     }
+
+	public String getBikeJson() {
+		return bikeJson;
+	}
+
+	public void setBikeJson(String bikeJson) {
+		this.bikeJson = bikeJson;
+	}
     
 }

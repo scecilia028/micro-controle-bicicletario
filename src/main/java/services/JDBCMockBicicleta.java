@@ -5,9 +5,6 @@ import java.util.List;
 
 import domain.Bicicleta;
 import domain.BicicletaStatus;
-import io.javalin.http.Context;
-import util.ChavesJson;
-import util.Validator;
 
 public class JDBCMockBicicleta {
 	

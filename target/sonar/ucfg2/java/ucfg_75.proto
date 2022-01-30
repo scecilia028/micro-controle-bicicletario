@@ -1,41 +1,0 @@
-
-econtroller.ControllerTranca#retrieveBicicletasByTotemParam(Lio/javalin/http/Context;)Ljava/util/List;p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java´  ´(>"1*¤
-1p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaµ	 µ(¢
-Ÿ
-p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaµ	 µ(
-%0services.JDBCMockTranca"__id*
-""š
-—
-p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaµ3 µ(E
-%1util.ChavesJson"__id*
-""àÝ
-p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaµ3 µ(P
-%2java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
-
-%1util.ChavesJson2
-getValor()±®
-p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaµ% µ(Q
-%3java.lang.String"Gio.javalin.http.Context#pathParam(Ljava/lang/String;)Ljava/lang/String;* 
-
-ctxio.javalin.http.Context*
-
-%2java.lang.String2pathParam(Ljava/lang/String;)ÆÃ
-p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaµ	 µ(R
-%4java.util.List"Rservices.JDBCMockTranca#getListDataBikeByTotem(Ljava/lang/String;)Ljava/util/List;*
-
-%0services.JDBCMockTranca*
-
-%3java.lang.String2*getListDataBikeByTotem(Ljava/lang/String;)"Š
-p
-dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaµ µ(S
-
-%4java.util.List:
-ctxio.javalin.http.ContextB"
-controller.ControllerTranca

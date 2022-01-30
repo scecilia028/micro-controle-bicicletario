@@ -6,9 +6,6 @@ import java.util.List;
 import domain.Bicicleta;
 import domain.Tranca;
 import domain.TrancaStatus;
-import io.javalin.http.Context;
-import util.ChavesJson;
-import util.Validator;
 
 public class JDBCMockTranca {
 	
@@ -20,13 +17,6 @@ public class JDBCMockTranca {
             banco.add(new Tranca(String.valueOf(i), String.valueOf(i), String.valueOf(i), "Rua ".concat(String.valueOf(i)),
             		"200".concat(String.valueOf(i)), "a".concat(String.valueOf(i)), TrancaStatus.LIVRE));
         }
-    }
-
-    public Tranca getDataByContext(Context ctx) {
-        if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor()))) {
-            return this.getDataById(ctx.queryParam(ChavesJson.IDTRANCA.getValor()));
-        }  
-        return null;
     }
 
     public Tranca getDataById(String id) {

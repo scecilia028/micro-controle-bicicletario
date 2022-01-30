@@ -31,7 +31,6 @@ public class ControllerTranca {
 			getTranca(ctx);
 		} else {
 			Tranca tranca = retrieveTrancaByCtx(ctx);
-
 			if (tranca != null) {
 				ctx.status(200);
 				ctx.json(tranca);
@@ -67,7 +66,7 @@ public class ControllerTranca {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
 			return;
 
-		} else if (!Validator.checkKeysValidByCtx(ctx)) {
+		} else if (tranca == null || !Validator.checkKeysValidByCtx(ctx)) {
 			ctx.status(422);
 			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
 			return;

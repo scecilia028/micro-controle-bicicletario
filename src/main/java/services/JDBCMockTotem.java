@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.Totem;
-import io.javalin.http.Context;
-import util.ChavesJson;
-import util.Validator;
 
 public class JDBCMockTotem {
 	
@@ -16,13 +13,6 @@ public class JDBCMockTotem {
         for (int i = 0; i < 10; i++) {
             banco.add(new Totem(String.valueOf(i), "Rua ".concat(String.valueOf(i))));
         }
-    }
-
-    public Totem getDataByContext(Context ctx) {
-        if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor()))) {
-            return this.getDataById(ctx.queryParam(ChavesJson.IDTOTEM.getValor()));
-        }  
-        return null;
     }
 
     public Totem getDataById(String id) {

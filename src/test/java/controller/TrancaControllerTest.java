@@ -43,12 +43,24 @@ class TrancaControllerTest {
         HttpResponse response = Unirest.post("http://localhost:7010/tranca?idTranca=4&numero=4&modelo=xr&anoDeFabricacao=2022&status=ocupada&localizacao=rj").asString();
         assertEquals(200, response.getStatus());
     }
+    
+    @Test
+    void postTrancaFailParamModeloTest() {
+        HttpResponse response = Unirest.post("http://localhost:7010/tranca?idTranca=411&numero=411&modelo=&anoDeFabricacao=2022&status=ocupada&localizacao=rj").asString();
+        assertEquals(422, response.getStatus());
+    }
 
     @Test
     void getAllTrancasTest() {
         HttpResponse response = Unirest.get("http://localhost:7010/tranca").asString();
         assertEquals(200, response.getStatus());
         assertEquals(response.getBody(), trancaJson);
+    }
+    
+    @Test
+    void getIdTrancaTest() {
+        HttpResponse response = Unirest.get("http://localhost:7010/tranca?idTranca=2").asString();
+        assertEquals(200, response.getStatus());
     }
 
 	@Test
@@ -151,7 +163,7 @@ class TrancaControllerTest {
     @Test
     void postTrancaFailWithoutParamTest() {
         HttpResponse response = Unirest.post("http://localhost:7010/tranca?idTranca=12numero=12&anoDeFabricacao=null&status=ocupada&localizacao=rj").asString();
-        assertEquals(500, response.getStatus());
+        assertEquals(422, response.getStatus());
     }
     
     @Test
