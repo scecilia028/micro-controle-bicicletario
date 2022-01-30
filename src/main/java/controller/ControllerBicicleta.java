@@ -10,7 +10,7 @@ import util.Validator;
 
 public class ControllerBicicleta {
 
-	public static JDBCMockBicicleta mock = new JDBCMockBicicleta();
+	public static final JDBCMockBicicleta mock = new JDBCMockBicicleta();
 
 	
 	public static void getBicicleta(Context ctx) { 
@@ -71,7 +71,6 @@ public class ControllerBicicleta {
 		if (bicicleta != null) {
 			mock.updateData(bicicleta);
 			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
-			return;
 		}
     }
     

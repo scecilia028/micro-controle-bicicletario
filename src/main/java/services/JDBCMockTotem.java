@@ -1,6 +1,7 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import domain.Totem;
 import io.javalin.http.Context;
@@ -9,7 +10,7 @@ import util.Validator;
 
 public class JDBCMockTotem {
 	
-	public ArrayList<Totem> banco = new ArrayList<>();
+	public List<Totem> banco = new ArrayList<>();
 
     public JDBCMockTotem() {
         for (int i = 0; i < 10; i++) {

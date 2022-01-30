@@ -9,7 +9,7 @@ import util.Validator;
 
 public class ControllerTotem {
 
-	public static JDBCMockTotem mock = new JDBCMockTotem();
+	public static final JDBCMockTotem mock = new JDBCMockTotem();
 
 	public static void getTotem(Context ctx) {
 			ctx.status(200);
@@ -52,11 +52,9 @@ public class ControllerTotem {
 	public static void postTotem(Context ctx) {
 		if (Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor())) || Validator.isNullOrEmpty("")) {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
-			return;
 		} else if(!Validator.checkKeysValidByCtx(ctx)) {
 			ctx.status(422);
 			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
-			return;
 		}else {
 			Totem totem = checkCreateTotem(ctx);
 			if(totem != null) {

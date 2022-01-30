@@ -1,6 +1,7 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import domain.Bicicleta;
 import domain.BicicletaStatus;
@@ -11,7 +12,7 @@ import util.Validator;
 public class JDBCMockBicicleta {
 	
 	/** lista de bicicletas */
-	public ArrayList<Bicicleta> banco = new ArrayList<>();
+	public List<Bicicleta> banco = new ArrayList<>();
 
 	    public JDBCMockBicicleta() {
 	        for (int i = 0; i < 10; i++) {

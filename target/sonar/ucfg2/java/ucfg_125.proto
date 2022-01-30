@@ -1,9 +1,16 @@
 
-util.ErrorResponse#getStatus()Ie
-[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java ( "1*Û
+.util.ErrorResponse#getDetails()Ljava/util/Map;e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java' (1"1*—
 1e
-[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java ("o
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java (ª
+§
 e
-[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java	 (
-""B"
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java (
+%0java.util.Map"__id*#*!
+util.ErrorResponse"	
+details"~
+e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java	 (
+
+%0java.util.MapB"
 util.ErrorResponse

@@ -12,7 +12,7 @@ import util.Validator;
 
 public class JDBCMockTranca {
 	
-	public ArrayList<Tranca> banco = new ArrayList<>();
+	public List<Tranca> banco = new ArrayList<>();
 	public static JDBCMockBicicleta mockBike = new JDBCMockBicicleta();
 
     public JDBCMockTranca() {

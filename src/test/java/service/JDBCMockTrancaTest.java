@@ -59,4 +59,14 @@ class JDBCMockTrancaTest {
     void testDeleteDataFailure() {
         assertFalse(mock.deleteData("a"));
     }
+    
+    @Test
+    void testGetDataById() {
+        assertEquals(mock.banco.get(0), mock.getDataById("0"));
+    }
+    
+    @Test
+    void testGetDataFailById() {
+        assertEquals(null, mock.getDataById("asda"));
+    }
 }

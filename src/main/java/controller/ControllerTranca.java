@@ -59,7 +59,7 @@ public class ControllerTranca {
 		String status = ctx.queryParam(ChavesJson.STATUS.getValor());
 		Tranca tranca = checkCreateTranca(ctx);
 		if (Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor())) || Validator.isNullOrEmpty(status)
-				|| !Validator.isInRangeEnumTranca(status) || tranca == null) {
+				|| !Validator.isInRangeEnumTranca(status)) {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
 			return;
 
@@ -68,10 +68,8 @@ public class ControllerTranca {
 			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
 			return;
 		}
-		if (tranca != null) {
 			mock.createData(tranca);
 			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
-		}
 	}
 
 	public static void putTranca(Context ctx) {
@@ -92,14 +90,14 @@ public class ControllerTranca {
 	}
 
 	private static Tranca checkCreateTranca(Context ctx) {
-		Tranca tranca = new Tranca();
-		ctx.queryString();
+		Tranca tranca;
 		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()))
 				&& !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor()))
 				&& Validator.isInRangeEnumTranca(ctx.queryParam(ChavesJson.STATUS.getValor()))
 				&& !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MODELO.getValor()))
 				&& !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.ANODEFABRICACAO.getValor()))
 				&& !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.NUMERO.getValor()))) {
+			tranca =  new Tranca();
 			tranca.setLocalizacao(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()));
 			tranca.setStatus(TrancaStatus.valueOf(ctx.queryParam(ChavesJson.STATUS.getValor()).toUpperCase()));
 			tranca.setModelo(ctx.queryParam(ChavesJson.MODELO.getValor()));
