@@ -76,4 +76,32 @@ class BicicletaTest {
         assertEquals("evo", modelo);
     }
     
+    @Test
+    void testClassEquals() {
+       Bicicleta bike = new Bicicleta("123",
+               "Caloi",
+               "Monark",
+               "2020",
+               123,
+               BicicletaStatus.DISPONIVEL);
+        assertEquals(true, bicicleta.getClass().equals(bike.getClass()));
+    }
+    
+    @Test
+    void testClassNotEquals() {
+       Bicicleta bike = new Bicicleta("555",
+               "Caloi",
+               "Monark",
+               "2020",
+               233652165,
+               BicicletaStatus.DISPONIVEL);
+        assertEquals(false, bicicleta.getId().equals(bike.getId()));
+    }
+    
+    @Test
+    void testObjNull() {
+       Bicicleta bike = null;
+       assertEquals(false, bicicleta.equals(bike));
+    }
+    
 }

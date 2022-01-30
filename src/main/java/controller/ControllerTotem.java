@@ -54,7 +54,7 @@ public class ControllerTotem {
 	}
 
 	public static void postTotem(Context ctx) {
-		if (Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor())) || Validator.isNullOrEmpty("")) {
+		if (Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor()))) {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
 		} else if(!Validator.checkKeysValidByCtx(ctx)) {
 			ctx.status(422);
@@ -80,17 +80,18 @@ public class ControllerTotem {
 	   		 if(totem != null) {
 	    		  mock.updateTotem(totem);	
 	       		  ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
-	   		 }
+	   		 }else {
+		   		 ctx.status(404).result(ErrorResponse.NOT_FOUND);
+		   	 }
 	   	 } else {
 	   		 ctx.status(404).result(ErrorResponse.NOT_FOUND);
 	   	 }
 	}
 
 	private static Totem checkCreateTotem(Context ctx) {
-		Totem totem = new Totem();
-
 		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor())) &&
 			!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()))) {
+			Totem totem = new Totem();
 			totem.setId(ctx.queryParam(ChavesJson.IDTOTEM.getValor()));
 			totem.setLocalizacao(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()));
 			return totem;

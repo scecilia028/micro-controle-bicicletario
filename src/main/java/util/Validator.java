@@ -11,7 +11,7 @@ public final class Validator {
 	}
 
 	public static boolean isNullOrEmpty(String value) {
-		return (value == null || value.equalsIgnoreCase("null"));
+		return (value == null || value.equalsIgnoreCase("null") || value.equals(""));
 	}
 
 	public static boolean isInRangeEnumBicicleta(String value) {

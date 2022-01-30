@@ -39,7 +39,7 @@ class TotemControllerTest {
     
     @Test
     void postTotemSuccessTest() {
-        HttpResponse response = Unirest.post("http://localhost:7010/totem?idTotem=2&localizacao=rio de janeiro").asString();
+        HttpResponse response = Unirest.post("http://localhost:7010/totem?idTotem=232&localizacao=rio de janeiro").asString();
         assertEquals(200, response.getStatus());
     }
 
@@ -134,6 +134,24 @@ class TotemControllerTest {
     void getTotemTest() {
         HttpResponse response = Unirest.get("http://localhost:7010/totem?idTotem=2").asString();
         assertEquals(200, response.getStatus());
+    }
+    
+    @Test
+    void getTotemFailIdTest() {
+        HttpResponse response = Unirest.get("http://localhost:7010/totem?idTotem=ssss2").asString();
+        assertEquals(404, response.getStatus());
+    }
+    
+    @Test
+    void putTotemFailNullTest() {
+        HttpResponse response = Unirest.put("http://localhost:7010/totem/4?localizacao=").asString();
+        assertEquals(404, response.getStatus());
+    }
+    
+    @Test
+    void putTotemFailNullIdTest() {
+        HttpResponse response = Unirest.put("http://localhost:7010/totem/asdad?localizacao=sss").asString();
+        assertEquals(404, response.getStatus());
     }
     
 }

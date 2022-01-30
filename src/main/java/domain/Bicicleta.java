@@ -81,11 +81,6 @@ public class Bicicleta {
 	        if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
 	            return false;
 	        }
-	        
-	        if (this.numero != other.numero) {
-	            return false;
-	        }
-
 	        return true;
 		}
 		

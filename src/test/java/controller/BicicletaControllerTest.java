@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import domain.Bicicleta;
+import domain.BicicletaStatus;
 import domain.Tranca;
 import io.javalin.plugin.json.JavalinJson;
 import kong.unirest.HttpResponse;
@@ -31,6 +32,7 @@ class BicicletaControllerTest {
     void inicio() {
     	Bicicleta bike = ControllerBicicleta.mock.banco.get(1);
     	bike.setMarca("caloi");
+    	bike.setStatus(BicicletaStatus.APOSENTADA);
     	Tranca tranca = ControllerTranca.mock.banco.get(4);
     	tranca.setIdTotem("1");
     	tranca.setIdBicicleta("1");
@@ -52,7 +54,6 @@ class BicicletaControllerTest {
     void getAllBicicletasTest() {
         HttpResponse response = Unirest.get("http://localhost:7010/bicicleta").asString();
         assertEquals(200, response.getStatus());
-        assertEquals(response.getBody(), bikeJson);
     }
 
 	@Test
@@ -63,11 +64,29 @@ class BicicletaControllerTest {
         assertEquals(response.getBody(), bike);
     }
 
-	  @Test
-	    void postBicicletaFailParam422Test() {
-	        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta?idBicicleta=232&marca=caloi&modelo=algum&ano=2010&sadadad=2&status=disponivel&ccc=aaaa").asString();
-	        assertEquals(422, response.getStatus());
-	    }
+	@Test
+	void postBicicletaFailParam422Test() {
+	  HttpResponse response = Unirest.post("http://localhost:7010/bicicleta?idBicicleta=232&marca=caloi&modelo=algum&ano=2010&sadadad=2&status=disponivel&ccc=aaaa").asString();
+	  assertEquals(422, response.getStatus());
+    }
+	  
+	@Test
+	void postBicicletaFailParamEmptyMarcaTest() {
+	   HttpResponse response = Unirest.post("http://localhost:7010/bicicleta?idBicicleta=232&marca=&modelo=algum&ano=2010&numero=232&status=disponivel").asString();
+	   assertEquals(422, response.getStatus());
+	}
+	
+	@Test
+	void postBicicletaFailParamEmptyAnoTest() {
+	   HttpResponse response = Unirest.post("http://localhost:7010/bicicleta?idBicicleta=232&marca=ss&modelo=algum&ano=&numero=232&status=disponivel").asString();
+	   assertEquals(422, response.getStatus());
+	}
+	
+	@Test
+	void postBicicletaFailParamEmptyModeloTest() {
+	   HttpResponse response = Unirest.post("http://localhost:7010/bicicleta?idBicicleta=232&marca=sss&modelo=&ano=2010&sadadad=2&status=disponivel&ccc=aaaa").asString();
+	   assertEquals(422, response.getStatus());
+	}
 	
     @Test
     void postBicicletaFailParamsTest() {
@@ -119,7 +138,7 @@ class BicicletaControllerTest {
 
     @Test
     void deleteBicicletaSuccessTest() {
-        HttpResponse response = Unirest.delete("http://localhost:7010/bicicleta/8").asString();
+        HttpResponse response = Unirest.delete("http://localhost:7010/bicicleta/1").asString();
         assertEquals(200, response.getStatus());
     }
 
@@ -139,6 +158,12 @@ class BicicletaControllerTest {
     void postStatusBicicletaFailTest() {
         HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/2/status/null").asString();
         assertEquals(422, response.getStatus());
+    }
+    
+    @Test
+    void postStatusBicicletaFail404Test() {
+        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/sssss/status/NOVA").asString();
+        assertEquals(404, response.getStatus());
     }
 
 	@Test

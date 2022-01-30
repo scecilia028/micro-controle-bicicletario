@@ -37,13 +37,7 @@ public class JDBCMockTotem {
     public void updateData(Totem totemUp) {
         if (this.getDataById(totemUp.getId()) == null) {
             banco.add(totemUp);
-        }else{
-            for (Totem totem : banco) {
-                if (totem.getId().equalsIgnoreCase(totemUp.getId())) {
-                    banco.set(banco.indexOf(totem), totemUp);
-                }
-            }
-        }
+        } 
     }
 
     public Boolean deleteData(String id) {

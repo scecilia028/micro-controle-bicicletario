@@ -16,15 +16,8 @@ public class JDBCMockBicicleta {
 
 	    public JDBCMockBicicleta() {
 	        for (int i = 0; i < 10; i++) {
-	            banco.add(new Bicicleta(String.valueOf(i), BicicletaStatus.DISPONIVEL));
+	            banco.add(new Bicicleta(String.valueOf(i), BicicletaStatus.NOVA));
 	        }
-	    }
-
-	    public Bicicleta getDataByContext(Context ctx) {
-	        if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()))) {
-	            return this.getDataById(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()));
-	        }
-	        return null;
 	    }
 
 	    public Bicicleta getDataById(String id) {

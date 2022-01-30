@@ -57,24 +57,21 @@ public class ControllerBicicleta {
 
     public static void postBicicleta(Context ctx) {
         String status = ctx.queryParam(ChavesJson.STATUS.getValor());
-         
+        Bicicleta bicicleta = checkCreateBicicleta(ctx);
         if(Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()))     ||
 	     Validator.isNullOrEmpty(status) || 
 	     !Validator.isInRangeEnumBicicleta(status) ) {
         	ctx.status(404).result(ErrorResponse.NOT_FOUND);
 			return;
        
-        }else if (!Validator.checkKeysValidByCtx(ctx)) {
+        }else if (bicicleta == null || !Validator.checkKeysValidByCtx(ctx)) {
         	ctx.status(422);
 			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
 			return;
-        }	
-        Bicicleta bicicleta = checkCreateBicicleta(ctx);
-        	
-		if (bicicleta != null) {
-			mock.updateData(bicicleta);
+        }else {
+        	mock.updateData(bicicleta);
 			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
-		}
+        }
     }
     
     
@@ -147,7 +144,8 @@ public class ControllerBicicleta {
 
     public static void deleteBicicleta(Context ctx) {
         Bicicleta bicicleta = retrieveBikeParam(ctx);
-        if (bicicleta != null) {
+        
+        if (bicicleta != null && bicicleta.getStatus() == BicicletaStatus.APOSENTADA) {
             mock.deleteData(bicicleta.getId());
             ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
         }else{
