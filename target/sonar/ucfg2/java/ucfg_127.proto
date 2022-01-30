@@ -1,16 +1,16 @@
 
-.util.ErrorResponse#getType()Ljava/lang/String;e
-[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java (!"1*õ
+/util.ErrorResponse#getTitle()Ljava/lang/String;e
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java (""1*ú
 1e
-[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java (™
-ß
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java (´
+®
 e
-[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java (
-%0java.lang.String"__id* *
-util.ErrorResponse"
-type"Å
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java (
+%0java.lang.String"__id*!*
+util.ErrorResponse"
+title"Å
 e
-[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java	 (
+[E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/ErrorResponse.java	 (
 
 %0java.lang.StringB"
 util.ErrorResponse

@@ -16,6 +16,10 @@ import util.Validator;
 public class ControllerTranca {
 
 	public static final JDBCMockTranca mock = new JDBCMockTranca();
+	
+	private ControllerTranca() {
+		throw new IllegalStateException("Utility class");
+	}
 
 	private static void getTranca(Context ctx) {
 		ctx.status(200);

@@ -10,6 +10,10 @@ import util.Validator;
 public class ControllerTotem {
 
 	public static final JDBCMockTotem mock = new JDBCMockTotem();
+	
+	private ControllerTotem() {
+		throw new IllegalStateException("Utility class");
+	}
 
 	public static void getTotem(Context ctx) {
 			ctx.status(200);

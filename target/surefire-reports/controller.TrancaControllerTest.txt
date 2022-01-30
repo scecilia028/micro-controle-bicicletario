@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: controller.TrancaControllerTest
 -------------------------------------------------------------------------------
-Tests run: 21, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.144 s <<< FAILURE! - in controller.TrancaControllerTest
-controller.TrancaControllerTest.postTrancaFailWithoutParamTest  Time elapsed: 0.011 s  <<< FAILURE!
+Tests run: 21, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.152 s <<< FAILURE! - in controller.TrancaControllerTest
+controller.TrancaControllerTest.postTrancaFailWithoutParamTest  Time elapsed: 0.01 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <404> but was: <500>
 	at controller.TrancaControllerTest.postTrancaFailWithoutParamTest(TrancaControllerTest.java:159)
 

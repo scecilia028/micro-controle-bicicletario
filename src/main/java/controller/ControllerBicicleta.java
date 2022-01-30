@@ -12,6 +12,9 @@ public class ControllerBicicleta {
 
 	public static final JDBCMockBicicleta mock = new JDBCMockBicicleta();
 
+	private ControllerBicicleta() {
+		throw new IllegalStateException("Utility class");
+	}
 	
 	public static void getBicicleta(Context ctx) { 
 			ctx.status(200);

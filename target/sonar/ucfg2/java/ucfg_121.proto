@@ -1,28 +1,52 @@
 
-<util.Validator#isInRangeValidChavesJson(Ljava/lang/String;)Za
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java> >(/"4*ÿ
+5util.Validator#isTrancaAvailable(Ljava/lang/String;)Za
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java$ $(("4*”
+2a
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java'
+ '("k
+a
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java' '(
+""*Ä
 3a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java@ @(*Í
-Á
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java&$ &(*è
+å
 a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java@ @(*
-%1util.ChavesJson"<util.ChavesJson#valueOf(Ljava/lang/String;)Lutil/ChavesJson;*"
-util.ChavesJson*
-
-%0java.lang.String*
-1* 
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java&. &(@
+%3domain.TrancaStatus"__id*
+""*
+2
+1*á
 4a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java@ @(‹Ÿ
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java% %($‹Ÿ
 a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java@ @()
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java%- %(@
 %0java.lang.String"0java.lang.String#toUpperCase()Ljava/lang/String;*
 
-valuejava.lang.String2toUpperCase()*
+valuejava.lang.String2toUpperCase()˙
+˜
+a
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java% %(A
+%1domain.TrancaStatus"Ddomain.TrancaStatus#valueOf(Ljava/lang/String;)Ldomain/TrancaStatus;*"
+domain.TrancaStatus*
+
+%0java.lang.String®
+•
+a
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java% %(B
+trancadomain.TrancaStatus"__id*
+
+%1domain.TrancaStatusè
+å
+a
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java& &( 
+%2domain.TrancaStatus"__id*
+""*
+2
 3*”
 1a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaD	 D("k
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java)	 )("k
 a
-WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.javaD D(
+WE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/util/Validator.java) )(
 "":
 valuejava.lang.StringB"
 util.Validator
