@@ -31,7 +31,7 @@ public class JDBCMockTranca {
 
     public Tranca getDataById(String id) {
         for (Tranca tranca : banco) {
-            if (tranca.getIdTranca().equalsIgnoreCase(id)) {
+            if (tranca.getIdTranca() != null && tranca.getIdTranca().equalsIgnoreCase(id)) {
                 return tranca;
             }
         }
@@ -93,7 +93,7 @@ public class JDBCMockTranca {
 
 	public Tranca getDataByIdOrNumero(String id) {
 		for (Tranca tranca : banco) {
-            if (tranca.getNumero().equalsIgnoreCase(id) || tranca.getIdTranca().equalsIgnoreCase(id)) {
+            if ((tranca.getIdTranca() != null || tranca.getNumero() != null) && (tranca.getNumero().equalsIgnoreCase(id) || tranca.getIdTranca().equalsIgnoreCase(id))) {
                 return tranca;
             }
         }

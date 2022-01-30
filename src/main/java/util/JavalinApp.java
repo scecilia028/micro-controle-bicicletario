@@ -11,14 +11,18 @@ import controller.ControllerTranca;
 import io.javalin.Javalin;
  
 public class JavalinApp {
+	private static final String pathParamIdBicicleta = "/bicicleta/:idBicicleta";
+	private static final String pathParamIdTranca = "/tranca/:idTranca";
+	private static final String pathParamIdTotem = "/totem/:idTotem";
+	
 	  private Javalin app = 
         Javalin.create(config -> config.defaultContentType = "application/json")
         .routes(() -> {
         	 get("/bicicleta", ControllerBicicleta::getBicicletaByCtx);
         	 post("/bicicleta", ControllerBicicleta::postBicicleta);
-             put("/bicicleta/:idBicicleta", ControllerBicicleta::putBicicleta);
-             get("/bicicleta/:idBicicleta", ControllerBicicleta::getBicicletaByParamId);
-        	 delete("/bicicleta/:idBicicleta", ControllerBicicleta::deleteBicicleta);
+             put(pathParamIdBicicleta, ControllerBicicleta::putBicicleta);
+             get(pathParamIdBicicleta, ControllerBicicleta::getBicicletaByParamId);
+        	 delete(pathParamIdBicicleta, ControllerBicicleta::deleteBicicleta);
              post("/bicicleta/:idBicicleta/status/:status", ControllerBicicleta::postStatusBicicleta);
              
 	         post("/bicicleta/integrarNaRede", ControllerTranca::postIntegrarNaRede);  
@@ -26,17 +30,17 @@ public class JavalinApp {
              
              get("/totem", ControllerTotem::getTotem);
         	 post("/totem", ControllerTotem::postTotem);
-             put("/totem/:idTotem", ControllerTotem::putTotem);
-             delete("/totem/:idTotem", ControllerTotem::deleteTotem);
+             put(pathParamIdTotem, ControllerTotem::putTotem);
+             delete(pathParamIdTotem, ControllerTotem::deleteTotem);
              
              get("/totem/:idTotem/trancas", ControllerTranca::getTrancasByTotem);
              get("/totem/:idTotem/bicicletas", ControllerTranca::getBicicletasByTotem);
              
              post("/tranca", ControllerTranca::postTranca);
              get("/tranca", ControllerTranca::getTrancaByCtx);
-             get("/tranca/:idTranca", ControllerTranca::getTrancaByIdOrNumber);
-             delete("/tranca/:idTranca", ControllerTranca::deleteTranca);
-             put("/tranca/:idTranca", ControllerTranca::putTranca);
+             get(pathParamIdTranca, ControllerTranca::getTrancaByIdOrNumber);
+             delete(pathParamIdTranca, ControllerTranca::deleteTranca);
+             put(pathParamIdTranca, ControllerTranca::putTranca);
              post("/tranca/:idTranca/status/:acao", ControllerTranca::postStatusTranca);
              
              post("/tranca/integrarNaRede", ControllerTranca::postIntegrarNaRedeTrancaTotem);

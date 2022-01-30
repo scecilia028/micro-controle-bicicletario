@@ -1,18 +1,16 @@
 
-1bicicleta.Bicicleta#getModelo()Ljava/lang/String;f
-\E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/Bicicleta.java/ /("1*¡
-1f
-\E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/Bicicleta.java0
- 0(®
-«
-f
-\E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/Bicicleta.java0
- 0(
-%0java.lang.String"__id*#*!
-bicicleta.Bicicleta"
-modelo"‚
-f
-\E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/Bicicleta.java0 0(
-
-%0java.lang.StringB
-bicicleta.Bicicleta
+*domain.Tranca#getAcao()Ldomain/TrancaAcao;`
+VE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/domain/Tranca.javag g("1*ˆ
+1`
+VE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/domain/Tranca.javah	 h(¡
+ž
+`
+VE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/domain/Tranca.javah	 h(
+%0domain.TrancaAcao"__id**
+domain.Tranca"
+acao"}
+`
+VE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/domain/Tranca.javah h(
+
+%0domain.TrancaAcaoB
+domain.Tranca

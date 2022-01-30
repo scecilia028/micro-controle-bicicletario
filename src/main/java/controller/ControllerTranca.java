@@ -15,46 +15,39 @@ import util.Validator;
 
 public class ControllerTranca {
 
-	public static JDBCMockTranca mock = new JDBCMockTranca();
+	public static final JDBCMockTranca mock = new JDBCMockTranca();
 
-	public ControllerTranca() {
+	private static void getTranca(Context ctx) {
+		ctx.status(200);
+		ctx.json(mock.banco);
 	}
 
 	public static void getTrancaByCtx(Context ctx) {
-		Tranca tranca = retrieveTrancaByCtx(ctx);
-
-		if (tranca != null) {
-			ctx.status(200);
-			ctx.json(tranca);
-			return;
-		} else if (tranca == null && mock.banco != null) {
-			ctx.status(200);
-			ctx.json(mock.banco);
-			return;
+		if (ctx.queryParam(ChavesJson.IDTRANCA.getValor()) == null) {
+			getTranca(ctx);
 		} else {
-			ctx.status(404).result(ErrorResponse.NOT_FOUND);
-			return;
+			Tranca tranca = retrieveTrancaByCtx(ctx);
+
+			if (tranca != null) {
+				ctx.status(200);
+				ctx.json(tranca);
+			} else {
+				ctx.status(404).result(ErrorResponse.NOT_FOUND);
+			}
 		}
 	}
 
 	protected static Tranca retrieveTrancaByCtx(Context ctx) {
-		if (ctx.queryParam(ChavesJson.IDTRANCA.getValor()) != null) {
-			return mock.getDataById(ctx.queryParam(ChavesJson.IDTRANCA.getValor()));
-		}
-		return null;
+		return mock.getDataById(ctx.queryParam(ChavesJson.IDTRANCA.getValor()));
 	}
 
 	private static Tranca retrieveTrancaParam(Context ctx) {
-		if (ctx.pathParam(ChavesJson.IDTRANCA.getValor()) != null) {
-			return mock.getDataById(ctx.pathParam(ChavesJson.IDTRANCA.getValor()));
-		} else {
-			return null;
-		}
+		return mock.getDataById(ctx.pathParam(ChavesJson.IDTRANCA.getValor()));
 	}
 
 	public static void deleteTranca(Context ctx) {
 		Tranca tranca = retrieveTrancaParam(ctx);
-		if (tranca != null) {
+		if (tranca != null && tranca.getIdTranca() != null) {
 			mock.deleteData(tranca.getIdTranca());
 			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
 		} else {
@@ -63,35 +56,31 @@ public class ControllerTranca {
 	}
 
 	public static void postTranca(Context ctx) {
-		  String status = ctx.queryParam(ChavesJson.STATUS.getValor());
-	         
-	        if(Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor()))     ||
-		     Validator.isNullOrEmpty(status) || 
-		     !Validator.isInRangeEnumTranca(status) ) {
-	        	ctx.status(404).result(ErrorResponse.NOT_FOUND);
-				return;
-	       
-	        }else if (!Validator.checkKeysValidByCtx(ctx)) {
-	        	ctx.status(422);
-				ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
-				return;
-	        }	
-	        Tranca tranca = checkCreateTranca(ctx);
-	        	
-			if (tranca != null) {
-				mock.updateTranca(null);
-				ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
-				return;
-			}
+		String status = ctx.queryParam(ChavesJson.STATUS.getValor());
+		Tranca tranca = checkCreateTranca(ctx);
+		if (Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor())) || Validator.isNullOrEmpty(status)
+				|| !Validator.isInRangeEnumTranca(status) || tranca == null) {
+			ctx.status(404).result(ErrorResponse.NOT_FOUND);
+			return;
+
+		} else if (!Validator.checkKeysValidByCtx(ctx)) {
+			ctx.status(422);
+			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
+			return;
+		}
+		if (tranca != null) {
+			mock.createData(tranca);
+			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
+		}
 	}
 
 	public static void putTranca(Context ctx) {
 		Tranca tranca = retrieveTrancaParam(ctx);
 		if (tranca != null) {
-			if(!Validator.checkKeysValidByCtx(ctx)) {
-   			 ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);
-   			 return;
-   		 }
+			if (!Validator.checkKeysValidByCtx(ctx)) {
+				ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);
+				return;
+			}
 			tranca = checkUpdateTranca(ctx, tranca);
 			if (tranca != null) {
 				mock.updateTranca(tranca);
@@ -104,7 +93,7 @@ public class ControllerTranca {
 
 	private static Tranca checkCreateTranca(Context ctx) {
 		Tranca tranca = new Tranca();
-
+		ctx.queryString();
 		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()))
 				&& !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor()))
 				&& Validator.isInRangeEnumTranca(ctx.queryParam(ChavesJson.STATUS.getValor()))
@@ -142,7 +131,8 @@ public class ControllerTranca {
 		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.NUMERO.getValor()))) {
 			tranca.setNumero(ctx.queryParam(ChavesJson.NUMERO.getValor()));
 		}
-		if (Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor())) && Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()))
+		if (Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor()))
+				&& Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()))
 				&& Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor()))
 				&& !Validator.isInRangeEnumTranca(ctx.queryParam(ChavesJson.STATUS.getValor()))
 				&& Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MODELO.getValor()))
@@ -159,11 +149,12 @@ public class ControllerTranca {
 
 		if (tranca != null) {
 			if (!Validator.isNullOrEmpty(ctx.pathParam("acao"))) {
-				if (!Validator.isInRangeEnumTrancaAcao(ctx.pathParam("acao").toUpperCase()) || TrancaAcao.valueOf(ctx.pathParam("acao").toUpperCase()) == null) {
+				if (!Validator.isInRangeEnumTrancaAcao(ctx.pathParam("acao").toUpperCase())
+						|| TrancaAcao.valueOf(ctx.pathParam("acao").toUpperCase()) == null) {
 					ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);
 					return;
-				} 
-				  tranca.setAcao(TrancaAcao.valueOf(ctx.pathParam(ChavesJson.ACAO.getValor()).toUpperCase()));
+				}
+				tranca.setAcao(TrancaAcao.valueOf(ctx.pathParam(ChavesJson.ACAO.getValor()).toUpperCase()));
 			}
 			mock.updateTranca(tranca);
 			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
@@ -176,25 +167,23 @@ public class ControllerTranca {
 		Tranca tranca = retrieveTrancaByParamIdOrNumber(ctx);
 
 		if (tranca != null && tranca.getIdBicicleta() != null) {
-//			if (tranca.getStatus() != TrancaStatus.LIVRE || tranca.getStatus() != TrancaStatus.NOVA) {
-//				ctx.status(422).result(ErrorResponse.INVALID_TRANCA_STATUS_MESSAGE);
-//				return;
-//			}
 			Bicicleta bike = ControllerBicicleta.retrieveTrancaBikeById(tranca.getIdBicicleta());
 			ctx.status(200);
 			ctx.json(bike);
-			return;
 		} else {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
-			return;
 		}
 	}
 
 	public static void postIntegrarNaRede(Context ctx) {
 		Bicicleta bicicleta = ControllerBicicleta.retrieveBikeByCtx(ctx);
 		Tranca tranca = ControllerTranca.retrieveTrancaByCtx(ctx);
-		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor()))
-				&& !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()))
+		if (tranca == null || bicicleta == null) {
+			ctx.status(404).result(ErrorResponse.VALID_DATA_MESSAGE);
+			return;
+		}
+		if (!Validator.isNullOrEmpty(bicicleta.getId())
+				&& !Validator.isNullOrEmpty(tranca.getIdTranca())
 				&& Validator.isBicicletaAvailable(String.valueOf(bicicleta.getStatus()))
 				&& Validator.isTrancaAvailable(String.valueOf(tranca.getStatus()))
 				&& Validator.checkKeysValidByCtx(ctx)) {
@@ -202,25 +191,20 @@ public class ControllerTranca {
 			mock.updateTranca(tranca);
 			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
 		} else {
-			if(tranca == null || bicicleta == null) {
-				ctx.status(404).result(ErrorResponse.VALID_DATA_MESSAGE);
-				return;
-			}
 			ctx.status(422);
 			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
 		}
 	}
 
 	public static void postRetirarDaRede(Context ctx) {
-		Tranca tranca = ControllerTranca.retrieveTrancaByCtx(ctx);
-		
-		if(tranca == null || tranca.getIdBicicleta() == null || tranca.getIdBicicleta() == ctx.queryParam(ChavesJson.IDBICICLETA.getValor())) {
+		Tranca tranca = retrieveTrancaByCtx(ctx);
+
+		if (tranca == null || tranca.getIdBicicleta() == null
+				|| !tranca.getIdBicicleta().equals(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()))) {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
 			return;
 		}
-		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor()))
-				&& !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()))
-				&& Validator.checkKeysValidByCtx(ctx)) {
+		if (Validator.checkKeysValidByCtx(ctx)) {
 			mock.deleteDataTrancaBike(tranca.getIdTranca(), tranca.getIdBicicleta());
 			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
 		} else {
@@ -230,7 +214,7 @@ public class ControllerTranca {
 	}
 
 	public static void getTrancaByIdOrNumber(Context ctx) {
-		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor()))) {
+		if (Validator.isNullOrEmpty(ctx.pathParam(ChavesJson.IDTRANCA.getValor()))) {
 			ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);
 			return;
 		}
@@ -241,34 +225,29 @@ public class ControllerTranca {
 			return;
 		} else {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
-			return;
 		}
 	}
 
 	private static Tranca retrieveTrancaByParamIdOrNumber(Context ctx) {
-		if (ctx.pathParam(ChavesJson.IDTRANCA.getValor()) != null) {
-			return mock.getDataByIdOrNumero(ctx.pathParam(ChavesJson.IDTRANCA.getValor()));
-		}
-		return null;
+		return mock.getDataByIdOrNumero(ctx.pathParam(ChavesJson.IDTRANCA.getValor()));
 	}
 
 	public static void postIntegrarNaRedeTrancaTotem(Context ctx) {
 		Totem totem = ControllerTotem.retrieveTotemByCtx(ctx);
-		Tranca tranca = ControllerTranca.retrieveTrancaByCtx(ctx);
-		
-		if(tranca == null || totem == null) {
+		Tranca tranca = retrieveTrancaByCtx(ctx);
+
+		if (tranca == null || totem == null) {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
 			return;
 		}
-		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor())) 
-			&& !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor()))
-			&& Validator.checkKeysValidByCtx(ctx) 
-			&& Validator.isTrancaAvailable(String.valueOf(tranca.getStatus()))) {
-			
+		if (!Validator.isNullOrEmpty(tranca.getIdTranca())
+				&& !Validator.isNullOrEmpty(totem.getId())
+				&& Validator.checkKeysValidByCtx(ctx)
+				&& Validator.isTrancaAvailable(String.valueOf(tranca.getStatus()))) {
+
 			tranca.setIdTotem(totem.getId());
 			mock.updateTranca(tranca);
 			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
-			return;
 		} else {
 			ctx.status(422);
 			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
@@ -276,18 +255,17 @@ public class ControllerTranca {
 	}
 
 	public static void postRetirarDaRedeTrancaTotem(Context ctx) {
-		Tranca tranca = ControllerTranca.retrieveTrancaByCtx(ctx);
-	
-		if(tranca == null || tranca.getIdTotem() == null || tranca.getIdTotem() == ctx.queryParam(ChavesJson.IDTOTEM.getValor()) ) {
+		Tranca tranca = retrieveTrancaByCtx(ctx);
+		if (tranca == null || tranca.getIdTotem() == null
+				|| ctx.queryParam(ChavesJson.IDTOTEM.getValor()) == null || !tranca.getIdTotem().equals(ctx.queryParam(ChavesJson.IDTOTEM.getValor()))) {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
 			return;
 		}
-		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor()))
-				&& !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor()))
-				&& Validator.checkKeysValidByCtx(ctx)) {
+		if (Validator.checkKeysValidByCtx(ctx)) {
 			mock.deleteDataTotemTranca(tranca.getIdTotem(), tranca.getIdTranca());
 			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
-		} else {
+		} 
+		else {
 			ctx.status(422);
 			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
 		}
@@ -302,26 +280,16 @@ public class ControllerTranca {
 		if (trancas != null) {
 			ctx.status(200);
 			ctx.json(trancas);
-			return;
 		} else {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
-			return;
 		}
 	}
 
 	private static List<Tranca> retrieveTrancasByTotemParam(Context ctx) {
-		if (ctx.pathParam(ChavesJson.IDTOTEM.getValor()) != null) {
-			List<Tranca> tranca =  mock.getListDataTrancaByTotem(ctx.pathParam(ChavesJson.IDTOTEM.getValor()));
-			if (tranca == null) {
-				ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);
-				return null;
-			}
-			return tranca;
-		} 
-			return null;
+		List<Tranca> tranca = mock.getListDataTrancaByTotem(ctx.pathParam(ChavesJson.IDTOTEM.getValor()));
+		return tranca;
 	}
-	
-	
+
 	public static void getBicicletasByTotem(Context ctx) {
 		if (Validator.isNullOrEmpty(ctx.pathParam(ChavesJson.IDTOTEM.getValor()))) {
 			ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);
@@ -331,19 +299,13 @@ public class ControllerTranca {
 		if (bicicletas != null) {
 			ctx.status(200);
 			ctx.json(bicicletas);
-			return;
 		} else {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
-			return;
 		}
 	}
-	
+
 	private static List<Bicicleta> retrieveBicicletasByTotemParam(Context ctx) {
-		if (ctx.pathParam(ChavesJson.IDTOTEM.getValor()) != null) {
-			return mock.getListDataBikeByTotem(ctx.pathParam(ChavesJson.IDTOTEM.getValor()));
-		} else {
-			return null;
-		}
+		return mock.getListDataBikeByTotem(ctx.pathParam(ChavesJson.IDTOTEM.getValor()));
 	}
 
 }

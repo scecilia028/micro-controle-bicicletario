@@ -11,50 +11,32 @@ public class ControllerTotem {
 
 	public static JDBCMockTotem mock = new JDBCMockTotem();
 
-	public ControllerTotem() {
-	}
-
 	public static void getTotem(Context ctx) {
-		 if (mock.banco != null) {
 			ctx.status(200);
 			ctx.json(mock.banco);
-			return;
-		} else {
-			ctx.status(404).result(ErrorResponse.NOT_FOUND);
-			return;
-		}
 	}
 	
 	public static void getTotemByCtx(Context ctx) {
-		Totem totem = retrieveTotemParam(ctx);
-
-		if (totem != null) {
-			ctx.status(200);
-			ctx.json(totem);
-			return;
-		} else if (totem == null && mock.banco != null) {
-			ctx.status(200);
-			ctx.json(mock.banco);
-			return;
-		} else {
+		if(ctx.queryParam(ChavesJson.IDTOTEM.getValor()) == null) {
+    		getTotem(ctx);
+    	}else {
+        Totem totem = retrieveTotemByCtx(ctx);
+        
+        if (totem != null) {
+            ctx.status(200);
+            ctx.json(totem);
+        } else {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
-			return;
 		}
+       }
 	}
 
 	protected static Totem retrieveTotemByCtx(Context ctx) {
-		if (ctx.queryParam(ChavesJson.IDTOTEM.getValor()) != null) {
 			return mock.getDataById(ctx.queryParam(ChavesJson.IDTOTEM.getValor()));
-		}
-		return null;
 	}
 	
 	 private static Totem retrieveTotemParam(Context ctx) {
-	        if (ctx.pathParam(ChavesJson.IDTOTEM.getValor()) != null) {
 	            return mock.getDataById(ctx.pathParam(ChavesJson.IDTOTEM.getValor()));
-	        }  else{
-	            return null;
-	        }
 	    }
 
 	public static void deleteTotem(Context ctx) {
@@ -68,18 +50,19 @@ public class ControllerTotem {
 	}
 
 	public static void postTotem(Context ctx) {
-		if (Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor())) || Validator.isNullOrEmpty("")
-				||   !Validator.checkKeysValidByCtx(ctx)) {
+		if (Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor())) || Validator.isNullOrEmpty("")) {
+			ctx.status(404).result(ErrorResponse.NOT_FOUND);
+			return;
+		} else if(!Validator.checkKeysValidByCtx(ctx)) {
 			ctx.status(422);
 			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
 			return;
-		} else {
+		}else {
 			Totem totem = checkCreateTotem(ctx);
-			if(totem == null) {
-				ctx.status(404).result(ErrorResponse.NOT_FOUND);
+			if(totem != null) {
+				mock.updateData(totem);
+				ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
 			}
-			mock.updateData(totem);
-			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
 		}
 	}
 

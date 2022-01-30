@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JDBCMockTotem.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">sistemaBicicletario</a> &gt; <a href="index.source.html" class="el_package">services</a> &gt; <span class="el_source">JDBCMockTotem.java</span></div><h1>JDBCMockTotem.java</h1><pre class="source lang-java linenums">package services;
+
+import java.util.ArrayList;
+
+import domain.Totem;
+import io.javalin.http.Context;
+import util.ChavesJson;
+import util.Validator;
+
+public class JDBCMockTotem {
+	
+<span class="fc" id="L12">	public ArrayList&lt;Totem&gt; banco = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L14">    public JDBCMockTotem() {</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        for (int i = 0; i &lt; 10; i++) {</span>
+<span class="fc" id="L16">            banco.add(new Totem(String.valueOf(i), &quot;Rua &quot;.concat(String.valueOf(i))));</span>
+        }
+<span class="fc" id="L18">    }</span>
+
+    public Totem getDataByContext(Context ctx) {
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor()))) {</span>
+<span class="nc" id="L22">            return this.getDataById(ctx.queryParam(ChavesJson.IDTOTEM.getValor()));</span>
+        }  
+<span class="nc" id="L24">        return null;</span>
+    }
+
+    public Totem getDataById(String id) {
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        for (Totem Totem : banco) {</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">            if (Totem.getId().equalsIgnoreCase(id)) {</span>
+<span class="fc" id="L30">                return Totem;</span>
+            }
+<span class="fc" id="L32">        }</span>
+<span class="fc" id="L33">        return null;</span>
+    }
+
+    public void updateData(Totem totemUp) {
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        if (this.getDataById(totemUp.getId()) == null) {</span>
+<span class="nc" id="L38">            banco.add(totemUp);</span>
+        }else{
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            for (Totem totem : banco) {</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                if (totem.getId().equalsIgnoreCase(totemUp.getId())) {</span>
+<span class="fc" id="L42">                    banco.set(banco.indexOf(totem), totemUp);</span>
+                }
+<span class="fc" id="L44">            }</span>
+        }
+<span class="fc" id="L46">    }</span>
+
+    public Boolean deleteData(String id) {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        for (Totem totem : banco) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            if (totem.getId().equalsIgnoreCase(id)) {</span>
+<span class="fc" id="L51">                banco.remove(totem);                </span>
+<span class="fc" id="L52">                return true;</span>
+            }
+<span class="fc" id="L54">        }</span>
+<span class="fc" id="L55">        return false;</span>
+    }
+
+	public void updateTotem(Totem totemUpdate) {
+<span class="fc bfc" id="L59" title="All 2 branches covered.">		for (Totem totem : banco) {</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">	            if (totem.getId().equalsIgnoreCase(totemUpdate.getId())) {</span>
+<span class="fc" id="L61">	            	banco.set(banco.indexOf(totem), totemUpdate);</span>
+<span class="fc" id="L62">	                return;</span>
+	            }
+<span class="fc" id="L64">	        }</span>
+<span class="fc" id="L65">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ControllerBicicleta.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">sistemaBicicletario</a> &gt; <a href="index.source.html" class="el_package">controller</a> &gt; <span class="el_source">ControllerBicicleta.java</span></div><h1>ControllerBicicleta.java</h1><pre class="source lang-java linenums">package controller;
+
+import domain.Bicicleta;
+import domain.BicicletaStatus;
+import io.javalin.http.Context;
+import services.JDBCMockBicicleta;
+import util.ChavesJson;
+import util.ErrorResponse;
+import util.Validator;
+
+<span class="nc" id="L11">public class ControllerBicicleta {</span>
+
+<span class="fc" id="L13">	public static JDBCMockBicicleta mock = new JDBCMockBicicleta();</span>
+
+	
+	public static void getBicicleta(Context ctx) { 
+<span class="fc" id="L17">			ctx.status(200);</span>
+<span class="fc" id="L18">			ctx.json(mock.banco);</span>
+<span class="fc" id="L19">    }</span>
+
+    public static void getBicicletaByParamId(Context ctx) { 
+<span class="nc" id="L22">        Bicicleta bike = retrieveBikeParam(ctx);</span>
+        
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        if (bike != null) {</span>
+<span class="nc" id="L25">            ctx.status(200);</span>
+<span class="nc" id="L26">            ctx.json(bike);</span>
+        }else {
+<span class="nc" id="L28">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+<span class="nc" id="L29">			return;</span>
+		}
+<span class="nc" id="L31">    }</span>
+    
+    public static void getBicicletaByCtx(Context ctx) {
+<span class="fc bfc" id="L34" title="All 2 branches covered.">    	if(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()) == null) {</span>
+<span class="fc" id="L35">    		getBicicleta(ctx);</span>
+    	}else {
+<span class="fc" id="L37">        Bicicleta bike = retrieveBikeByCtx(ctx);</span>
+        
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">        if (bike != null) {</span>
+<span class="fc" id="L40">            ctx.status(200);</span>
+<span class="fc" id="L41">            ctx.json(bike);</span>
+        } else {
+<span class="nc" id="L43">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+		}
+       }
+<span class="fc" id="L46">    }</span>
+    
+    private static Bicicleta retrieveBikeParam(Context ctx) {
+<span class="fc" id="L49">            return mock.getDataById(ctx.pathParam(ChavesJson.IDBICICLETA.getValor()));</span>
+    }
+  
+    protected static Bicicleta retrieveBikeByCtx(Context ctx) {
+<span class="fc" id="L53">            return mock.getDataById(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()));</span>
+    }
+
+    public static void postBicicleta(Context ctx) {
+<span class="fc" id="L57">        String status = ctx.queryParam(ChavesJson.STATUS.getValor());</span>
+         
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if(Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()))     ||</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">	     Validator.isNullOrEmpty(status) || </span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">	     !Validator.isInRangeEnumBicicleta(status) ) {</span>
+<span class="fc" id="L62">        	ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+<span class="fc" id="L63">			return;</span>
+       
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        }else if (!Validator.checkKeysValidByCtx(ctx)) {</span>
+<span class="nc" id="L66">        	ctx.status(422);</span>
+<span class="nc" id="L67">			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+<span class="nc" id="L68">			return;</span>
+        }	
+<span class="fc" id="L70">        Bicicleta bicicleta = checkCreateBicicleta(ctx);</span>
+        	
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">		if (bicicleta != null) {</span>
+<span class="fc" id="L73">			mock.updateData(bicicleta);</span>
+<span class="fc" id="L74">			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+<span class="fc" id="L75">			return;</span>
+		}
+<span class="nc" id="L77">    }</span>
+    
+    
+    public static void putBicicleta(Context ctx) {
+<span class="fc" id="L81">    	 Bicicleta bicicleta = retrieveBikeParam(ctx);</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">    	 if (bicicleta != null) {</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">    		 if(!Validator.checkKeysValidByCtx(ctx)) {</span>
+<span class="fc" id="L84">    			 ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+<span class="fc" id="L85">    			 return;</span>
+    		 }
+<span class="fc" id="L87">    		 bicicleta = checkUpdateBicicleta(ctx, bicicleta);</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">    		 if(bicicleta != null) {</span>
+<span class="fc" id="L89">	    		  mock.updateBicicleta(bicicleta);	</span>
+<span class="fc" id="L90">	       		  ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+    		 } 
+    	 } else {
+<span class="nc" id="L93">    		 ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+    	 }
+<span class="fc" id="L95">    }</span>
+
+	private static Bicicleta checkCreateBicicleta(Context ctx) {
+<span class="fc" id="L98">		Bicicleta bicicleta = new Bicicleta();</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">		  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDBICICLETA.getValor())) &amp;&amp;</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">			 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor())) &amp;&amp;</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">			 Validator.isInRangeEnumBicicleta(ctx.queryParam(ChavesJson.STATUS.getValor())) &amp;&amp;</span>
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">			 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MARCA.getValor())) &amp;&amp;</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">			 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MODELO.getValor()))	&amp;&amp;</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">			 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.ANO.getValor())) &amp;&amp;	  </span>
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">			 !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.NUMERO.getValor()))</span>
+			) {
+<span class="fc" id="L107">			  bicicleta.setId(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()));</span>
+<span class="fc" id="L108">			  bicicleta.setStatus(BicicletaStatus.valueOf(ctx.queryParam(ChavesJson.STATUS.getValor()).toUpperCase()));</span>
+<span class="fc" id="L109">			  bicicleta.setMarca(ctx.queryParam(ChavesJson.MARCA.getValor()));</span>
+<span class="fc" id="L110">			  bicicleta.setModelo(ctx.queryParam(ChavesJson.MODELO.getValor()));</span>
+<span class="fc" id="L111">			  bicicleta.setAno(ctx.queryParam(ChavesJson.ANO.getValor()));</span>
+<span class="fc" id="L112">			  bicicleta.setNumero(Integer.parseInt(ctx.queryParam(ChavesJson.NUMERO.getValor())));</span>
+<span class="fc" id="L113">			  return bicicleta;</span>
+		  }
+<span class="nc" id="L115">		return null;</span>
+	}
+	
+	private static Bicicleta checkUpdateBicicleta(Context ctx, Bicicleta bicicleta) {
+<span class="pc bpc" id="L119" title="2 of 4 branches missed.">		  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor())) &amp;&amp;  Validator.isInRangeEnumBicicleta(ctx.queryParam(ChavesJson.STATUS.getValor()))) {</span>
+<span class="fc" id="L120">			  bicicleta.setStatus(BicicletaStatus.valueOf(ctx.queryParam(ChavesJson.STATUS.getValor()).toUpperCase()));</span>
+		  }
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">		  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MARCA.getValor()))) {</span>
+<span class="fc" id="L123">			  bicicleta.setMarca(ctx.queryParam(ChavesJson.MARCA.getValor()));</span>
+		  }
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">		  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MODELO.getValor()))) {</span>
+<span class="fc" id="L126">			  bicicleta.setModelo(ctx.queryParam(ChavesJson.MODELO.getValor()));</span>
+		  }
+<span class="pc bpc" id="L128" title="1 of 2 branches missed.">		  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.ANO.getValor()))) {</span>
+<span class="fc" id="L129">			  bicicleta.setAno(ctx.queryParam(ChavesJson.ANO.getValor()));</span>
+		  }
+<span class="pc bpc" id="L131" title="1 of 2 branches missed.">		  if(!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.NUMERO.getValor()))) {</span>
+<span class="fc" id="L132">			  bicicleta.setNumero(Integer.parseInt(ctx.queryParam(ChavesJson.NUMERO.getValor())));</span>
+		  }
+<span class="pc bpc" id="L134" title="1 of 2 branches missed.">		  if(Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor())) &amp;&amp;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">			 !Validator.isInRangeEnumBicicleta(ctx.queryParam(ChavesJson.STATUS.getValor())) &amp;&amp;</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">			 Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MARCA.getValor())) &amp;&amp;</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">			 Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MODELO.getValor()))	&amp;&amp;</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">			 Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.ANO.getValor())) &amp;&amp;	  </span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">			 Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.NUMERO.getValor()))</span>
+			) {
+<span class="nc" id="L141">			  return null;</span>
+		  }
+<span class="fc" id="L143">		return bicicleta;</span>
+	}
+
+    public static void deleteBicicleta(Context ctx) {
+<span class="fc" id="L147">        Bicicleta bicicleta = retrieveBikeParam(ctx);</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">        if (bicicleta != null) {</span>
+<span class="fc" id="L149">            mock.deleteData(bicicleta.getId());</span>
+<span class="fc" id="L150">            ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+        }else{
+<span class="fc" id="L152">        	ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+         }
+<span class="fc" id="L154">    }</span>
+    
+    public static void postStatusBicicleta(Context ctx) {
+<span class="fc" id="L157">    	 Bicicleta bicicleta = retrieveBikeParam(ctx);</span>
+    	 
+<span class="pc bpc" id="L159" title="1 of 2 branches missed.">    	 if (bicicleta != null) {</span>
+<span class="pc bpc" id="L160" title="1 of 2 branches missed.">    		 if(!Validator.isNullOrEmpty(ctx.pathParam(ChavesJson.STATUS.getValor()))) {</span>
+<span class="pc bpc" id="L161" title="1 of 2 branches missed.">				  if(BicicletaStatus.valueOf(ctx.pathParam(ChavesJson.STATUS.getValor()).toUpperCase()) == null) {</span>
+<span class="nc" id="L162">					  ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+<span class="nc" id="L163">					  return;</span>
+				  }
+<span class="fc" id="L165">				  bicicleta.setStatus(BicicletaStatus.valueOf(ctx.pathParam(ChavesJson.STATUS.getValor()).toUpperCase()));</span>
+			  }
+<span class="fc" id="L167">    		  mock.updateBicicleta(bicicleta);	</span>
+<span class="fc" id="L168">    		  ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+    	 } else {
+<span class="nc" id="L170">    		 ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+    	 }
+<span class="fc" id="L172">    }</span>
+
+	protected Bicicleta retrieveBikeById(String idBicicleta) {
+<span class="nc bnc" id="L175" title="All 2 branches missed.">		if (idBicicleta != null) {</span>
+<span class="nc" id="L176">			return mock.getDataById(idBicicleta);</span>
+		} else {
+<span class="nc" id="L178">			return null;</span>
+		}
+	}
+	
+	protected static Bicicleta retrieveTrancaBikeById(String idBicicleta) {
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">		if (idBicicleta != null) {</span>
+<span class="fc" id="L184">			return mock.getDataById(idBicicleta);</span>
+		} else {
+<span class="nc" id="L186">			return null;</span>
+		}
+	}
+		
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

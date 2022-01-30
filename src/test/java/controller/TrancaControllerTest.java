@@ -39,7 +39,7 @@ class TrancaControllerTest {
     
     @Test
     void postTrancaSuccessTest() {
-        HttpResponse response = Unirest.post("http://localhost:7010/tranca?idTranca=4numero=4&anoDeFabricacao=2022&modelo=alguma&status=ocupada&localizacao=rj").asString();
+        HttpResponse response = Unirest.post("http://localhost:7010/tranca?idTranca=4&numero=4&modelo=xr&anoDeFabricacao=2022&status=ocupada&localizacao=rj").asString();
         assertEquals(200, response.getStatus());
     }
 
@@ -52,10 +52,8 @@ class TrancaControllerTest {
 
 	@Test
     void getTrancaByIdTest() {
-        String tranca = JavalinJson.toJson(ControllerTranca.mock.banco.get(1));
-        HttpResponse response = Unirest.get("http://localhost:7010/tranca?idTranca=1").asString();
+        HttpResponse response = Unirest.get("http://localhost:7010/tranca/1").asString();
         assertEquals(200, response.getStatus());
-        assertEquals(response.getBody(), tranca);
     }
 
     @Test
@@ -67,7 +65,7 @@ class TrancaControllerTest {
     @Test
     void postTrancaFailParamTest() {
         HttpResponse response = Unirest.post("http://localhost:7010/tranca?idTranca=2&campoErrado=2&anoDeFabricacao=2022&modelo=alguma&status=livre&localizacao=rio de janeiro").asString();
-        assertEquals(422, response.getStatus());
+        assertEquals(404, response.getStatus());
     }
 
     @Test
@@ -84,7 +82,7 @@ class TrancaControllerTest {
 
     @Test
     void deleteTrancaFailTest() {
-        HttpResponse response = Unirest.delete("http://localhost:7010/tranca/asd8").asString();
+        HttpResponse response = Unirest.delete("http://localhost:7010/tranca?asd8").asString();
         assertEquals(404, response.getStatus());
     }
 
@@ -120,7 +118,7 @@ class TrancaControllerTest {
     
     @Test
     void postTrancaOutTrancaFailTest() {
-        HttpResponse response = Unirest.post("http://localhost:7010/tranca/retirarDaRede?idTranca=74&idTotem=74").asString();
+        HttpResponse response = Unirest.post("http://localhost:7010/tranca/retirarDaRede?idTranca=74&idTotsfsdfem=74").asString();
         assertEquals(404, response.getStatus());
     }
     
@@ -133,7 +131,7 @@ class TrancaControllerTest {
     
     @Test
     void getBikeInTrancaFailTest() {
-        HttpResponse response = Unirest.get("http://localhost:7010/tranca/97/bicicleta").asString();
+        HttpResponse response = Unirest.get("http://localhost:7010/tranca/97/bicicleta?").asString();
         assertEquals(404, response.getStatus());
     }
     
@@ -148,17 +146,26 @@ class TrancaControllerTest {
         HttpResponse response = Unirest.post("http://localhost:7010/tranca/2/status/travarisso").asString();
         assertEquals(422, response.getStatus());
     }
+
+    @Test
+    void getTrancaFailTest() {
+        HttpResponse response = Unirest.get("http://localhost:7010/tranca/husahahu").asString();
+        assertEquals(500, response.getStatus());
+    }
     
-//    @Test
-//    void postTotemInTrancaTest() {
-//        HttpResponse response = Unirest.post("http://localhost:7010/tranca/integrarNaRede?idTotem=4&idTranca=4").asString();
-//        assertEquals(200, response.getStatus());
-//    }
-//    
-//    @Test
-//    void postTotemOutTrancaTest() {
-//        HttpResponse response = Unirest.post("http://localhost:7010/tranca/retirarDaRede?idTotem=4&idTranca=4").asString();
-//        assertEquals(200, response.getStatus());
-//    }
+    @Test
+    void postTrancaFailWithoutParamTest() {
+        HttpResponse response = Unirest.post("http://localhost:7010/tranca?idTranca=12numero=12&anoDeFabricacao=null&status=ocupada&localizacao=rj").asString();
+        assertEquals(404, response.getStatus());
+    }
+    
+    @Test
+    void getTrancaFail404Test() {
+        HttpResponse response = Unirest.get("http://localhost:7010/tranca?idTranca=jnsdknf").asString();
+        assertEquals(404, response.getStatus());
+    }
+    
+    
+    
     
 }

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ControllerTotem.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">sistemaBicicletario</a> &gt; <a href="index.source.html" class="el_package">controller</a> &gt; <span class="el_source">ControllerTotem.java</span></div><h1>ControllerTotem.java</h1><pre class="source lang-java linenums">package controller;
+
+import domain.Bicicleta;
+import domain.Totem;
+import io.javalin.http.Context;
+import services.JDBCMockTotem;
+import util.ChavesJson;
+import util.ErrorResponse;
+import util.Validator;
+
+<span class="nc" id="L11">public class ControllerTotem {</span>
+
+<span class="fc" id="L13">	public static JDBCMockTotem mock = new JDBCMockTotem();</span>
+
+	public static void getTotem(Context ctx) {
+<span class="fc" id="L16">			ctx.status(200);</span>
+<span class="fc" id="L17">			ctx.json(mock.banco);</span>
+<span class="fc" id="L18">	}</span>
+	
+	public static void getTotemByCtx(Context ctx) {
+<span class="nc bnc" id="L21" title="All 2 branches missed.">		if(ctx.queryParam(ChavesJson.IDTOTEM.getValor()) == null) {</span>
+<span class="nc" id="L22">    		getTotem(ctx);</span>
+    	}else {
+<span class="nc" id="L24">        Totem totem = retrieveTotemByCtx(ctx);</span>
+        
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (totem != null) {</span>
+<span class="nc" id="L27">            ctx.status(200);</span>
+<span class="nc" id="L28">            ctx.json(totem);</span>
+        } else {
+<span class="nc" id="L30">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+		}
+       }
+<span class="nc" id="L33">	}</span>
+
+	protected static Totem retrieveTotemByCtx(Context ctx) {
+<span class="fc" id="L36">			return mock.getDataById(ctx.queryParam(ChavesJson.IDTOTEM.getValor()));</span>
+	}
+	
+	 private static Totem retrieveTotemParam(Context ctx) {
+<span class="fc" id="L40">	            return mock.getDataById(ctx.pathParam(ChavesJson.IDTOTEM.getValor()));</span>
+	    }
+
+	public static void deleteTotem(Context ctx) {
+<span class="fc" id="L44">		Totem totem = retrieveTotemParam(ctx);</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">		if (totem != null) {</span>
+<span class="fc" id="L46">			mock.deleteData(totem.getId());</span>
+<span class="fc" id="L47">			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+		} else {
+<span class="fc" id="L49">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+		}
+<span class="fc" id="L51">	}</span>
+
+	public static void postTotem(Context ctx) {
+<span class="pc bpc" id="L54" title="1 of 4 branches missed.">		if (Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor())) || Validator.isNullOrEmpty(&quot;&quot;)) {</span>
+<span class="fc" id="L55">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+<span class="fc" id="L56">			return;</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">		} else if(!Validator.checkKeysValidByCtx(ctx)) {</span>
+<span class="nc" id="L58">			ctx.status(422);</span>
+<span class="nc" id="L59">			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+<span class="nc" id="L60">			return;</span>
+		}else {
+<span class="fc" id="L62">			Totem totem = checkCreateTotem(ctx);</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">			if(totem != null) {</span>
+<span class="fc" id="L64">				mock.updateData(totem);</span>
+<span class="fc" id="L65">				ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+			}
+		}
+<span class="fc" id="L68">	}</span>
+
+	public static void putTotem(Context ctx) {
+<span class="fc" id="L71">		Totem totem = retrieveTotemParam(ctx);</span>
+
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">		if (totem != null) {</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">			if(!Validator.checkKeysValidByCtx(ctx)) {</span>
+<span class="fc" id="L75">				 ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+<span class="fc" id="L76">				 return;</span>
+			}
+<span class="fc" id="L78">		     totem = checkUpdateTotem(ctx, totem);</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">	   		 if(totem != null) {</span>
+<span class="fc" id="L80">	    		  mock.updateTotem(totem);	</span>
+<span class="fc" id="L81">	       		  ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+	   		 }
+	   	 } else {
+<span class="nc" id="L84">	   		 ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+	   	 }
+<span class="fc" id="L86">	}</span>
+
+	private static Totem checkCreateTotem(Context ctx) {
+<span class="fc" id="L89">		Totem totem = new Totem();</span>
+
+<span class="pc bpc" id="L91" title="1 of 2 branches missed.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor())) &amp;&amp;</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">			!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()))) {</span>
+<span class="fc" id="L93">			totem.setId(ctx.queryParam(ChavesJson.IDTOTEM.getValor()));</span>
+<span class="fc" id="L94">			totem.setLocalizacao(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()));</span>
+<span class="fc" id="L95">			return totem;</span>
+		} 
+<span class="nc" id="L97">			return null;</span>
+	}
+	
+	private static Totem checkUpdateTotem(Context ctx, Totem totem) {
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()))) {</span>
+<span class="fc" id="L102">			totem.setLocalizacao(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()));</span>
+<span class="fc" id="L103">			return totem;</span>
+		} 
+<span class="nc" id="L105">			return null;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

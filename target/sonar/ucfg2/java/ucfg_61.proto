@@ -1,0 +1,605 @@
+
+fcontroller.ControllerTranca#checkUpdateTranca(Lio/javalin/http/Context;Ldomain/Tranca;)Ldomain/Tranca;n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javan n(("22*õ
+13n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java} }(ô
+ñ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java}. }(H
+%38util.ChavesJson"__id*
+""‡›
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java}. }(S
+%39java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%38util.ChavesJson2
+getValor()≥∞
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java} }(T
+%40java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%39java.lang.String2queryParam(Ljava/lang/String;)Â
+‚
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java} }(U
+%41boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%40java.lang.String*
+11
+12*µ
+14n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java{ {(	ô
+ñ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java{# {(4
+%34util.ChavesJson"__id*
+""‡›
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java{# {(?
+%35java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%34util.ChavesJson2
+getValor()≥∞
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java{ {(@
+%36java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%35java.lang.String2queryParam(Ljava/lang/String;)ÉÄ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java{ {(A
+%37void",domain.Tranca#setModelo(Ljava/lang/String;)V*
+
+trancadomain.Tranca*
+
+%36java.lang.String2setModelo(Ljava/lang/String;)*
+13*õ
+15n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaz z(ô
+ñ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaz. z(?
+%30util.ChavesJson"__id*
+""‡›
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaz. z(J
+%31java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%30util.ChavesJson2
+getValor()≥∞
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaz z(K
+%32java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%31java.lang.String2queryParam(Ljava/lang/String;)Â
+‚
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaz z(L
+%33boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%32java.lang.String*
+13
+14*µ
+16n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javax x(	ô
+ñ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javax8 x(I
+%24util.ChavesJson"__id*
+""‡›
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javax8 x(T
+%25java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%24util.ChavesJson2
+getValor()≥∞
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javax) x(U
+%26java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%25java.lang.String2queryParam(Ljava/lang/String;)ËÂ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javax) x(c
+%27java.lang.String"0java.lang.String#toUpperCase()Ljava/lang/String;*
+
+%26java.lang.String2toUpperCase()â
+Ü
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javax x(d
+%28domain.TrancaStatus"Ddomain.TrancaStatus#valueOf(Ljava/lang/String;)Ldomain/TrancaStatus;*"
+domain.TrancaStatus*
+
+%27java.lang.Stringåâ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javax x(e
+%29void"/domain.Tranca#setStatus(Ldomain/TrancaStatus;)V*
+
+trancadomain.Tranca*
+
+%28domain.TrancaStatus2 setStatus(Ldomain/TrancaStatus;)*
+15*§
+17n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaw w(ô
+ñ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaw7 w(H
+%20util.ChavesJson"__id*
+""‡›
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaw7 w(S
+%21java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%20util.ChavesJson2
+getValor()≥∞
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaw( w(T
+%22java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%21java.lang.String2queryParam(Ljava/lang/String;)Ó
+Î
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaw w(U
+%23boolean":util.Validator#isInRangeEnumBicicleta(Ljava/lang/String;)Z*"
+util.Validator*
+
+%22java.lang.String*
+15
+16*õ
+18n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javav v(ô
+ñ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javav. v(?
+%16util.ChavesJson"__id*
+""‡›
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javav. v(J
+%17java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%16util.ChavesJson2
+getValor()≥∞
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javav v(K
+%18java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%17java.lang.String2queryParam(Ljava/lang/String;)Â
+‚
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javav v(L
+%19boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%18java.lang.String*
+16
+17*ø
+19n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javat t(	ô
+ñ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javat( t(>
+%12util.ChavesJson"__id*
+""‡›
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javat( t(I
+%13java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%12util.ChavesJson2
+getValor()≥∞
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javat t(J
+%14java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%13java.lang.String2queryParam(Ljava/lang/String;)çä
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javat t(K
+%15void"1domain.Tranca#setLocalizacao(Ljava/lang/String;)V*
+
+trancadomain.Tranca*
+
+%14java.lang.String2"setLocalizacao(Ljava/lang/String;)*
+18*Ö
+1p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaå	 å("ç
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaå å(
+
+trancadomain.Tranca*Ò
+2p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaâ
+ â("z
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaâ â(
+""*¢
+3p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaà à(õ
+ò
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaà. à(?
+%78util.ChavesJson"__id*
+""‚ﬂ
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaà. à(J
+%79java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%78util.ChavesJson2
+getValor()µ≤
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaà à(K
+%80java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%79java.lang.String2queryParam(Ljava/lang/String;)Á
+‰
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaà à(L
+%81boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%80java.lang.String*
+2
+1*¢
+4p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaá á(õ
+ò
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaá. á(H
+%74util.ChavesJson"__id*
+""‚ﬂ
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaá. á(S
+%75java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%74util.ChavesJson2
+getValor()µ≤
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaá á(T
+%76java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%75java.lang.String2queryParam(Ljava/lang/String;)Á
+‰
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaá á(U
+%77boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%76java.lang.String*
+3
+1*¢
+5p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÜ Ü(õ
+ò
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÜ. Ü(?
+%70util.ChavesJson"__id*
+""‚ﬂ
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÜ. Ü(J
+%71java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%70util.ChavesJson2
+getValor()µ≤
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÜ Ü(K
+%72java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%71java.lang.String2queryParam(Ljava/lang/String;)Á
+‰
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÜ Ü(L
+%73boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%72java.lang.String*
+4
+1*®
+6p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÖ Ö(õ
+ò
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÖ5 Ö(F
+%66util.ChavesJson"__id*
+""‚ﬂ
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÖ5 Ö(Q
+%67java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%66util.ChavesJson2
+getValor()µ≤
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÖ& Ö(R
+%68java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%67java.lang.String2queryParam(Ljava/lang/String;)Ì
+Í
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÖ Ö(S
+%69boolean"7util.Validator#isInRangeEnumTranca(Ljava/lang/String;)Z*"
+util.Validator*
+
+%68java.lang.String*
+5
+1*¢
+7p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÑ Ñ(õ
+ò
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÑ. Ñ(?
+%62util.ChavesJson"__id*
+""‚ﬂ
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÑ. Ñ(J
+%63java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%62util.ChavesJson2
+getValor()µ≤
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÑ Ñ(K
+%64java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%63java.lang.String2queryParam(Ljava/lang/String;)Á
+‰
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÑ Ñ(L
+%65boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%64java.lang.String*
+6
+1*¶
+8p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÉP É(Yú
+ô
+q
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÉw É(ç
+%58util.ChavesJson"__id*
+""„‡
+q
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÉw É(ò
+%59java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%58util.ChavesJson2
+getValor()∂≥
+q
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÉh É(ô
+%60java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%59java.lang.String2queryParam(Ljava/lang/String;)Ë
+Â
+q
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÉP É(ö
+%61boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%60java.lang.String*
+7
+1*¢
+9p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÉ É(õ
+ò
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÉ- É(?
+%54util.ChavesJson"__id*
+""‚ﬂ
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÉ- É(J
+%55java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%54util.ChavesJson2
+getValor()µ≤
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÉ É(K
+%56java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%55java.lang.String2queryParam(Ljava/lang/String;)Á
+‰
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÉ É(L
+%57boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%56java.lang.String*
+8
+1*ó
+20n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javas s(ò
+ï
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javas. s(D
+%8util.ChavesJson"__id*
+""ﬁ€
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javas. s(O
+%9java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%8util.ChavesJson2
+getValor()≤Ø
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javas s(P
+%10java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%9java.lang.String2queryParam(Ljava/lang/String;)Â
+‚
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javas s(Q
+%11boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%10java.lang.String*
+18
+19*∏
+21n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaq q(	ò
+ï
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaq( q(>
+%4util.ChavesJson"__id*
+""ﬁ€
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaq( q(I
+%5java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%4util.ChavesJson2
+getValor()±Æ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaq q(J
+%6java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%5java.lang.String2queryParam(Ljava/lang/String;)ãà
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaq q(K
+
+%7void"1domain.Tranca#setIdBicicleta(Ljava/lang/String;)V*
+
+trancadomain.Tranca*
+
+%6java.lang.String2"setIdBicicleta(Ljava/lang/String;)*
+20*æ
+10p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÅ Å(	õ
+ò
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÅ# Å(4
+%50util.ChavesJson"__id*
+""‚ﬂ
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÅ# Å(?
+%51java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%50util.ChavesJson2
+getValor()µ≤
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÅ Å(@
+%52java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%51java.lang.String2queryParam(Ljava/lang/String;)ÖÇ
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÅ Å(A
+%53void",domain.Tranca#setNumero(Ljava/lang/String;)V*
+
+trancadomain.Tranca*
+
+%52java.lang.String2setNumero(Ljava/lang/String;)*
+9*î
+22n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javap p(ò
+ï
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javap. p(D
+%0util.ChavesJson"__id*
+""ﬁ€
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javap. p(O
+%1java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%0util.ChavesJson2
+getValor()±Æ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javap p(P
+%2java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%1java.lang.String2queryParam(Ljava/lang/String;)„
+‡
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javap p(Q
+%3boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%2java.lang.String*
+20
+21*§
+11p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÄ Ä(õ
+ò
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÄ. Ä(?
+%46util.ChavesJson"__id*
+""‚ﬂ
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÄ. Ä(J
+%47java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%46util.ChavesJson2
+getValor()µ≤
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÄ Ä(K
+%48java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%47java.lang.String2queryParam(Ljava/lang/String;)Á
+‰
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaÄ Ä(L
+%49boolean"1util.Validator#isNullOrEmpty(Ljava/lang/String;)Z*"
+util.Validator*
+
+%48java.lang.String*
+9
+10*«
+12n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java~ ~(	ô
+ñ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java~, ~(F
+%42util.ChavesJson"__id*
+""‡›
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java~, ~(Q
+%43java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%42util.ChavesJson2
+getValor()≥∞
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java~ ~(R
+%44java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%43java.lang.String2queryParam(Ljava/lang/String;)ïí
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java~ ~(S
+%45void"5domain.Tranca#setAnoDeFabricacao(Ljava/lang/String;)V*
+
+trancadomain.Tranca*
+
+%44java.lang.String2&setAnoDeFabricacao(Ljava/lang/String;)*
+11:
+ctxio.javalin.http.Context:
+trancadomain.TrancaB"
+controller.ControllerTranca

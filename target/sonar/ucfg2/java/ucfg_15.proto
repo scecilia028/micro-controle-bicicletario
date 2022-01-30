@@ -1,18 +1,16 @@
 
--bicicleta.Bicicleta#getId()Ljava/lang/String;f
-\E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/Bicicleta.java# #("1*ù
-1f
-\E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/Bicicleta.java$
- $(™
-ß
-f
-\E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/Bicicleta.java$
- $(
-%0java.lang.String"__id**
-bicicleta.Bicicleta"
-id"Ç
-f
-\E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/bicicleta/Bicicleta.java$ $(
++domain.Tranca#getNumero()Ljava/lang/String;`
+VE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/domain/Tranca.javaW W("1*à
+1`
+VE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/domain/Tranca.javaX	 X(¢
+ü
+`
+VE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/domain/Tranca.javaX	 X(
+%0java.lang.String"__id**
+domain.Tranca"
+numero"|
+`
+VE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/domain/Tranca.javaX X(
 
-%0java.lang.StringB
-bicicleta.Bicicleta
+%0java.lang.StringB
+domain.Tranca

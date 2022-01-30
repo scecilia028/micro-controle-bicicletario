@@ -13,7 +13,7 @@ class BicicletaTest {
        bicicleta = new Bicicleta("123",
                                  "Caloi",
                                  "Monark",
-                                 "1990",
+                                 "2020",
                                  123,
                                  BicicletaStatus.DISPONIVEL);
     }
@@ -42,14 +42,14 @@ class BicicletaTest {
     @Test
     void testGetAno() {
     	String ano = bicicleta.getAno();
-        assertEquals(1990, ano);
+        assertEquals("2020", ano);
     }
 
     @Test
     void testSetAno(){
-        bicicleta.setAno("1991");
+        bicicleta.setAno("2021");
         String ano = bicicleta.getAno();
-        assertEquals(1991, ano);
+        assertEquals("2021", ano);
     }
 
     @Test

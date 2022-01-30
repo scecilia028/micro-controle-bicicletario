@@ -1,5 +1,11 @@
-bicicleta\ErrorResponseTest.class
-bicicleta\BicicletaControllerTest.class
-bicicleta\BicicletaTest.class
-bicicleta\JDBCMockTest.class
-bicicleta\ValidatorTest.class
+controller\BicicletaControllerTest.class
+service\JDBCMockBicicletaTest.class
+domain\BicicletaTest.class
+controller\TotemControllerTest.class
+controller\TrancaControllerTest.class
+util\ValidatorTest.class
+domain\TrancaTest.class
+service\JDBCMockTotemTest.class
+domain\TotemTest.class
+service\JDBCMockTrancaTest.class
+util\ErrorResponseTest.class

@@ -1,5 +1,11 @@
-E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\bicicleta\BicicletaControllerTest.java
-E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\bicicleta\BicicletaTest.java
-E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\bicicleta\ValidatorTest.java
-E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\bicicleta\ErrorResponseTest.java
-E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\bicicleta\JDBCMockTest.java
+E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\controller\BicicletaControllerTest.java
+E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\controller\TrancaControllerTest.java
+E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\domain\TotemTest.java
+E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\service\JDBCMockTrancaTest.java
+E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\domain\BicicletaTest.java
+E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\service\JDBCMockTotemTest.java
+E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\util\ErrorResponseTest.java
+E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\domain\TrancaTest.java
+E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\controller\TotemControllerTest.java
+E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\util\ValidatorTest.java
+E:\Programas\eclipse-workspace-ee\SistemaBicicletario\src\test\java\service\JDBCMockBicicletaTest.java

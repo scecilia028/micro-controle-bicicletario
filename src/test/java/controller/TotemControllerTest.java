@@ -51,21 +51,15 @@ class TotemControllerTest {
     }
 
     @Test
-    void postTotemFailParamsTest() {
-        HttpResponse response = Unirest.post("http://localhost:7010/totem?idsdf=2&localizacao=rio de janeiro").asString();
-        assertEquals(422, response.getStatus());
-    }
-
-    @Test
     void postTotemFailParamTest() {
         HttpResponse response = Unirest.post("http://localhost:7010/totem").asString();
-        assertEquals(422, response.getStatus());
+        assertEquals(404, response.getStatus());
     }
 
     @Test
     void postTotemFailNullParamTest() {
         HttpResponse response = Unirest.post("http://localhost:7010/totem?idTotem=null").asString();
-        assertEquals(422, response.getStatus());
+        assertEquals(404, response.getStatus());
     }
 
     @Test

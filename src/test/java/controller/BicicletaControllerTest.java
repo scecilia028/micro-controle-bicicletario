@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import domain.Bicicleta;
+import domain.Tranca;
 import io.javalin.plugin.json.JavalinJson;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
@@ -22,6 +25,16 @@ class BicicletaControllerTest {
     static void init() {
         app.start(7010);
     }
+    
+    @BeforeEach
+    void inicio() {
+    	Bicicleta bike = ControllerBicicleta.mock.banco.get(1);
+    	bike.setMarca("caloi");
+    	Tranca tranca = ControllerTranca.mock.banco.get(4);
+    	tranca.setIdTotem("1");
+    	tranca.setIdBicicleta("1");
+    }
+    
     
     @AfterAll
     static void afterAll(){
@@ -122,15 +135,39 @@ class BicicletaControllerTest {
     }
     
     @Test
-    void postBicicletaInTrancaTest() {
-        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/integrarNaRede?idBicicleta=4&idTranca=4").asString();
+    void postBicicletaOutTrancaTest() {
+        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/retirarDaRede?idTranca=4&idBicicleta=1").asString();
         assertEquals(200, response.getStatus());
     }
     
     @Test
-    void postBicicletaOutTrancaTest() {
-        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/retirarDaRede?idBicicleta=4&idTranca=4").asString();
+    void postBicicletaOutTrancaFailTest() {
+        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/retirarDaRede?idTasdad=4&idBicicleta=1").asString();
+        assertEquals(404, response.getStatus());
+    }
+    
+    @Test
+    void postBicicletaInTrancaTest() {
+        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/integrarNaRede?idTranca=3&idBicicleta=3").asString();
         assertEquals(200, response.getStatus());
+    }
+    
+    @Test
+    void postBicicletaInTrancaFailTest() {
+        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/integrarNaRede?idsadma=4&idBicicleta=1").asString();
+        assertEquals(404, response.getStatus());
+    }
+    
+    @Test
+    void getBicicletaFailByIdTest() {
+        HttpResponse response = Unirest.get("http://localhost:7010/bicicleta/sdjfnksdf").asString();
+        assertEquals(404, response.getStatus());
+    }
+    
+    @Test
+    void getBicicletaFail2ByCtxTest() {
+        HttpResponse response = Unirest.get("http://localhost:7010/bicicleta?idBicicleta=ndjskfnks&modelo=asdjak").asString();
+        assertEquals(404, response.getStatus());
     }
     
 }

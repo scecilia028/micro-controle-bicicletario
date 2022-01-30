@@ -8,25 +8,27 @@ public class ErrorResponse {
 	    private static int status;
 	    private static String type;
 	    private static Map&lt;String, String&gt; details;
+	    public static final String NOT_FOUND = &quot;N�o encontrado.&quot;;
+	    public static  final  String INVALID_DATA_MESSAGE = &quot;Dados Inv�lidos.&quot;;
+	    public static  final  String VALID_DATA_MESSAGE = &quot;Dados atualizados.&quot;;
+	    public static  final  String INVALID_TRANCA_STATUS_MESSAGE = &quot;Tranca indispon�vel.&quot;;
 	    
-<span class="nc" id="L12">	    private ErrorResponse() {</span>
-<span class="nc" id="L13">	    throw new IllegalStateException(&quot;ErrorResponse&quot;);</span>
+<span class="nc" id="L16">	    private ErrorResponse() {</span>
+<span class="nc" id="L17">	    throw new IllegalStateException(&quot;ErrorResponse&quot;);</span>
 	    }
 	    
 	    public static String getTitle() {
-<span class="fc" id="L17">	        return title;</span>
+<span class="fc" id="L21">	        return title;</span>
 	    }
 	    public static Map&lt;String, String&gt; getDetails() {
-<span class="fc" id="L20">	        return details;</span>
+<span class="fc" id="L24">	        return details;</span>
 	    }
 	    public static int getStatus() {
-<span class="fc" id="L23">	        return status;</span>
+<span class="fc" id="L27">	        return status;</span>
 	    }
 	    public static String getType() {
-<span class="fc" id="L26">	        return type;</span>
+<span class="fc" id="L30">	        return type;</span>
 	    }
-
-	    public static final String BAD_REQUEST = &quot;Preenchimento Errado!&quot;;
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

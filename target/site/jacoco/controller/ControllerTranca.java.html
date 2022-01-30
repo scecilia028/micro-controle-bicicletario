@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ControllerTranca.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">sistemaBicicletario</a> &gt; <a href="index.source.html" class="el_package">controller</a> &gt; <span class="el_source">ControllerTranca.java</span></div><h1>ControllerTranca.java</h1><pre class="source lang-java linenums">package controller;
+
+import java.util.List;
+
+import domain.Bicicleta;
+import domain.Totem;
+import domain.Tranca;
+import domain.TrancaAcao;
+import domain.TrancaStatus;
+import io.javalin.http.Context;
+import services.JDBCMockTranca;
+import util.ChavesJson;
+import util.ErrorResponse;
+import util.Validator;
+
+<span class="nc" id="L16">public class ControllerTranca {</span>
+
+<span class="fc" id="L18">	public static final JDBCMockTranca mock = new JDBCMockTranca();</span>
+
+	public static void getTrancaByCtx(Context ctx) {
+<span class="fc" id="L21">		Tranca tranca = retrieveTrancaByCtx(ctx);</span>
+
+<span class="fc bfc" id="L23" title="All 2 branches covered.">		if (tranca != null) {</span>
+<span class="fc" id="L24">			ctx.status(200);</span>
+<span class="fc" id="L25">			ctx.json(tranca);</span>
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">		} else if (mock.banco != null) {</span>
+<span class="fc" id="L27">			ctx.status(200);</span>
+<span class="fc" id="L28">			ctx.json(mock.banco);</span>
+		} else {
+<span class="nc" id="L30">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+		}
+<span class="fc" id="L32">	}</span>
+
+	protected static Tranca retrieveTrancaByCtx(Context ctx) {
+<span class="fc" id="L35">			return mock.getDataById(ctx.queryParam(ChavesJson.IDTRANCA.getValor()));</span>
+	}
+
+	private static Tranca retrieveTrancaParam(Context ctx) {
+<span class="fc" id="L39">			return mock.getDataById(ctx.pathParam(ChavesJson.IDTRANCA.getValor()));</span>
+	}
+
+	public static void deleteTranca(Context ctx) {
+<span class="fc" id="L43">		Tranca tranca = retrieveTrancaParam(ctx);</span>
+<span class="pc bpc" id="L44" title="1 of 4 branches missed.">		if (tranca != null &amp;&amp; tranca.getIdTranca() != null) {</span>
+<span class="fc" id="L45">			mock.deleteData(tranca.getIdTranca());</span>
+<span class="fc" id="L46">			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+		} else {
+<span class="fc" id="L48">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+		}
+<span class="fc" id="L50">	}</span>
+
+	public static void postTranca(Context ctx) {
+<span class="fc" id="L53">		  String status = ctx.queryParam(ChavesJson.STATUS.getValor());</span>
+	         
+<span class="fc bfc" id="L55" title="All 2 branches covered.">	        if(Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor()))     ||</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">		     Validator.isNullOrEmpty(status) || </span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">		     !Validator.isInRangeEnumTranca(status) ) {</span>
+<span class="fc" id="L58">	        	ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+<span class="fc" id="L59">				return;</span>
+	       
+<span class="fc bfc" id="L61" title="All 2 branches covered.">	        }else if (!Validator.checkKeysValidByCtx(ctx)) {</span>
+<span class="fc" id="L62">	        	ctx.status(422);</span>
+<span class="fc" id="L63">				ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+<span class="fc" id="L64">				return;</span>
+	        }	
+<span class="fc" id="L66">	        Tranca tranca = checkCreateTranca(ctx);</span>
+	        	
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">			if (tranca != null) {</span>
+<span class="nc" id="L69">				mock.updateTranca(null);</span>
+<span class="nc" id="L70">				ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+			}
+<span class="fc" id="L72">	}</span>
+
+	public static void putTranca(Context ctx) {
+<span class="fc" id="L75">		Tranca tranca = retrieveTrancaParam(ctx);</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">		if (tranca != null) {</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">			if(!Validator.checkKeysValidByCtx(ctx)) {</span>
+<span class="fc" id="L78">   			 ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+<span class="fc" id="L79">   			 return;</span>
+   		 }
+<span class="fc" id="L81">			tranca = checkUpdateTranca(ctx, tranca);</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">			if (tranca != null) {</span>
+<span class="fc" id="L83">				mock.updateTranca(tranca);</span>
+<span class="fc" id="L84">				ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+			}
+		} else {
+<span class="nc" id="L87">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+		}
+<span class="fc" id="L89">	}</span>
+
+	private static Tranca checkCreateTranca(Context ctx) {
+<span class="fc" id="L92">		Tranca tranca = new Tranca();</span>
+
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()))</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">				&amp;&amp; !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor()))</span>
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">				&amp;&amp; Validator.isInRangeEnumTranca(ctx.queryParam(ChavesJson.STATUS.getValor()))</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">				&amp;&amp; !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MODELO.getValor()))</span>
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">				&amp;&amp; !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.ANODEFABRICACAO.getValor()))</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">				&amp;&amp; !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.NUMERO.getValor()))) {</span>
+<span class="nc" id="L100">			tranca.setLocalizacao(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()));</span>
+<span class="nc" id="L101">			tranca.setStatus(TrancaStatus.valueOf(ctx.queryParam(ChavesJson.STATUS.getValor()).toUpperCase()));</span>
+<span class="nc" id="L102">			tranca.setModelo(ctx.queryParam(ChavesJson.MODELO.getValor()));</span>
+<span class="nc" id="L103">			tranca.setAnoDeFabricacao(ctx.queryParam(ChavesJson.ANODEFABRICACAO.getValor()));</span>
+<span class="nc" id="L104">			tranca.setNumero(ctx.queryParam(ChavesJson.NUMERO.getValor()));</span>
+<span class="nc" id="L105">			return tranca;</span>
+		}
+<span class="fc" id="L107">		return null;</span>
+	}
+
+	private static Tranca checkUpdateTranca(Context ctx, Tranca tranca) {
+
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()))) {</span>
+<span class="nc" id="L113">			tranca.setIdBicicleta(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()));</span>
+		}
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()))) {</span>
+<span class="fc" id="L116">			tranca.setLocalizacao(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()));</span>
+		}
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor()))</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">				|| Validator.isInRangeEnumBicicleta(ctx.queryParam(ChavesJson.STATUS.getValor()))) {</span>
+<span class="fc" id="L120">			tranca.setStatus(TrancaStatus.valueOf(ctx.queryParam(ChavesJson.STATUS.getValor()).toUpperCase()));</span>
+		}
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MODELO.getValor()))) {</span>
+<span class="fc" id="L123">			tranca.setModelo(ctx.queryParam(ChavesJson.MODELO.getValor()));</span>
+		}
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.ANODEFABRICACAO.getValor()))) {</span>
+<span class="fc" id="L126">			tranca.setAnoDeFabricacao(ctx.queryParam(ChavesJson.ANODEFABRICACAO.getValor()));</span>
+		}
+<span class="pc bpc" id="L128" title="1 of 2 branches missed.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.NUMERO.getValor()))) {</span>
+<span class="fc" id="L129">			tranca.setNumero(ctx.queryParam(ChavesJson.NUMERO.getValor()));</span>
+		}
+<span class="pc bpc" id="L131" title="2 of 4 branches missed.">		if (Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor())) &amp;&amp; Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.LOCALIZACAO.getValor()))</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">				&amp;&amp; Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.STATUS.getValor()))</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">				&amp;&amp; !Validator.isInRangeEnumTranca(ctx.queryParam(ChavesJson.STATUS.getValor()))</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">				&amp;&amp; Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.MODELO.getValor()))</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">				&amp;&amp; Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.ANODEFABRICACAO.getValor()))</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">				&amp;&amp; Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.NUMERO.getValor()))) {</span>
+<span class="nc" id="L137">			return null;</span>
+		}
+
+<span class="fc" id="L140">		return tranca;</span>
+	}
+
+	public static void postStatusTranca(Context ctx) {
+<span class="fc" id="L144">		Tranca tranca = retrieveTrancaParam(ctx);</span>
+
+<span class="pc bpc" id="L146" title="1 of 2 branches missed.">		if (tranca != null) {</span>
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">			if (!Validator.isNullOrEmpty(ctx.pathParam(&quot;acao&quot;))) {</span>
+<span class="pc bpc" id="L148" title="1 of 4 branches missed.">				if (!Validator.isInRangeEnumTrancaAcao(ctx.pathParam(&quot;acao&quot;).toUpperCase()) || TrancaAcao.valueOf(ctx.pathParam(&quot;acao&quot;).toUpperCase()) == null) {</span>
+<span class="fc" id="L149">					ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+<span class="fc" id="L150">					return;</span>
+				} 
+<span class="fc" id="L152">				  tranca.setAcao(TrancaAcao.valueOf(ctx.pathParam(ChavesJson.ACAO.getValor()).toUpperCase()));</span>
+			}
+<span class="fc" id="L154">			mock.updateTranca(tranca);</span>
+<span class="fc" id="L155">			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+		} else {
+<span class="nc" id="L157">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+		}
+<span class="fc" id="L159">	}</span>
+
+	public static void getBikeByTranca(Context ctx) {
+<span class="fc" id="L162">		Tranca tranca = retrieveTrancaByParamIdOrNumber(ctx);</span>
+
+<span class="pc bpc" id="L164" title="1 of 4 branches missed.">		if (tranca != null &amp;&amp; tranca.getIdBicicleta() != null) {</span>
+<span class="fc" id="L165">			Bicicleta bike = ControllerBicicleta.retrieveTrancaBikeById(tranca.getIdBicicleta());</span>
+<span class="fc" id="L166">			ctx.status(200);</span>
+<span class="fc" id="L167">			ctx.json(bike);</span>
+<span class="fc" id="L168">		} else {</span>
+<span class="fc" id="L169">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+		}
+<span class="fc" id="L171">	}</span>
+
+	public static void postIntegrarNaRede(Context ctx) {
+<span class="fc" id="L174">		Bicicleta bicicleta = ControllerBicicleta.retrieveBikeByCtx(ctx);</span>
+<span class="fc" id="L175">		Tranca tranca = ControllerTranca.retrieveTrancaByCtx(ctx);</span>
+<span class="fc bfc" id="L176" title="All 2 branches covered.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor()))</span>
+<span class="pc bpc" id="L177" title="1 of 2 branches missed.">				&amp;&amp; !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()))</span>
+<span class="pc bpc" id="L178" title="1 of 2 branches missed.">				&amp;&amp; Validator.isBicicletaAvailable(String.valueOf(bicicleta.getStatus()))</span>
+<span class="pc bpc" id="L179" title="1 of 2 branches missed.">				&amp;&amp; Validator.isTrancaAvailable(String.valueOf(tranca.getStatus()))</span>
+<span class="pc bpc" id="L180" title="1 of 2 branches missed.">				&amp;&amp; Validator.checkKeysValidByCtx(ctx)) {</span>
+<span class="fc" id="L181">			tranca.setIdBicicleta(bicicleta.getId());</span>
+<span class="fc" id="L182">			mock.updateTranca(tranca);</span>
+<span class="fc" id="L183">			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+		} else {
+<span class="pc bpc" id="L185" title="3 of 4 branches missed.">			if(tranca == null || bicicleta == null) {</span>
+<span class="fc" id="L186">				ctx.status(404).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+<span class="fc" id="L187">				return;</span>
+			}
+<span class="nc" id="L189">			ctx.status(422);</span>
+<span class="nc" id="L190">			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+		}
+<span class="fc" id="L192">	}</span>
+
+	public static void postRetirarDaRede(Context ctx) {
+<span class="fc" id="L195">		Tranca tranca = ControllerTranca.retrieveTrancaByCtx(ctx);</span>
+		
+<span class="pc bpc" id="L197" title="2 of 6 branches missed.">		if(tranca == null || tranca.getIdBicicleta() == null || !tranca.getIdBicicleta().equals(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()))) {</span>
+<span class="fc" id="L198">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+<span class="fc" id="L199">			return;</span>
+		}
+<span class="pc bpc" id="L201" title="1 of 2 branches missed.">		if (Validator.checkKeysValidByCtx(ctx)) {</span>
+<span class="fc" id="L202">			mock.deleteDataTrancaBike(tranca.getIdTranca(), tranca.getIdBicicleta());</span>
+<span class="fc" id="L203">			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+		} else {
+<span class="nc" id="L205">			ctx.status(422);</span>
+<span class="nc" id="L206">			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+		}
+<span class="fc" id="L208">	}</span>
+
+	public static void getTrancaByIdOrNumber(Context ctx) {
+<span class="nc bnc" id="L211" title="All 2 branches missed.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor()))) {</span>
+<span class="nc" id="L212">			ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+<span class="nc" id="L213">			return;</span>
+		}
+<span class="nc" id="L215">		Tranca tranca = retrieveTrancaByParamIdOrNumber(ctx);</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">		if (tranca != null) {</span>
+<span class="nc" id="L217">			ctx.status(200);</span>
+<span class="nc" id="L218">			ctx.json(tranca);</span>
+<span class="nc" id="L219">			return;</span>
+		} else {
+<span class="nc" id="L221">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+		}
+<span class="nc" id="L223">	}</span>
+
+	private static Tranca retrieveTrancaByParamIdOrNumber(Context ctx) {
+<span class="fc" id="L226">			return mock.getDataByIdOrNumero(ctx.pathParam(ChavesJson.IDTRANCA.getValor()));</span>
+	}
+
+	public static void postIntegrarNaRedeTrancaTotem(Context ctx) {
+<span class="fc" id="L230">		Totem totem = ControllerTotem.retrieveTotemByCtx(ctx);</span>
+<span class="fc" id="L231">		Tranca tranca = ControllerTranca.retrieveTrancaByCtx(ctx);</span>
+		
+<span class="pc bpc" id="L233" title="1 of 4 branches missed.">		if(tranca == null || totem == null) {</span>
+<span class="fc" id="L234">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+<span class="fc" id="L235">			return;</span>
+		}
+<span class="pc bpc" id="L237" title="1 of 2 branches missed.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor())) </span>
+<span class="pc bpc" id="L238" title="1 of 2 branches missed.">			&amp;&amp; !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor()))</span>
+<span class="pc bpc" id="L239" title="1 of 2 branches missed.">			&amp;&amp; Validator.checkKeysValidByCtx(ctx) </span>
+<span class="pc bpc" id="L240" title="1 of 2 branches missed.">			&amp;&amp; Validator.isTrancaAvailable(String.valueOf(tranca.getStatus()))) {</span>
+			
+<span class="fc" id="L242">			tranca.setIdTotem(totem.getId());</span>
+<span class="fc" id="L243">			mock.updateTranca(tranca);</span>
+<span class="fc" id="L244">			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+		} else {
+<span class="nc" id="L246">			ctx.status(422);</span>
+<span class="nc" id="L247">			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+		}
+<span class="fc" id="L249">	}</span>
+
+	public static void postRetirarDaRedeTrancaTotem(Context ctx) {
+<span class="fc" id="L252">		Tranca tranca = ControllerTranca.retrieveTrancaByCtx(ctx);</span>
+<span class="pc bpc" id="L253" title="2 of 6 branches missed.">		if(tranca == null || tranca.getIdTotem() == null || !tranca.getIdTotem().equals(ctx.queryParam(ChavesJson.IDTOTEM.getValor()))) {</span>
+<span class="fc" id="L254">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+<span class="fc" id="L255">			return;</span>
+		}
+<span class="pc bpc" id="L257" title="1 of 2 branches missed.">		if (!Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTRANCA.getValor()))</span>
+<span class="pc bpc" id="L258" title="1 of 2 branches missed.">				&amp;&amp; !Validator.isNullOrEmpty(ctx.queryParam(ChavesJson.IDTOTEM.getValor()))</span>
+<span class="pc bpc" id="L259" title="1 of 2 branches missed.">				&amp;&amp; Validator.checkKeysValidByCtx(ctx)) {</span>
+<span class="fc" id="L260">			mock.deleteDataTotemTranca(tranca.getIdTotem(), tranca.getIdTranca());</span>
+<span class="fc" id="L261">			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);</span>
+		} else {
+<span class="nc" id="L263">			ctx.status(422);</span>
+<span class="nc" id="L264">			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+		}
+<span class="fc" id="L266">	}</span>
+
+	public static void getTrancasByTotem(Context ctx) {
+<span class="pc bpc" id="L269" title="1 of 2 branches missed.">		if (Validator.isNullOrEmpty(ctx.pathParam(ChavesJson.IDTOTEM.getValor()))) {</span>
+<span class="nc" id="L270">			ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+<span class="nc" id="L271">			return;</span>
+		}
+<span class="fc" id="L273">		List&lt;Tranca&gt; trancas = retrieveTrancasByTotemParam(ctx);</span>
+<span class="fc bfc" id="L274" title="All 2 branches covered.">		if (trancas != null) {</span>
+<span class="fc" id="L275">			ctx.status(200);</span>
+<span class="fc" id="L276">			ctx.json(trancas);</span>
+		} else {
+<span class="fc" id="L278">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+		}
+<span class="fc" id="L280">	}</span>
+
+	private static List&lt;Tranca&gt; retrieveTrancasByTotemParam(Context ctx) {
+<span class="fc" id="L283">			List&lt;Tranca&gt; tranca =  mock.getListDataTrancaByTotem(ctx.pathParam(ChavesJson.IDTOTEM.getValor()));</span>
+<span class="fc" id="L284">			return tranca;</span>
+	}
+	
+	public static void getBicicletasByTotem(Context ctx) {
+<span class="pc bpc" id="L288" title="1 of 2 branches missed.">		if (Validator.isNullOrEmpty(ctx.pathParam(ChavesJson.IDTOTEM.getValor()))) {</span>
+<span class="nc" id="L289">			ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);</span>
+<span class="nc" id="L290">			return;</span>
+		}
+<span class="fc" id="L292">		List&lt;Bicicleta&gt; bicicletas = retrieveBicicletasByTotemParam(ctx);</span>
+<span class="fc bfc" id="L293" title="All 2 branches covered.">		if (bicicletas != null) {</span>
+<span class="fc" id="L294">			ctx.status(200);</span>
+<span class="fc" id="L295">			ctx.json(bicicletas);</span>
+		} else {
+<span class="fc" id="L297">			ctx.status(404).result(ErrorResponse.NOT_FOUND);</span>
+		}
+<span class="fc" id="L299">	}</span>
+	
+	private static List&lt;Bicicleta&gt; retrieveBicicletasByTotemParam(Context ctx) {
+<span class="fc" id="L302">			return mock.getListDataBikeByTotem(ctx.pathParam(ChavesJson.IDTOTEM.getValor()));</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

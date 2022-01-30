@@ -34,8 +34,8 @@ public final class Validator {
 	}
 	
 	public static boolean isTrancaAvailable(String value) {
-		TrancaStatus bikeStatus = TrancaStatus.valueOf(value.toUpperCase());
-		if(bikeStatus == TrancaStatus.NOVA || bikeStatus == TrancaStatus.LIVRE) {
+		TrancaStatus tranca = TrancaStatus.valueOf(value.toUpperCase());
+		if(tranca == TrancaStatus.NOVA || tranca == TrancaStatus.LIVRE) {
 			return true;
 		}
 	 return false;
@@ -50,15 +50,6 @@ public final class Validator {
 		return true;
 	}
 	
-	public static boolean isInRangeIdValid(String value) {
-		try {
-			TrancaStatus.valueOf(value.toUpperCase());
-		} catch (Exception e) {
-			return false;
-		}
-		return true;
-	}
-
 	public static boolean isInRangeEnumTrancaAcao(String value) {
 		try {
 			TrancaAcao.valueOf(value.toUpperCase());
