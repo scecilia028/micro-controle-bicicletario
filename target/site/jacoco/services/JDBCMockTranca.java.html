@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JDBCMockTranca.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">sistemaBicicletario</a> &gt; <a href="index.source.html" class="el_package">services</a> &gt; <span class="el_source">JDBCMockTranca.java</span></div><h1>JDBCMockTranca.java</h1><pre class="source lang-java linenums">package services;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import domain.Bicicleta;
+import domain.Tranca;
+import domain.TrancaStatus;
+
+public class JDBCMockTranca {
+	
+<span class="fc" id="L12">	public final List&lt;Tranca&gt; banco = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L13">	public static JDBCMockBicicleta mockBike = new JDBCMockBicicleta();//</span>
+
+<span class="fc" id="L15">    public JDBCMockTranca() {</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        for (int i = 0; i &lt; 10; i++) {</span>
+<span class="fc" id="L17">            banco.add(new Tranca(String.valueOf(i), String.valueOf(i), String.valueOf(i), &quot;Rua &quot;.concat(String.valueOf(i)),</span>
+<span class="fc" id="L18">            		&quot;200&quot;.concat(String.valueOf(i)), &quot;a&quot;.concat(String.valueOf(i)), TrancaStatus.LIVRE));</span>
+        }
+<span class="fc" id="L20">    }</span>
+
+    public Tranca getDataById(String id) {
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        for (Tranca tranca : banco) {</span>
+<span class="fc bfc" id="L24" title="All 4 branches covered.">            if (tranca.getIdTranca() != null &amp;&amp; tranca.getIdTranca().equalsIgnoreCase(id)) {</span>
+<span class="fc" id="L25">                return tranca;</span>
+            }
+<span class="fc" id="L27">        }</span>
+<span class="fc" id="L28">        return null;</span>
+    }
+
+    public void createData(Tranca trancaUp) {
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if (this.getDataById(trancaUp.getIdTranca()) == null) {</span>
+<span class="fc" id="L33">            banco.add(trancaUp);</span>
+        }else{
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            for (Tranca tranca : banco) {</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">                if (tranca.getIdTranca().equalsIgnoreCase(trancaUp.getIdTranca())) {</span>
+<span class="nc" id="L37">                    banco.set(banco.indexOf(tranca), trancaUp);</span>
+                }
+<span class="nc" id="L39">            }</span>
+        }
+<span class="fc" id="L41">    }</span>
+
+    public Boolean deleteData(String id) {
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        for (Tranca tranca : banco) {</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            if (tranca.getIdTranca().equalsIgnoreCase(id)) {</span>
+<span class="fc" id="L46">                banco.remove(tranca);                </span>
+<span class="fc" id="L47">                return true;</span>
+            }
+<span class="fc" id="L49">        }</span>
+<span class="fc" id="L50">        return false;</span>
+    }
+
+	public void updateTranca(Tranca trancaUpdate) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">		for (Tranca tranca : banco) {</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">	            if (tranca.getIdTranca().equalsIgnoreCase(trancaUpdate.getIdTranca())) {</span>
+<span class="fc" id="L56">	            	banco.set(banco.indexOf(tranca), trancaUpdate);</span>
+<span class="fc" id="L57">	                return;</span>
+	            }
+<span class="fc" id="L59">	        }</span>
+<span class="fc" id="L60">	}</span>
+
+	public boolean deleteDataTrancaBike(String idTranca, String idBicicleta) {
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">		for (Tranca tranca: banco) {</span>
+<span class="pc bpc" id="L64" title="1 of 4 branches missed.">            if (tranca.getIdTranca().equalsIgnoreCase(idTranca) &amp;&amp; tranca.getIdBicicleta().equalsIgnoreCase(idBicicleta)) {</span>
+<span class="fc" id="L65">               tranca.setIdBicicleta(null);</span>
+<span class="fc" id="L66">               this.updateTranca(tranca);</span>
+<span class="fc" id="L67">                return true;</span>
+            }
+<span class="fc" id="L69">        }</span>
+<span class="nc" id="L70">		 return false;</span>
+	}
+	
+	public boolean deleteDataTotemTranca(String idTotem, String idTranca) {
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">		for (Tranca tranca: banco) {</span>
+<span class="pc bpc" id="L75" title="1 of 4 branches missed.">            if (tranca.getIdTranca().equalsIgnoreCase(idTranca) &amp;&amp; tranca.getIdTotem().equalsIgnoreCase(idTotem)) {</span>
+<span class="fc" id="L76">            	tranca.setIdTotem(null);</span>
+<span class="fc" id="L77">                updateTranca(tranca);</span>
+<span class="fc" id="L78">                return true;</span>
+            }
+<span class="fc" id="L80">        }</span>
+<span class="nc" id="L81">		 return false;</span>
+	}
+
+	public Tranca getDataByIdOrNumero(String id) {
+<span class="fc bfc" id="L85" title="All 2 branches covered.">		for (Tranca tranca : banco) {</span>
+<span class="pc bpc" id="L86" title="2 of 8 branches missed.">            if ((tranca.getIdTranca() != null || tranca.getNumero() != null) &amp;&amp; (tranca.getNumero().equalsIgnoreCase(id) || tranca.getIdTranca().equalsIgnoreCase(id))) {</span>
+<span class="fc" id="L87">                return tranca;</span>
+            }
+<span class="fc" id="L89">        }</span>
+<span class="fc" id="L90">        return null;</span>
+	}
+
+	public List&lt;Tranca&gt; getListDataTrancaByTotem(String idTotem) {
+<span class="fc" id="L94">		List&lt;Tranca&gt; trancas = new ArrayList&lt;Tranca&gt;();</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">		for (Tranca tranca : banco) {</span>
+<span class="fc bfc" id="L96" title="All 4 branches covered.">            if (tranca.getIdTotem() != null &amp;&amp; tranca.getIdTotem().equalsIgnoreCase(idTotem)) {</span>
+<span class="fc" id="L97">                trancas.add(tranca);</span>
+            }
+<span class="fc" id="L99">        }</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">		return trancas.size() &gt; 0 ? trancas : null;</span>
+	}
+	
+	
+	public List&lt;Bicicleta&gt; getListDataBikeByTotem(String idTotem) {
+<span class="fc" id="L105">		List&lt;Bicicleta&gt; bicicletas = new ArrayList&lt;Bicicleta&gt;();</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">		for (Tranca tranca : banco) {</span>
+<span class="pc bpc" id="L107" title="1 of 6 branches missed.">            if (tranca.getIdTotem() != null &amp;&amp; tranca.getIdTotem().equalsIgnoreCase(idTotem) &amp;&amp; tranca.getIdBicicleta() != null) {</span>
+<span class="fc" id="L108">            	bicicletas.add(mockBike.getDataById(tranca.getIdBicicleta()));</span>
+            }
+<span class="fc" id="L110">        }</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">		return bicicletas.size() &gt; 0 ? bicicletas : null;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

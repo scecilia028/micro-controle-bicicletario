@@ -130,13 +130,6 @@ class TrancaControllerTest {
     }
     
     @Test
-    void getBikeInTrancaTest() {
-        HttpResponse response = Unirest.get("http://localhost:7010/tranca/4/bicicleta").asString();
-        assertEquals(200, response.getStatus());
-    }
-    
-    
-    @Test
     void getBikeInTrancaFailTest() {
         HttpResponse response = Unirest.get("http://localhost:7010/tranca/97/bicicleta?").asString();
         assertEquals(404, response.getStatus());

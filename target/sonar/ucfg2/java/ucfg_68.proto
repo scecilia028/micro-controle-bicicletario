@@ -1,0 +1,23 @@
+
+^controller.ControllerTranca#retrieveTrancaByParamIdOrNumber(Ljava/lang/String;)Ldomain/Tranca;p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaç ç(8"1*ç
+1p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaè	 è(¢
+Ÿ
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaè	 è(
+%0services.JDBCMockTranca"__id*
+""¾»
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaè	 è(%
+%1domain.Tranca"Nservices.JDBCMockTranca#getDataByIdOrNumero(Ljava/lang/String;)Ldomain/Tranca;*
+
+%0services.JDBCMockTranca*
+
+idjava.lang.String2'getDataByIdOrNumero(Ljava/lang/String;)"‰
+p
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.javaè è(&
+
+%1domain.Tranca:
+idjava.lang.StringB"
+controller.ControllerTranca

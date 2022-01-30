@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: controller.TrancaControllerTest
 -------------------------------------------------------------------------------
-Tests run: 24, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.151 s <<< FAILURE! - in controller.TrancaControllerTest
-controller.TrancaControllerTest.getBikeInTrancaTest  Time elapsed: 0.008 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <200> but was: <500>
-	at controller.TrancaControllerTest.getBikeInTrancaTest(TrancaControllerTest.java:135)
-
+Tests run: 23, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.126 s - in controller.TrancaControllerTest

@@ -1,0 +1,42 @@
+
+Ycontroller.ControllerTranca#retrieveTrancaByCtx(Lio/javalin/http/Context;)Ldomain/Tranca;n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java+ +(,"1*ˇ
+
+1n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java,	 ,(†
+ù
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java,	 ,(
+%0services.JDBCMockTranca"__id*
+""ò
+ï
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java,) ,(<
+%1util.ChavesJson"__id*
+""ﬁ€
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java,) ,(G
+%2java.lang.String",util.ChavesJson#getValor()Ljava/lang/String;*
+
+%1util.ChavesJson2
+getValor()±Æ
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java, ,(H
+%3java.lang.String"Hio.javalin.http.Context#queryParam(Ljava/lang/String;)Ljava/lang/String;* 
+
+ctxio.javalin.http.Context*
+
+%2java.lang.String2queryParam(Ljava/lang/String;)¨©
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java,	 ,(I
+%4domain.Tranca"Fservices.JDBCMockTranca#getDataById(Ljava/lang/String;)Ldomain/Tranca;*
+
+%0services.JDBCMockTranca*
+
+%3java.lang.String2getDataById(Ljava/lang/String;)"á
+n
+dE:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/controller/ControllerTranca.java, ,(J
+
+%4domain.Tranca:
+ctxio.javalin.http.ContextB"
+controller.ControllerTranca

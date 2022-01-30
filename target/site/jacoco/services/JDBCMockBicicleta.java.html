@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JDBCMockBicicleta.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">sistemaBicicletario</a> &gt; <a href="index.source.html" class="el_package">services</a> &gt; <span class="el_source">JDBCMockBicicleta.java</span></div><h1>JDBCMockBicicleta.java</h1><pre class="source lang-java linenums">package services;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import domain.Bicicleta;
+import domain.BicicletaStatus;
+
+public class JDBCMockBicicleta {
+	
+	/** lista de bicicletas */
+<span class="fc" id="L12">	public final List&lt;Bicicleta&gt; banco = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L14">	    public JDBCMockBicicleta() {</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">	        for (int i = 0; i &lt; 10; i++) {</span>
+<span class="fc" id="L16">	            banco.add(new Bicicleta(String.valueOf(i), BicicletaStatus.NOVA));</span>
+	        }
+<span class="fc" id="L18">	    }</span>
+
+	    public Bicicleta getDataById(String id) {
+<span class="fc bfc" id="L21" title="All 2 branches covered.">	        for (Bicicleta bicicleta : banco) {</span>
+<span class="pc bpc" id="L22" title="2 of 6 branches missed.">	            if (bicicleta.getId() != null &amp;&amp; id != null &amp;&amp; bicicleta.getId().equalsIgnoreCase(id)) {</span>
+<span class="fc" id="L23">	                return bicicleta;</span>
+	            }
+<span class="fc" id="L25">	        }</span>
+<span class="fc" id="L26">	        return null;</span>
+	    }
+
+	    public void updateData(Bicicleta bike) {
+<span class="fc bfc" id="L30" title="All 2 branches covered.">	        if (this.getDataById(bike.getId()) == null) {</span>
+<span class="fc" id="L31">	            banco.add(bike);</span>
+	        }else{
+<span class="fc bfc" id="L33" title="All 2 branches covered.">	            for (Bicicleta bicicleta : banco) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">	                if (bicicleta.getId().equalsIgnoreCase(bike.getId())) {</span>
+<span class="fc" id="L35">	                    banco.set(banco.indexOf(bicicleta), bike);</span>
+	                }
+<span class="fc" id="L37">	            }</span>
+	        }
+<span class="fc" id="L39">	    }</span>
+
+	    public Boolean deleteData(String id) {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">	        for (Bicicleta bicicleta : banco) {</span>
+<span class="pc bpc" id="L43" title="1 of 4 branches missed.">	            if (bicicleta.getId() != null &amp;&amp; bicicleta.getId().equals(id)) {</span>
+<span class="fc" id="L44">	                banco.remove(bicicleta);                </span>
+<span class="fc" id="L45">	                return true;</span>
+	            }
+<span class="fc" id="L47">	        }</span>
+<span class="fc" id="L48">	        return false;</span>
+	    }
+
+		public void updateBicicleta(Bicicleta bicicletaUpdate) {
+			
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">			for (Bicicleta bicicleta : banco) {</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">		            if (bicicleta.getId().equalsIgnoreCase(bicicletaUpdate.getId())) {</span>
+<span class="fc" id="L55">		            	banco.set(banco.indexOf(bicicleta), bicicletaUpdate);</span>
+<span class="fc" id="L56">		                return;</span>
+		            }
+<span class="fc" id="L58">		        }</span>
+<span class="nc" id="L59">		}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

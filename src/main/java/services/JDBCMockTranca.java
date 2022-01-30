@@ -10,7 +10,7 @@ import domain.TrancaStatus;
 public class JDBCMockTranca {
 	
 	public final List<Tranca> banco = new ArrayList<>();
-	public static JDBCMockBicicleta mockBike = new JDBCMockBicicleta();
+	public static JDBCMockBicicleta mockBike = new JDBCMockBicicleta();//
 
     public JDBCMockTranca() {
         for (int i = 0; i < 10; i++) {
