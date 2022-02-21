@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import domain.Bicicleta;
+import domain.BicicletaStatus;
 import domain.Totem;
 import domain.Tranca;
 import domain.TrancaAcao;
@@ -179,7 +180,7 @@ public class ControllerTranca {
 	public static void postIntegrarNaRede(Context ctx) {
 		Bicicleta bicicleta = ControllerBicicleta.retrieveBikeByCtx(ctx);
 		Tranca tranca = ControllerTranca.retrieveTrancaByCtx(ctx);
-		if (tranca == null || bicicleta == null) {
+		if (tranca == null || bicicleta == null || mock.isTrancaInTotem(tranca.getIdTranca())) {
 			ctx.status(404).result(ErrorResponse.VALID_DATA_MESSAGE);
 			return;
 		}
@@ -188,6 +189,11 @@ public class ControllerTranca {
 				&& Validator.isBicicletaAvailable(String.valueOf(bicicleta.getStatus()))
 				&& Validator.isTrancaAvailable(String.valueOf(tranca.getStatus()))
 				&& Validator.checkKeysValidByCtx(ctx)) {
+			tranca.setStatus(TrancaStatus.OCUPADA);
+			mock.updateTranca(tranca);
+			bicicleta.setStatus(BicicletaStatus.DISPONIVEL);
+			ControllerBicicleta.mock.updateBicicleta(bicicleta);
+			
 			tranca.setIdBicicleta(bicicleta.getId());
 			mock.updateTranca(tranca);
 			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
@@ -199,15 +205,27 @@ public class ControllerTranca {
 
 	public static void postRetirarDaRede(Context ctx) {
 		Tranca tranca = retrieveTrancaByCtx(ctx);
-
-		if (tranca == null || tranca.getIdBicicleta() == null
-				|| !tranca.getIdBicicleta().equals(ctx.queryParam(ChavesJson.IDBICICLETA.getValor()))) {
+		
+		if (tranca == null || tranca.getIdBicicleta() == null || !mock.isTrancaInTotem(tranca.getIdTranca())) {
 			ctx.status(404).result(ErrorResponse.NOT_FOUND);
 			return;
 		}
 		if (Validator.checkKeysValidByCtx(ctx)) {
-			mock.deleteDataTrancaBike(tranca.getIdTranca(), tranca.getIdBicicleta());
-			ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
+			Bicicleta bicicleta = ControllerBicicleta.retrieveBikeById(tranca.getIdBicicleta());
+			if(bicicleta == null || (bicicleta.getStatus() != BicicletaStatus.DISPONIVEL || bicicleta.getStatus() != BicicletaStatus.NOVA)) {
+				ctx.status(404).result(ErrorResponse.INVALID_TRANCA_STATUS_MESSAGE);
+				return;
+			}else {
+				//prossegue
+				tranca.setStatus(TrancaStatus.LIVRE);
+				mock.updateTranca(tranca);
+				bicicleta.setStatus(BicicletaStatus.EM_USO);
+				ControllerBicicleta.mock.updateBicicleta(bicicleta);
+				
+				mock.deleteDataTrancaBike(tranca.getIdTranca(), tranca.getIdBicicleta());
+				ctx.status(200).json(bicicleta);
+			}
+			
 		} else {
 			ctx.status(422);
 			ctx.result(ErrorResponse.INVALID_DATA_MESSAGE);
@@ -307,5 +325,32 @@ public class ControllerTranca {
 	private static List<Bicicleta> retrieveBicicletasByTotemParam(Context ctx) {
 		return mock.getListDataBikeByTotem(ctx.pathParam(ChavesJson.IDTOTEM.getValor()));
 	}
+	
+	public static void getBikeAluguelDisponivelByTranca(Context ctx) {
+		Tranca tranca = retrieveTrancaByCtx(ctx);
+		if (tranca == null) {
+			ctx.status(404).result(ErrorResponse.NOT_FOUND);
+			return;
+		}else if(tranca.getIdBicicleta() == null && !mock.isTrancaInTotem(tranca.getIdTranca())){
+			ctx.status(422).result(ErrorResponse.INVALID_TRANCA_STATUS_MESSAGE);
+			return;
+		}
+		Bicicleta bicicleta = ControllerBicicleta.retrieveBikeById(tranca.getIdBicicleta());
+		if(bicicleta == null || (bicicleta.getStatus() != BicicletaStatus.DISPONIVEL || bicicleta.getStatus() != BicicletaStatus.NOVA)) {
+			ctx.status(422).result(ErrorResponse.INVALID_TRANCA_STATUS_MESSAGE);
+			return;
+		}else {
+			//prossegue
+			tranca.setStatus(TrancaStatus.LIVRE);
+			mock.updateTranca(tranca);
+			bicicleta.setStatus(BicicletaStatus.EM_USO);
+			ControllerBicicleta.mock.updateBicicleta(bicicleta);
+			
+		}
+	}
+	
+	
+	
+	
 
 }

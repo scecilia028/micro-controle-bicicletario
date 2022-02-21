@@ -110,4 +110,14 @@ public class JDBCMockTranca {
         }
 		return bicicletas.size() > 0 ? bicicletas : null;
 	}
+	
+	public boolean isTrancaInTotem(String idTranca) {
+		for (Tranca tranca: banco) {
+            if (tranca.getIdTranca().equalsIgnoreCase(idTranca) && tranca.getIdTotem() != null) {
+                return true;
+            }
+        }
+		 return false;
+	}
+	
 }

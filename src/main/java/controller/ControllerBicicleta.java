@@ -145,7 +145,7 @@ public class ControllerBicicleta {
     public static void deleteBicicleta(Context ctx) {
         Bicicleta bicicleta = retrieveBikeParam(ctx);
         
-        if (bicicleta != null && bicicleta.getStatus() == BicicletaStatus.APOSENTADA) {
+        if (bicicleta != null) {
             mock.deleteData(bicicleta.getId());
             ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
         }else{
@@ -162,7 +162,17 @@ public class ControllerBicicleta {
 					  ctx.status(422).result(ErrorResponse.INVALID_DATA_MESSAGE);
     		 }else {
     			 bicicleta.setStatus(BicicletaStatus.valueOf(ctx.pathParam(ChavesJson.STATUS.getValor()).toUpperCase()));
-    			 mock.updateBicicleta(bicicleta);	
+    			 mock.updateBicicleta(bicicleta);
+    			 
+    			 /**
+    			  * Verificar qual status esta sendo mudadado, se for aposentadoria ou semelhante
+    			  * deve chamar retirar da rede este idbicicleta
+    			  * alterar a tranca para livre
+    			  * 
+    			  */
+//    			OFF Bicicleta bicicleta = ControllerBicicleta.retrieveBikeById(tranca.getIdBicicleta());
+//					bicicleta.setStatus(BicicletaStatus.REPARO_SOLICITADO);
+    			 
        		    ctx.status(200).result(ErrorResponse.VALID_DATA_MESSAGE);
     		 }
     	 } else {

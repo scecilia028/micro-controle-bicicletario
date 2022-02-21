@@ -11,7 +11,7 @@ public class ErrorResponse {
 	    public static final String NOT_FOUND = "Não encontrado.";
 	    public static  final  String INVALID_DATA_MESSAGE = "Dados Inválidos.";
 	    public static  final  String VALID_DATA_MESSAGE = "Dados atualizados.";
-	    public static  final  String INVALID_TRANCA_STATUS_MESSAGE = "Tranca indisponível.";
+	    public static  final  String INVALID_TRANCA_STATUS_MESSAGE = "Tranca ou bicicleta indisponível.";
 	    
 	    private ErrorResponse() {
 	    throw new IllegalStateException("ErrorResponse");
