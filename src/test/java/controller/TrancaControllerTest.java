@@ -20,6 +20,7 @@ class TrancaControllerTest {
 
     private static JavalinApp app = new JavalinApp();
     private String trancaJson = JavalinJson.toJson(ControllerTranca.mock.banco);
+    private final static String URL_HEROKU = "https://sistema-bicicletario.herokuapp.com";
 
     @BeforeAll
     static void init() {
@@ -177,6 +178,18 @@ class TrancaControllerTest {
     	assertEquals(mock.banco.get(2).getModelo(), ControllerTranca.retrieveTrancaByParamIdOrNumber("2").getModelo());
     }
     
+    @Test
+    void getHtrancaByIdSuccessTest() {
+        HttpResponse response = Unirest.get(URL_HEROKU+"/tranca/3").asString();
+        assertEquals(200, response.getStatus());
+    }
+    
+    
+ @Test
+    void postHtrancacaoSuccessTest() {
+        HttpResponse response = Unirest.post(URL_HEROKU+"/tranca/2/status/destrancar").asString();
+        assertEquals(200, response.getStatus());
+    }
     
     
 }

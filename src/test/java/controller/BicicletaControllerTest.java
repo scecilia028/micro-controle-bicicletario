@@ -12,7 +12,9 @@ import domain.BicicletaStatus;
 import domain.Tranca;
 import io.javalin.plugin.json.JavalinJson;
 import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
+import kong.unirest.json.JSONObject;
 import services.JDBCMockBicicleta;
 import util.JavalinApp;
 
@@ -22,6 +24,7 @@ class BicicletaControllerTest {
 
     private static JavalinApp app = new JavalinApp();
     private String bikeJson = JavalinJson.toJson(ControllerBicicleta.mock.banco);
+    private final static String URL_HEROKU = "https://sistema-bicicletario.herokuapp.com";
 
     @BeforeAll
     static void init() {
@@ -180,7 +183,7 @@ class BicicletaControllerTest {
     
     @Test
     void postBicicletaOutTrancaTest() {
-        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/retirarDaRede?idTranca=4&idBicicleta=1").asString();
+        HttpResponse response = Unirest.post("http://localhost:7010/bicicleta/retirarDaRede?idTranca=4").asString();
         assertEquals(200, response.getStatus());
     }
     
@@ -238,5 +241,23 @@ class BicicletaControllerTest {
 	public void setBikeJson(String bikeJson) {
 		this.bikeJson = bikeJson;
 	}
+	
+
+    @Test
+    void postHBicicletaFailNullStatusParamTest() {
+        HttpResponse response = Unirest.post(URL_HEROKU + "/bicicleta?status=null").asString();
+        assertEquals(404, response.getStatus());
+    }
     
+    @Test
+    void getHBicicletaByIdSuccessTest() {
+        HttpResponse response = Unirest.get(URL_HEROKU+"/bicicleta/5").asString();
+        assertEquals(200, response.getStatus());
+    }
+    
+    @Test
+    void postHBicicletaInTrancaTest() {
+        HttpResponse response = Unirest.post(URL_HEROKU+"/bicicleta/integrarNaRede?idTranca=7&idBicicleta=7").asString();
+        assertEquals(200, response.getStatus());
+    }
 }
