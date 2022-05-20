@@ -1,4 +1,0 @@
-# Created at 2022-01-30T15:12:35.220
-Boot Manifest-JAR contains absolute paths in classpath 'E:\Programas\eclipse-workspace-ee\SistemaBicicletario\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-

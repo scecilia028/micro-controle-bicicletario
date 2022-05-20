@@ -1,58 +1,0 @@
-
-Dservices.JDBCMockTotem#getDataById(Ljava/lang/String;)Ldomain/Totem;i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java ("5*¿
-2i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java (ì
-ê
-i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java (
-Totemdomain.Totem"__id*
-""±
-Æ
-i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java (
-Totemdomain.Totem"
-__arrayGet*
-
-%0java.util.List*
-""*
-4
-1*ı
-3i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java ("Ñ
-i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java (
-
-Totemdomain.Totem*€
-4i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java (–Õ
-i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java (
-%1java.lang.String"&domain.Totem#getId()Ljava/lang/String;*
-
-Totemdomain.Totem2getId()èå
-i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java (2
-%2boolean"6java.lang.String#equalsIgnoreCase(Ljava/lang/String;)Z*
-
-%1java.lang.String*
-
-idjava.lang.String2$equalsIgnoreCase(Ljava/lang/String;)*
-2
-3*ß
-5i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java ( ±
-Æ
-i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java ( 
-%0java.util.List"__id*%*#
-services.JDBCMockTotem"
-banco*
-2*„
-1i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java ("s
-i
-_E:/Programas/eclipse-workspace-ee/SistemaBicicletario/src/main/java/services/JDBCMockTotem.java (
-"":
-idjava.lang.StringB
-services.JDBCMockTotem
